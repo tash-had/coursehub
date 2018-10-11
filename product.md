@@ -5,28 +5,15 @@
 
 #### Q1: What are you planning to build?
 
-YOUR ANSWER GOES HERE ...
+Our project is a crowdsourced forum to help UofT Students choose courses. Currently, while navigating the ocean of UofT courses, you have to resort to sparse or biased sources like Reddit and word-of-mouth for suggestions. We want to help people have a more objective source of course information by aggregating over the opinions of many.  This website/webapp would provide an accessible resource for up to date course information which is constantly evolving. From our own experience, we know how overwhelmed students get when trying to find the right courses in an atmosphere which is both competitive and rapidly changing. We want to remedy this stressful situation with a trustworthy hub for all course-related information, wherein users can ask questions, get answers from more experienced students, and due to the ability to “vote” on all comments, actually trust the answers they get.
 
- * Short (1 - 2 min' read)
- * Start with a single sentence, high-level description of the product.
- * Be clear - Describe the problem you are solving in simple terms.
- * Be concrete. For example:
-    * What are you planning to build? Is it a website, mobile app,
-   browser extension, command-line app, etc.?      
-    * When describing the problem/need, give concrete examples of common use cases.
- * Focus on *what* your product does, and avoid discussing *how* you're going to implement it.      
-   For example: This is not the time or the place to talk about which programming language and/or framework you are planning to use.
- * **Feel free (and very much encouraged) to include useful diagrams, mock-ups and/or links**.
-
+Currently we have one mockup for a single course, built by our front-end team. It can be seen [here](https://i.imgur.com/Q86CPfI.png)
 
 #### Q2: Who are your target users?
 
-YOUR ANSWER GOES HERE ...
+Meet our friend Billy. Billy is a high school graduate who feels overwhelmed when he reads through the vast quantity of courses offered by UofT. He tries asking his friends but they are just as lost as he is. The UofT course calendar only addresses topics that will be covered, and not the level of difficulty or personality fit of the course.  While reading online forums e.g. Reddit, he finds outdated information. With no other info sources, he chooses his courses mostly at random which leads to a suboptimal educational experience.
 
- * Short (1 - 2 min' read max)
- * Be specific (e.g. )
- * Feel free (but not obligated) to use personas.        
-   You can create your personas as part of this Markdown file, or add a link to an external site (for example, [Xtensio](https://xtensio.com/user-persona/)).
+Meet our friend Rachel. Rachel has just finished second year and has been frustrated by the bad course suggestions she has received from her friends. Given the competitive nature of course selection at UofT, she does not want to select courses she knows it will be difficult to switch out of. 
 
 #### Q3: Why would your users choose your product? What are they using today to solve their problem/need?
 
