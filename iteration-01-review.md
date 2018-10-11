@@ -30,15 +30,14 @@
 
 #### Goals and/or tasks that were met/completed:
 
- * From most to least important.
- * Refer/link to artifact(s) that show that a goal/task was met/completed.
- * If a goal/task was not part of the original iteration plan, please mention it.
+
+Our most important goal for this deliverable was setting up the basic skeletal structure of the three most important parts of our project: the database, [the UML](https://drive.google.com/file/d/1m6DPvzWu5L10WlaltwL3CrcNGazQQ7-A/view?usp=sharing)
+and the [basic UI](https://imgur.com/a/lpIvy7u).  This goal was met.   We have formed the basic foundation for our project so we will be ready for future deliverables.  Our secondary goal was narrowing down our targeted users.  We did so.  Our main target users are students at UofT.  Narrowing down the scope of our user-base will allow us to focus our development efforts in future deliverables.  Both of these goals that we completed were part of our original iteration plan.  
 
 #### Goals and/or tasks that were planned but not met/completed:
 
- * From most to least important.
- * For each goal/task, explain why it was not met/completed.      
-   e.g. Did you change your mind, or did you just not get to it yet?
+There were no goals that were planned but not completed.
+
 
 ## Meeting Highlights
 
