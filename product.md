@@ -17,28 +17,16 @@ Meet our friend Rachel. Rachel has just finished second year and has been frustr
 
 #### Q3: Why would your users choose your product? What are they using today to solve their problem/need?
 
-YOUR ANSWER GOES HERE ...
-
- * Short (1 - 2 min' read max)
- * We want you to "connect the dots" for us - Why does your product (as described in your answer to Q1) fits the needs of your users (as described in your answer to Q2)?
- * Explain the benefits of your product explicitly & clearly. For example:
-    * Save users time (how much?)
-    * Allow users to discover new information (which information? And, why couldn't they discover it before?)
-    * Provide users with more accurate and/or informative data (what kind of data? Why is it useful to them?)
-
+When picking courses, students are generally using Reddit, course evaluations, RateMyProf, and word-of-mouth to choose courses.  Our product will be superior because it will have all information about courses organized into one spot.  This will  save users from having to do numerous Google searches for various website and therefore hours of their time.  Further, the ability to evaluate (“vote on”) the information provided by other users will inherently allow for greater accuracy and trustworthiness.  Some sources such as word-of-mouth are not always reliable.  They are sometimes based off of one source.  However with our voting system, users will be able to see a rating of any comment or review based off of multiple other users.  This will ensure that sources of information have more than one "opinion" on them.  
 
 ----
 
 ### Highlights
 
-YOUR ANSWER GOES HERE ...
+First we discussed what frameworks and APIs we would be using for implementing our webapp. We chose the technologies based on what we have the most experience with in order to be able to focus more on implementation. Python, SQL and angular 6 will be used to develop our course evaluation app. We have members who are comfortable with each of these and will be using everyone's skills in each to our advantage. Using any other technologies that we are not as comfortable with will just add an unnecessary additional hurdle to our development process. 
 
-Specify 3 - 5 key decisions and/or insights that came up during your meetings
-and/or collaborative process.
+Our next major decision was deciding the main layout of our web page. We opted to have a page for each course which will have key information about the course such as its rating, a quick explanation and the questions for the course. We were deciding to have a new page once you click on a question but we decided to have all responses to a question drop below it because at first our user base and feedback will be limited. 
 
- * Short (5 min' read max)
- * Decisions can be related to the product and/or the team process.
-    * Mention which alternatives you were considering.
-    * Present the arguments for each alternative.
-    * Explain why the option you decided on makes the most sense for your team/product/users.
- * Essentially, we want to understand how (and why) you ended up with your current product plan.
+Another major decision was choosing roles for each of our team members. We had each of our members discuss their strengths and then we accordingly assigned people to back-end, front-end or database development. This way we use everyone's best abilities to use. 
+
+Lastly, our design approach for building our webapp was a very important decision. We opted to start with a basic implementation of each section: our database, UI and backend. Another option could have been completing each one fully one at a time but that is less efficient as this way we can get an operating MVP and add new features as we go. 
