@@ -43,8 +43,12 @@ There were no goals that were planned but not completed.
 
 Going into the next iteration, our main insights are:
 
- * 2 - 4 items
- * Short (no more than one short paragraph per item)
- * High-level concepts that should guide your work for the next iteration.
- * These concepts should help you decide on where to focus your efforts.
- * Can be related to product and/or process.
+ First we want to start by building an MVP which will have the working components of each part of the web app. This includes our front-end, back-end and also database integration. From there we will begin to implement more complex features, first adding the most important feautres such as allowing a question to be asked for a specific course.
+ As well we will need to retrieve all of the courses from an external source so that we can have a page for each course that is offered at UofT and then have that courses associated questions, reviews etc. Having a clean and organized UI is also crucial to ensure that the user experience is optimal and so that using the web app is intuitive.
+ Another important goal is to connect the front-end to back-end and ensure everything works smoothly. We have designated roles to team members, some will be working back-end and others on front-end so connecting those two will be important for functionality of the web app. Most likely at one of our weekly meetings we  will come together and discuss
+ how we will connect the two. Additionally, implementing 1/2 to 2/3 of our features for the app is another goal. As mentioned above the more important features will be implemented and integrated first. 
+ 
+ Weekly meetings going forward will be very important to cooridiante progress as well as struggles with certain aspects of implementation. Here we can help each other with problems and adjust deadlines and responsiblities accordingly. At our meetings we will allow each team member to discuss both their progress and their problems.
+ 
+ 
+ 
