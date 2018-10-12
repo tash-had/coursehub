@@ -27,7 +27,7 @@ Describe meetings (and other events) you are planning to have:
 
 #### Artifacts
 
-List/describe the artifacts you will produce in order to organize your team.       
+List/describe the artifacts youe will produce in order to organize your team.       
 
  * Artifacts can be To-do lists, Task boards, schedule(s), etc.
  * We want to understand:
@@ -42,9 +42,14 @@ _This entire section is mandatory._
 
 #### Goals and tasks
 
- * Describe your goals for this iteration and the tasks that you will have to complete in order to achieve these goals.
- * Order the items from most to least important.
- * Feel free (but not obligated) to specify some/all tasks as user stories.
+ For our first iteration, we would like to set up a full skeleton structure such that we can control information flow from text being entered into a web page, to being registered as a comment/post on a “course page” in our back-end OO model, to being entered into a database. This would allow us to have a complete framework that can be easily expanded upon in order to add more features in further iterations, rather than if we were only focusing on the back-end or front-end.
+
+In order to achieve this, we will need to determine what languages/APIs/frameworks we will be using all the way from the database to the UI.
+
+We will also need to implement at least 1 DB table, the UML diagram, and 1 web-page with simple interactivity (enter some text and it will show up as a “comment”).
+
+All these components will need to be linked; this process is essential as it will be the foundation for all future features that will be added.
+
 
 #### Artifacts
 
