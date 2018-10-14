@@ -55,7 +55,6 @@ All these components will need to be linked; this process is essential as it wil
 
 List/describe the artifacts you will produce in order to present your project idea.
 
- * Artifacts can be text, code, images, videos, interactive mock-ups and/or any other useful artifact you can think of.
- * Make sure to explain the purpose of each artifact (i.e. Why is it on your to-do list? Why is it useful for your team?)
- * Be concise, yet precise.         
-   For example: "Build the website" is not precise at all, but "Build a static home page and upload it somewhere, so that it is publicly accessible" is much clearer.
+In order to present our project idea the artifacts we will need are the UML diagram, the basic database setup, and 1 web-page with simple interactivity.  In the UML diagram we will outline the basic structure of all the basic classes that we need to build the MVP.  This artifact will be useful because it will give us an organized structure to follow when coding the back-end.  We will need the basic database setup so that we will be ready with the basic structure/plan of our 3 important parts of our project (front end, back end, database).  Our third artifact will be the web-page with simple interactivity.  We will create one course with the ability to add a comment.  Again, this artifact is important because it creates the basis of one of our 3 main components of our project. 
+
+ 
