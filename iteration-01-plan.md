@@ -6,8 +6,8 @@
 
 ## Iteration XX
 
- * Start date: FILL IN THE DATE WHEN YOU HAD YOUR FIRST TEAM PLANNING MEETING
- * End date: FILL IN THE DATE WHEN YOU ARE PLANNING TO HAVE YOUR REVIEW MEETING
+ * Start date: Thurs Sept 27
+ * End date: Thurs Oct 11
 
 ## Process
 
@@ -27,7 +27,7 @@ Describe meetings (and other events) you are planning to have:
 
 #### Artifacts
 
-List/describe the artifacts you will produce in order to organize your team.       
+List/describe the artifacts youe will produce in order to organize your team.       
 
  * Artifacts can be To-do lists, Task boards, schedule(s), etc.
  * We want to understand:
@@ -42,15 +42,24 @@ _This entire section is mandatory._
 
 #### Goals and tasks
 
- * Describe your goals for this iteration and the tasks that you will have to complete in order to achieve these goals.
- * Order the items from most to least important.
- * Feel free (but not obligated) to specify some/all tasks as user stories.
+ For our first iteration, we would like to set up a full skeleton structure such that we can control information flow from text being entered into a web page, to being registered as a comment/post on a “course page” in our back-end OO model, to being entered into a database. This would allow us to have a complete framework that can be easily expanded upon in order to add more features in further iterations, rather than if we were only focusing on the back-end or front-end.
+
+In order to achieve this, we will need to determine what languages/APIs/frameworks we will be using all the way from the database to the UI.
+
+We will also need to implement at least 1 DB table, the UML diagram, and 1 web-page with simple interactivity (enter some text and it will show up as a “comment”).
+
+All these components will need to be linked; this process is essential as it will be the foundation for all future features that will be added.
+
 
 #### Artifacts
 
-List/describe the artifacts you will produce in order to present your project idea.
 
- * Artifacts can be text, code, images, videos, interactive mock-ups and/or any other useful artifact you can think of.
- * Make sure to explain the purpose of each artifact (i.e. Why is it on your to-do list? Why is it useful for your team?)
- * Be concise, yet precise.         
-   For example: "Build the website" is not precise at all, but "Build a static home page and upload it somewhere, so that it is publicly accessible" is much clearer.
+In order to present our project idea the artifacts we will need are the UML diagram, the basic database setup, and 1 web-page with simple interactivity.  
+
+In the UML diagram we will outline the basic structure of all the basic classes that we need to build the MVP.  This artifact will be useful because it will give us an organized structure to follow when coding the back-end.  
+
+We will also need the basic database setup so that we will be ready with the basic structure/plan of our 3 important parts of our project (front end, back end, database).  
+
+Our third artifact will be the web-page with simple interactivity.  We will create one course with the ability to add a comment.  Again, this artifact is important because it creates the basis of one of our 3 main components of our project. 
+
+ 

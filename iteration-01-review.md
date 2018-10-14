@@ -18,12 +18,12 @@
 #### Decisions that did not turn out as well as we hoped
 
  * Originally in our meetings, we would all throw out our ideas at once. This was effective while we were brainstorming ideas/features but eventually it became too messy. We were wasting time and did not have a solid path to follow.
- * Due to the point listed above, we also had multiple plans and features that were not feasible. If we decided earlier to focus on the minimal viable product rather than every possible features.
- * Also, deciding to not split up into sub groups earlier did not turn out well. Since everyone was working on one part at a time, we would spend an unnecessary amount of time on certain aspects which could've been resolved much quicker if we had smaller teams
+ * Due to the point listed above, we also had multiple plans and features that were not feasible. We should have decided earlier to focus on the minimal viable product rather than every possible feature.
+ * Also, deciding that everyone should work as one big group did not turn out well.  We did not split up into subgroups until after a few meetings.  Since everyone was working on one part at a time, we would spend an unnecessary amount of time on certain aspects which could've been resolved much quicker if we had smaller teams.  There were too many people with too many ideas to be able to make good decisions quickly.  
 
 
 #### Planned changes
- * Our next plan mainly revolves around connecting our front end to the back end and deciding the MVP. This will be the main goal of iteration 02.
+ * We do not have any process-related changes to make.  We are happy that we decided to split into sub-groups because this decision has been working very well for us. 
 
 
 ## Product - Review
@@ -31,8 +31,8 @@
 #### Goals and/or tasks that were met/completed:
 
 
-Our most important goal for this deliverable was setting up the basic skeletal structure of the three most important parts of our project: the database, [the UML](https://drive.google.com/file/d/1m6DPvzWu5L10WlaltwL3CrcNGazQQ7-A/view?usp=sharing)
-and the [basic UI](https://imgur.com/a/lpIvy7u).  This goal was met.   We have formed the basic foundation for our project so we will be ready for future deliverables.  Our secondary goal was narrowing down our targeted users.  We did so.  Our main target users are students at UofT.  Narrowing down the scope of our user-base will allow us to focus our development efforts in future deliverables.  Both of these goals that we completed were part of our original iteration plan.  
+Our goal for this deliverable was setting up the basic skeletal structure of the three most important parts of our project: [the database](https://imgur.com/a/qBAQ77n), [the UML](https://drive.google.com/file/d/1m6DPvzWu5L10WlaltwL3CrcNGazQQ7-A/view?usp=sharing)
+and the [basic UI](https://imgur.com/a/lpIvy7u).  This goal was met.   We have formed the basic foundation for our project so we will be ready for future deliverables.  
 
 #### Goals and/or tasks that were planned but not met/completed:
 
