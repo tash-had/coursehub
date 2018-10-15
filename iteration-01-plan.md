@@ -9,7 +9,7 @@
 
 #### Events
 
- Meetings occur in-person on Thursdays in Bahen. Additional meetings may occur if extra discussion and assignment is necessary. The purpose of each meeting is to view task progression, discuss the steps for our next iteration, review and issues, and assign roles accordingly. 
+ Meetings occur in-person on Thursdays in Bahen. Additional meetings may occur if extra discussion and assignment is necessary. The purpose of each meeting is to view task progression, discuss the steps for our next iteration, review any issues, and assign roles accordingly. 
 
 #### Artifacts
 
