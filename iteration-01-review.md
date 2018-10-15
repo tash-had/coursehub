@@ -29,14 +29,10 @@
 ## Product - Review
 
 #### Goals and/or tasks that were met/completed:
-
-
-Our goal for this deliverable was setting up the basic skeletal structure of the three most important parts of our project: [the database](https://imgur.com/a/qBAQ77n), [the UML](https://drive.google.com/file/d/1m6DPvzWu5L10WlaltwL3CrcNGazQQ7-A/view?usp=sharing)
-and the [basic UI](https://imgur.com/a/lpIvy7u).  This goal was met.   We have formed the basic foundation for our project so we will be ready for future deliverables.  
+ Our goal for this deliverable was setting up the basic skeletal structure of the three most important parts of our project: [the database](https://imgur.com/a/qBAQ77n), [the UML](https://drive.google.com/file/d/1m6DPvzWu5L10WlaltwL3CrcNGazQQ7-A/view?usp=sharing) and the [basic UI](https://imgur.com/a/lpIvy7u).  This goal was met. We have formed the basic foundation for our project so we will be ready for future deliverables.  
 
 #### Goals and/or tasks that were planned but not met/completed:
-
-There were no goals that were planned but not completed.
+ There were no goals that were planned but not completed.
 
 
 ## Meeting Highlights
