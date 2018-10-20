@@ -1,56 +1,42 @@
-# YOUR PRODUCT/TEAM NAME
+# CourseHub
 
- > _Note:_ This document is meant to be written during (or shortly after) your initial planning meeting.     
- > It does not really make sense for you to edit this document much (if at all) while working on the project - Instead, at the end of the planning phase, you can refer back to this document and decide which parts of your plan you are happy with and which parts you would like to change.
+## Iteration
 
-
-## Iteration XX
-
- * Start date: FILL IN THE DATE WHEN YOU HAD YOUR FIRST TEAM PLANNING MEETING
- * End date: FILL IN THE DATE WHEN YOU ARE PLANNING TO HAVE YOUR REVIEW MEETING
+ * Start date: Thurs Sept 27
+ * End date: Thurs Oct 11
 
 ## Process
 
-_This entire section is optional. Note that you will have to fill it out and more for the next 3 deliverables so it's good to start soon and get feedback._ 
-
-#### Roles & responsibilities
-
-Describe the different roles on the team and the responsibilities associated with each role.
-
 #### Events
 
-Describe meetings (and other events) you are planning to have:
-
- * When and where? In-person or online?
- * What's the purpose of each meeting?
- * Other events could be coding sessions, code reviews, quick weekly sync' meeting online, etc.
+ Meetings occur in-person on Thursdays in Bahen. Additional meetings may occur if extra discussion and assignment is necessary. The purpose of each meeting is to view task progression, discuss the steps for our next iteration, review any issues, and assign roles accordingly. 
 
 #### Artifacts
 
-List/describe the artifacts you will produce in order to organize your team.       
+ We will be using Trello as our main information source to set tasks that need to be done, so that we can  organize our goals for completing parts of the front-end and back-end, and to be able to identify any issues that need to be addressed. Tasks will be prioritized based on getting the most important functions working first. In our case, setting up the database, UML diagram, and web page are the most desirable at this point (MVP). As such, Trello is our main information hub for seeing what stages each task is at. 
 
- * Artifacts can be To-do lists, Task boards, schedule(s), etc.
- * We want to understand:
-   * How do you keep track of what needs to get done?
-   * How do you prioritize tasks?
-   * How do tasks get assigned to team members?
+ Slack will be our main source of communication for setting up meetings to discuss ideas or problems we are having. Agile methodology will be our main approach, where we work in short cycles and continually review our work and adjust our goals accordingly. Task assignment will occur at our meetings, where we discuss what objectives need to be accomplished. We will discuss and decide the member who is best suited for a task based on their confidence and previous experience. Thus, our agile based meetings every week will serve as a great way to see the progress for each task and to see if any adjustments need to be made.
 
 
 ## Product
 
-_This entire section is mandatory._
-
 #### Goals and tasks
 
- * Describe your goals for this iteration and the tasks that you will have to complete in order to achieve these goals.
- * Order the items from most to least important.
- * Feel free (but not obligated) to specify some/all tasks as user stories.
+ For our first iteration, we would like to set up a full skeleton structure such that we can control information flow from text being entered into a web page, to being registered as a comment/post on a “course page” in our back-end OO model, to being entered into a database. This would allow us to have a complete framework that can be easily expanded upon in order to add more features in further iterations, rather than if we were only focusing on the back-end or front-end.
+
+ In order to achieve this, we will need to determine what languages/APIs/frameworks we will be using all the way from the database to the UI.
+
+ We will also need to implement at least 1 DB table, the UML diagram, and 1 web-page with simple interactivity (enter some text and it will show up as a “comment”).
+
+ All these components will need to be linked; this process is essential as it will be the foundation for all future features that will be added.
+
 
 #### Artifacts
+ 
+ In order to present our project idea the artifacts we will need are the UML diagram, the basic database setup, and 1 web-page with simple interactivity.  
 
-List/describe the artifacts you will produce in order to present your project idea.
+ In the UML diagram we will outline the basic structure of all the basic classes that we need to build the MVP.  This artifact will be useful because it will give us an organized structure to follow when coding the back-end.  
 
- * Artifacts can be text, code, images, videos, interactive mock-ups and/or any other useful artifact you can think of.
- * Make sure to explain the purpose of each artifact (i.e. Why is it on your to-do list? Why is it useful for your team?)
- * Be concise, yet precise.         
-   For example: "Build the website" is not precise at all, but "Build a static home page and upload it somewhere, so that it is publicly accessible" is much clearer.
+ We will also need the basic database setup so that we will be ready with the basic structure/plan of our 3 important parts of our project (front end, back end, database).  
+
+ Our third artifact will be the web-page with simple interactivity.  We will create one course with the ability to add a comment.  Again, this artifact is important because it creates the basis of one of our 3 main components of our project. 
