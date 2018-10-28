@@ -27,7 +27,7 @@ class DatabaseManager:
         return None
 
 
-class CommentdatabaseWorker(DatabaseManager):
+class CommentDatabaseWorker(DatabaseManager):
     """Contains the functions to add to and retrieve from the database"""
 
     def __init__(self):
@@ -69,7 +69,7 @@ class CommentdatabaseWorker(DatabaseManager):
         return results
 
 
-class CoursedatabaseWorker(DatabaseManager):
+class CourseDatabaseWorker(DatabaseManager):
     """Gets course information in the course database"""
     def __init__(self):
         super()
