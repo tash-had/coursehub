@@ -22,3 +22,19 @@ class CourseManager:
         rating = course_info["rating"]
 
         return Course(code, id_, description, rating)
+
+    @staticmethod
+    def get_course_by_id(id_):
+        """
+        :param id_: int
+        :return: Course
+        """
+
+        course_info = CourseManager.course_db_worker.get_course_by_id(id_)
+
+        code = course_info["code"]
+        id_ = course_info["id"]
+        description = course_info["description"]
+        rating = course_info["rating"]
+
+        return Course(code, id_, description, rating)

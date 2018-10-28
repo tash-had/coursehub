@@ -89,6 +89,20 @@ class CourseDatabaseWorker(DatabaseManager):
             return []
         return results
 
+    def get_course_by_id(self, id_):
+        """
+        Query courses based on course id
+        :param int id_: course to retrieve
+        :return:
+        """
+        cur = self.db_conn.cursor()
+        cur.execute("SELECT * FROM courses WHERE id=?", [id_])
+
+        results = cur.fetchall()
+        if results is None:
+            return []
+        return results
+
 
 class _CourseHubDatabaseInitializer:
     """ A set of functions to help setup the database. Use cautiously. """
