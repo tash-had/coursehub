@@ -14,21 +14,6 @@ class DatabaseManager:
         if self.db_conn is None:
             raise sqlite3.DatabaseError("Could not establish a connection to the database.")
 
-    def get_course_data(self, course_code):
-        """
-        Query courses based on course code 
-
-        :param str course_code: course we are retrieving
-        :return:
-        """
-        cur = self.db_conn.cursor()
-        cur.execute("SELECT * FROM courses WHERE course_code=?", [course_code])
-
-        results = cur.fetchall()
-        if results is None:
-            return []
-        return results
-
     def create_table(self, instructions):
         """ create a table from the create_table_sql statement
         :param instructions: a CREATE TABLE statement
@@ -40,6 +25,69 @@ class DatabaseManager:
         except Error as e:
             print(e)
         return None
+
+
+class CommentdatabaseWorker(DatabaseManager):
+    """Contains the functions to add to and retrieve from the database"""
+
+    def __init__(self):
+        super()
+
+    def insert_comment(self, data):
+        """ Insert data into the comments table
+
+        :param dict data: Keys: [id, course_id, comment, timestamp, votes]
+        :return:
+        """
+
+        comment_id = data["id"]
+        course_id = data["course_id"]
+        comment = data["comment"]
+        time = data["timestamp"]
+        votes = data["votes"]
+
+        input_data = [comment_id, course_id, comment, time, votes]
+
+        c = self.db_conn.cursor()
+        c.execute('insert into courses values (?,?,?,?,?)', input_data)
+        self.db_conn.commit()
+        c.close()
+
+    def get_comments_for_course(self, course_id):
+        """
+        Get all comments for a specific course
+
+        :param str course_id: course we are retrieving data for
+        :return:
+        """
+        cur = self.db_conn.cursor()
+        cur.execute("SELECT * FROM comments WHERE course_id=?", [course_id])
+
+        results = cur.fetchall()
+        if results is None:
+            return []
+        return results
+
+
+class CoursedatabaseWorker(DatabaseManager):
+    """Gets course information in the course database"""
+    def __init__(self):
+        super()
+
+    def get_course_data(self, course_code):
+        """
+        Query courses based on course code
+
+        :param str course_code: course we are retrieving
+        :return:
+        """
+        cur = self.db_conn.cursor()
+        cur.execute("SELECT * FROM courses WHERE course_code=?", [course_code])
+
+        results = cur.fetchall()
+        if results is None:
+            return []
+        return results
 
 
 class _CourseHubDatabaseInitializer:
@@ -87,7 +135,7 @@ class _CourseHubDatabaseInitializer:
             course_id text,
             comment text,
             timestamp integer,
-            votes integer); 
+            votes integer);
         """
 
         course_table = """
