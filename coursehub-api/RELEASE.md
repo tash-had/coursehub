@@ -1,0 +1,1 @@
+1. Run course_scraper.py and set the first param of `populate_course_table` to "all" so all courses are loaded in the DB
