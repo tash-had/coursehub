@@ -22,10 +22,9 @@ class DatabaseManager:
         :return:
         """
         cur = self.db_conn.cursor()
-        cur.execute("SELECT * FROM course WHERE code=?", [course_code])
+        cur.execute("SELECT * FROM courses WHERE course_code=?", [course_code])
 
         results = cur.fetchall()
-
         if results is None:
             return []
         return results
@@ -46,8 +45,13 @@ class DatabaseManager:
 class _CourseHubDatabaseInitializer:
     """ A set of functions to help setup the database. Use cautiously. """
 
-    def __init__(self):
+    def __init__(self, drop_courses_table=False):
         self.db_manager = DatabaseManager()
+        if drop_courses_table:
+            conn = self.db_manager.db_conn
+            conn.execute("DROP TABLE courses")
+            conn.close()
+
         self.create_tables()
 
     def insert_course(self, data):
@@ -66,10 +70,11 @@ class _CourseHubDatabaseInitializer:
         input_data = [course_id, code, course_description, course_title, org_name]
 
         c = self.db_manager.db_conn.cursor()
-        course_exists = c.execute('SELECT * FROM course WHERE id = ?', [course_id])
+        course_exists = c.execute('SELECT * FROM courses WHERE id = ?', [str(course_id)])
 
+        # NOTE: this will makesure the same course in two different sections don't both get added.
         if course_exists.fetchone() is None:
-            c.execute('insert into course values (?,?,?,?,?)', input_data)
+            c.execute('insert into courses values (?,?,?,?,?)', input_data)
 
         self.db_manager.db_conn.commit()
         c.close()
@@ -79,15 +84,15 @@ class _CourseHubDatabaseInitializer:
 
         comment_table = """  CREATE TABLE IF NOT EXISTS comments(
             id integer PRIMARY KEY,
-            course text,
+            course_id text,
             comment text,
             timestamp integer,
             votes integer); 
         """
 
         course_table = """
-        CREATE TABLE IF NOT EXISTS course(
-            id integer PRIMARY KEY,
+        CREATE TABLE IF NOT EXISTS courses(
+            id text PRIMARY KEY,
             course_code text,
             course_description text,
             course_title text,
