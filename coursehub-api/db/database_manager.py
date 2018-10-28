@@ -9,8 +9,8 @@ class DatabaseManager:
     def __init__(self, db_name="coursehub.db"):
         import os
         base_path = os.path.dirname(os.path.abspath(__file__)) + "/"
-        self.db_path = base_path + db_name
-        self.db_conn = sqlite3.connect(self.db_path)
+        self._db_path = base_path + db_name
+        self.db_conn = sqlite3.connect(self._db_path)
         if self.db_conn is None:
             raise sqlite3.DatabaseError("Could not establish a connection to the database.")
 
@@ -48,6 +48,7 @@ class _CourseHubDatabaseInitializer:
 
     def __init__(self):
         self.db_manager = DatabaseManager()
+        self.create_tables()
 
     def insert_course(self, data):
         """ Insert data into the table
@@ -65,8 +66,9 @@ class _CourseHubDatabaseInitializer:
         input_data = [course_id, code, course_description, course_title, org_name]
 
         c = self.db_manager.db_conn.cursor()
-        course_exists = c.execute('SELECT 1 from course WHERE ? = ?', ["course_id", course_id])
-        if not course_exists:
+        course_exists = c.execute('SELECT * FROM course WHERE id = ?', [course_id])
+
+        if course_exists.fetchone() is None:
             c.execute('insert into course values (?,?,?,?,?)', input_data)
 
         self.db_manager.db_conn.commit()
@@ -76,20 +78,20 @@ class _CourseHubDatabaseInitializer:
         """ Creates the comment and course tables in the db """
 
         comment_table = """  CREATE TABLE IF NOT EXISTS comments(
-        id integer PRIMARY KEY,
-        course text,
-        comment text,
-        timestamp text,
-        votes integer); """
+            id integer PRIMARY KEY,
+            course text,
+            comment text,
+            timestamp integer,
+            votes integer); 
+        """
 
         course_table = """
         CREATE TABLE IF NOT EXISTS course(
-        id text PRIMARY KEY,
-        course_id text,
-        course_code text,
-        course_description text,
-        course_title text,
-        org_name text);
+            id integer PRIMARY KEY,
+            course_code text,
+            course_description text,
+            course_title text,
+            org_name text);
         """
         self.db_manager.create_table(comment_table)
         self.db_manager.create_table(course_table)

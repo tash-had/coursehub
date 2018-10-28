@@ -1,4 +1,6 @@
 import requests
+import sqlite3
+
 from db.database_manager import _CourseHubDatabaseInitializer
 
 
