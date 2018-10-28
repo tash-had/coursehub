@@ -47,6 +47,15 @@ class Comment:
     def set_course(self, course):
         pass
 
+    def get_text(self):
+        return self.text
+
+    def get_course_id(self):
+        return self.course_id
+
+    def get_comment_id(self):
+        return self.comment_id
+
 
 
 

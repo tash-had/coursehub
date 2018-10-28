@@ -1,4 +1,5 @@
-from Comment import Comment
+from comment import Comment
+from d
 import datetime
 
 
@@ -21,15 +22,14 @@ class CommentManager:
 
         self.comments = comments
 
-    def create_comment(self, course_id, time_stamp, text):
+    def create_comment(self, course_id, text):
         """
 
         @type course_id: int
-        @type time_stamp: datetime.datetime
         @type text: str
         @rtype: None
         """
-        pass
+        db.insert_comment
 
     def get_comments_by_course(self, course_id):
         """
