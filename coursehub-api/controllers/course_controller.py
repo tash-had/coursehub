@@ -18,6 +18,14 @@ def search_for_course():
 
 
 # endpoint goes here
+def select_course():
+    """
+    :return: course by ID
+    """
+    return jsonify(CourseManager.get_course_by_id(request.args.get("ID")).__dict__)
+
+
+# endpoint goes here
 def update_rating():
     """
     :return: course object with updated rating
