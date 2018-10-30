@@ -12,7 +12,4 @@ def select_course(course_code):
     """
     course = CourseManager.get_course_by_code(course_code)
 
-    return jsonify({"code": course.get_code(),
-                    "id": course.get_id(),
-                    "description": course.get_description(),
-                    "rating": course.get_rating()})
+    return jsonify(course.__dict__)

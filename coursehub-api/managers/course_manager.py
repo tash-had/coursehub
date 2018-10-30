@@ -8,6 +8,15 @@ class CourseManager:
     course_db_worker = CourseDatabaseWorker()
 
     @staticmethod
+    def build_course_obj(course_row):
+        code = course_row["code"]
+        id_ = course_row["id"]
+        description = course_row["description"]
+        rating = course_row["rating"]
+
+        return Course(code, id_, description, rating)
+
+    @staticmethod
     def get_course_by_code(course_code):
         """
         :param course_code: str
@@ -16,12 +25,7 @@ class CourseManager:
 
         course_info = CourseManager.course_db_worker.get_course_data(course_code)
 
-        code = course_info["code"]
-        id_ = course_info["id"]
-        description = course_info["description"]
-        rating = course_info["rating"]
-
-        return Course(code, id_, description, rating)
+        return CourseManager.build_course_obj(course_info)
 
     @staticmethod
     def get_course_by_id(id_):
@@ -32,9 +36,5 @@ class CourseManager:
 
         course_info = CourseManager.course_db_worker.get_course_by_id(id_)
 
-        code = course_info["code"]
-        id_ = course_info["id"]
-        description = course_info["description"]
-        rating = course_info["rating"]
+        return CourseManager.build_course_obj(course_info)
 
-        return Course(code, id_, description, rating)
