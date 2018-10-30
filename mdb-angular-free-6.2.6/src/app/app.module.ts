@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { DashboardService } from './dashboard/dashboard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CourseCardComponent } from './components/course-card/course-card.component';
+import { CourseCardService } from './components/course-card/course-card.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    CourseCardComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MDBBootstrapModule.forRoot(),
     FormsModule,
   ],
-  providers: [DashboardService],
+  providers: [CourseCardService],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]
 })
