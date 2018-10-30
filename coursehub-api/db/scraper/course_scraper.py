@@ -14,7 +14,7 @@ class _CourseScraper:
 
         return orgs_list
 
-    def populate_course_table(self, org_name="SDST"):
+    def populate_course_table(self, org_name="CSC"):
         """ If org_name is 'all', this function will populate table with all courses at UofT."""
 
         if org_name == "all":
