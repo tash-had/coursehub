@@ -103,6 +103,17 @@ class CourseDatabaseWorker(DatabaseManager):
             return []
         return results
 
+    def update_course_field(self, id_, field, new_value):
+        """
+        Update the field 'field' in course specified by 'id_' to 'new_value'
+        :param id_: str
+        :param field: str
+        :param new_value: int or str
+        :return: nothing!
+        """
+        cur = self.db_conn.cursor()
+        cur.execute("UPDATE courses SET ?=? WHERE id=?", [field, new_value, id_])
+
 
 class _CourseHubDatabaseInitializer:
     """ A set of functions to help setup the database. Use cautiously. """
