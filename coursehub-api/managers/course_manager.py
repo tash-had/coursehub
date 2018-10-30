@@ -17,15 +17,15 @@ class CourseManager:
         return Course(code, id_, description, rating)
 
     @staticmethod
-    def get_course_by_code(course_code):
+    def get_courses_by_code(course_code):
         """
         :param course_code: str
         :return: Course
         """
 
-        course_info = CourseManager.course_db_worker.get_course_data(course_code)
+        courses_info = CourseManager.course_db_worker.get_courses_data(course_code)
 
-        return CourseManager.build_course_obj(course_info)
+        return [CourseManager.build_course_obj(course_info) for course_info in courses_info]
 
     @staticmethod
     def get_course_by_id(id_):

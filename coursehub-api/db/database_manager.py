@@ -74,15 +74,15 @@ class CourseDatabaseWorker(DatabaseManager):
     def __init__(self):
         super()
 
-    def get_course_data(self, course_code):
+    def get_courses_data(self, course_code):
         """
-        Query courses based on course code
+        Query courses based on partial (or complete) course code
 
-        :param str course_code: course we are retrieving
+        :param str course_code: courses we are retrieving
         :return:
         """
         cur = self.db_conn.cursor()
-        cur.execute("SELECT * FROM courses WHERE course_code=?", [course_code])
+        cur.execute("SELECT * FROM courses WHERE course_code LIKE '%?%'", [course_code])
 
         results = cur.fetchall()
         if results is None:
