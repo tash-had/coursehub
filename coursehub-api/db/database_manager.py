@@ -31,7 +31,7 @@ class CommentdatabaseWorker(DatabaseManager):
     """Contains the functions to add to and retrieve from the database"""
 
     def __init__(self):
-        super()
+        DatabaseManager.__init__(self)
 
     def insert_comment(self, data):
         """ Insert data into the comments table
@@ -114,7 +114,7 @@ class CommentdatabaseWorker(DatabaseManager):
 class CoursedatabaseWorker(DatabaseManager):
     """Updates and gets course information in the course database"""
     def __init__(self):
-        super()
+        DatabaseManager.__init__(self)
 
     def get_course_data(self, course_code):
         """
