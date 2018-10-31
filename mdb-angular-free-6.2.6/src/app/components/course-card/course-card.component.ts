@@ -12,8 +12,7 @@ export class CourseCardComponent implements OnInit {
   textbooks: String[];
   difficultyRating: number;
   usefulnessRating: number;
-  comments: String[] = [];
-  currentComment: String;
+
 
   constructor(private courseCardService: CourseCardService) {
     
@@ -24,14 +23,6 @@ export class CourseCardComponent implements OnInit {
     .subscribe((data) => this.description = data['courseData']['courseDescription']);
   }
 
-  addComment() {
-    if (this.currentComment){
-      if (this.currentComment.trim()){
-        this.comments.push(this.currentComment);
-        this.currentComment = null;
-       
-      }
-    }
-  }
+
 
 }
