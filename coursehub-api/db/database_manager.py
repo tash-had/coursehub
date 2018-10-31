@@ -49,7 +49,7 @@ class CommentdatabaseWorker(DatabaseManager):
         input_data = [comment_id, course_id, comment, time, votes]
 
         c = self.db_conn.cursor()
-        c.execute('insert into courses values (?,?,?,?,?)', input_data)
+        c.execute('insert into comments (id, course_id, commment, timestamp, votes) values (?,?,?,?,?)', input_data)
         self.db_conn.commit()
         c.close()
 
@@ -149,9 +149,9 @@ class CoursedatabaseWorker(DatabaseManager):
         current_num_ratings = cur.execute("SELECT num_ratings FROM courses WHERE course_id=?", ([course_id])).fetchone()
 
         updated_workload_rating = int(current_workload_rating[0]) * current_num_ratings[0] + new_workload \
-                         /  current_num_ratings[0] + 1
+                         / current_num_ratings[0] + 1
         updated_recommend_rating = int(current_recommend_rating[0]) * current_num_ratings[0] + new_recommend \
-                         /  current_num_ratings[0] + 1
+                         / current_num_ratings[0] + 1
 
         cur.execute("UPDATE courses SET workload_rating=? WHERE course_id=?", ([updated_workload_rating, course_id]))
         cur.execute("UPDATE courses SET recommendation_rating=? WHERE course_id=?", ([updated_recommend_rating,
@@ -161,6 +161,18 @@ class CoursedatabaseWorker(DatabaseManager):
         self.db_conn.commit()
 
         results = cur.fetchall()
+        cur.close()
+
+        return results
+
+    def get_courses_that_match(self, match):
+        """Get all the courses in the database that string match with match
+
+        :param match:
+        :return: list of tuples
+        """
+        cur = self.db_conn.cursor()
+        results = cur.execute('SELECT * FROM courses WHERE course_code LIKE %?%', match).fetchall()
         cur.close()
 
         return results
