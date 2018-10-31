@@ -12,12 +12,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CourseCardComponent } from './components/course-card/course-card.component';
 import { CourseCardService } from './components/course-card/course-card.service';
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    CourseCardComponent
+    CourseCardComponent,
+    SearchbarComponent
   ],
   imports: [
     BrowserModule,
