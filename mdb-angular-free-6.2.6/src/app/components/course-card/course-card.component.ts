@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CourseCardService } from './course-card.service';
 
 @Component({
@@ -7,8 +7,8 @@ import { CourseCardService } from './course-card.service';
   styleUrls: ['./course-card.component.scss']
 })
 export class CourseCardComponent implements OnInit {
-  name : String = 'CSC165H1';
-  description: String;
+  @Input() name : String = 'CSC165H1';
+  @Input() description: String;
   textbooks: String[];
   difficultyRating: number;
   usefulnessRating: number;

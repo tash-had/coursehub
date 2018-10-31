@@ -5,3 +5,10 @@
   [(ngModel)]='course' name='course'
   >
 </form>
+
+<div *ngFor="let item of coursePreview">
+
+  <app-course-card name="{{item['courseCode']}}"
+    description="{{item['courseDescription']}}"
+  ></app-course-card>
+</div>
