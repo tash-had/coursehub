@@ -1,9 +1,14 @@
   <mdb-card cascade="true" wider="true">
     <div class="view view-cascade gradient-card-header blue-gradient">
       <h2 class="card-header-title mb-2">{{name}}</h2>
-      <p>RATING</p>
-      <p class="">
-        <i class="fa fa-calendar"></i> 26.07.2017</p>
+      <!-- <span><p>Rating:</p></span> -->
+      <div class="c100 p{{totalRating}} small center">
+          <span>{{totalRating}}%</span>
+          <div class="slice">
+              <div class="bar"></div>
+              <div class="fill"></div>
+          </div>
+      </div>
     </div>
 
     <mdb-card-body cascade="true" class="text-center">

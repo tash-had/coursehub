@@ -33,7 +33,7 @@ def not_so_secure_login():
     return jsonify({"username": username,
                     "password": password})
 
-@TODO
+# @TODO
 """REMOVE THIS BEFORE PUSHING TO MASTER"""
 @app.route(URL_PREFIX + '/course_data')
 @cross_origin()
@@ -50,6 +50,40 @@ def get_course_data_with_course_code():
         "courseOrg": course_data[0][4]
 
     }})
+
+@app.route(URL_PREFIX + '/search_course')
+@cross_origin()
+def search_course():
+
+    course_code = request.args.get("searchQuery")
+
+    dm = DatabaseManager()
+
+    c1 = ["CSC165H1", "CSC148H1", "CSC108H1"]
+    c2 = ["CSC258H1", "CSC236H1"]
+    c3 = ["CSC301H1"]
+    c = []
+    if course_code == "CSC1":
+        c = c1
+    elif course_code == "CSC16":
+        c = c2
+    elif course_code == "CSC165":
+        c = c3
+    res = []
+    for i in c:
+        course_data = dm.get_course_data(i)
+        d = {
+            "courseId": course_data[0][0],
+            "courseCode": course_data[0][1],
+            "courseDescription": course_data[0][2],
+            "courseName": course_data[0][3],
+            "courseOrg": course_data[0][4]
+
+        }
+        res.append(d)
+    return jsonify({"matchingCourses": res})
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
