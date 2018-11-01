@@ -5,9 +5,13 @@
   [(ngModel)]='course' name='course'
   >
 </form>
+<div class="row">
+  <ng-container *ngIf="coursePreview">
+      <div *ngFor="let item of coursePreview['matchingCourses']" class="col-sm">
+          <app-course-card name="{{item['courseCode']}}"
+            description="{{item['courseDescription']}}"
+          ></app-course-card>
+        </div>
+  </ng-container>
 
-<div *ngFor="let item of coursePreview">
-  <app-course-card name="{{item['courseCode']}}"
-    description="{{item['courseDescription']}}"
-  ></app-course-card>
 </div>

@@ -10,7 +10,7 @@ export class SearchbarComponent implements OnInit {
   COURSE_MATCHER = new RegExp("^[a-zA-Z]{3}[0-9]{1,3}$");
   
   course : string;
-  coursePreview = []
+  coursePreview: Object;
   
   constructor(private searchbarService: SearchbarService) { }
 
@@ -20,18 +20,11 @@ export class SearchbarComponent implements OnInit {
   checkValidInput(event: any) : boolean{
     if (this.course && this.course.length > 3  && this.COURSE_MATCHER.test(this.course)){
       this.searchbarService.getCourses(this.course)
-      .subscribe((data) => this.setCourseArr(data)
+      .subscribe((data) => this.coursePreview = data
       );
     }
-    console.log(this.coursePreview);
 
     return true;
-  }
-
-  setCourseArr(data: Object) : void{
-    for (let i in data['matchingCourses']){
-      this.coursePreview.push(data['matchingCourses'][i]);
-    }
   }
 
 }
