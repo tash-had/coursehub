@@ -1,15 +1,15 @@
-from flask import Flask, jsonify, abort, request
+from flask import Blueprint, jsonify, request
+from course.course_manager import CourseManager
 
-app = Flask(__name__)
-URL_PREFIX = "/api/v1.0"
+course_controller_bp = Blueprint("course_controller", __name__)
 
 
-# endpoint goes here
+@course_controller_bp.route("search_course")
 def search_for_course():
     """
     :return: array of JSON dict of all matching courses
     """
-    course_code = request.args.get("courseCode")
+    course_code = request.args.get("searchQuery")
 
     courses = CourseManager.get_courses_by_code(course_code)
 
