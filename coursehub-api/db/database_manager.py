@@ -49,7 +49,7 @@ class CommentDatabaseWorker(DatabaseManager):
         input_data = [comment_id, course_id, comment, time, votes]
 
         c = self.db_conn.cursor()
-        c.execute('insert into courses values (?,?,?,?,?)', input_data)
+        c.execute('insert into comments (id, course_id, commment, timestamp, votes) values (?,?,?,?,?)', input_data)
         self.db_conn.commit()
         c.close()
 
@@ -68,9 +68,52 @@ class CommentDatabaseWorker(DatabaseManager):
             return []
         return results
 
+    def get_comment_by_id(self, comment_id):
+        """Return the comment in the database that corresponds to comment_id.
+
+        :param comment_id:
+        :return:
+        """
+        cur = self.db_conn.cursor()
+        comment = cur.execute('SELECT * FROM comments WHERE id=?', comment_id).fetchone()
+
+        cur.close()
+        return comment
+
+    def upvote(self, comment_id):
+        """
+
+        :param comment_id:
+        :return: new score
+        """
+        # update the comment with comment_id by a value of 1
+
+        cur = self.db_conn.cursor()
+        current_votes = cur.execute('SELECT votes FROM comments WHERE id=?', comment_id).fetchone()
+        update = cur.execute('UPDATE comments SET votes=? WHERE id=?', [current_votes[0] + 1, comment_id]).fetchone()
+        self.db_conn.commit()
+
+        return update[0]
+
+    def downvote(self, comment_id):
+        """
+
+        :param comment_id:
+        :return: new score
+        """
+        # update the comment with comment_id by decreasing by a value of 1
+
+        cur = self.db_conn.cursor()
+        current_votes = cur.execute('SELECT votes FROM comments WHERE id=?', comment_id).fetchone()
+        update = cur.execute('UPDATE comments SET votes=? WHERE id=?', [current_votes[0] - 1, comment_id]).fetchone()
+        self.db_conn.commit()
+
+        return update[0]
+
 
 class CourseDatabaseWorker(DatabaseManager):
-    """Gets course information in the course database"""
+    """Updates and gets course information in the course database"""
+
     def __init__(self):
         DatabaseManager.__init__(self)
 
@@ -85,6 +128,7 @@ class CourseDatabaseWorker(DatabaseManager):
         cur.execute("SELECT * FROM courses WHERE course_code LIKE '%?%'", [course_code])
 
         results = cur.fetchall()
+        cur.close()
         if results is None:
             return []
         return results
@@ -127,6 +171,27 @@ class _CourseHubDatabaseInitializer:
 
         self.create_tables()
 
+    def set_course_ratings(self, tuple_of_info):
+        """Initally sets the course rating using the information gathered from the course evals.
+
+        :param tuple_of_info: tuple that contains workload_rating, recomendation_rating, num_ratings and course code
+        :return:
+        """
+        # set the database values using info in the tuple
+        cur = self.db_manager.db_conn.cursor()
+        workload = tuple_of_info[0]
+        recommend = tuple_of_info[1]
+        total = tuple_of_info[2]
+        course = tuple_of_info[3]
+        cur.execute('UPDATE course SET workload_rating = ? WHERE code = ?', [workload, course])
+        cur.execute('UPDATE course SET recommendation_rating = ? WHERE code = ?', [recommend, course])
+        cur.execute('UPDATE course SET num_ratings = ? WHERE code = ?', total)
+        combined_rating = (workload + recommend) / 2
+        cur.execute('UPDATE course SET overall_rating = ? over WHERE code = ?', [combined_rating, course])
+
+        self.db_manager.db_conn.commit()
+        cur.close()
+
     def insert_course(self, data):
         """ Insert data into the table
 
@@ -140,14 +205,14 @@ class _CourseHubDatabaseInitializer:
         code = data["course_code"]
         course_description = data["course_description"]
 
-        input_data = [course_id, code, course_description, course_title, org_name]
+        input_data = [course_id, code, course_description, course_title, org_name, 0, 0, 0, 0]
 
         c = self.db_manager.db_conn.cursor()
         course_exists = c.execute('SELECT * FROM courses WHERE id = ?', [str(course_id)])
 
         # NOTE: this will makesure the same course in two different sections don't both get added.
-        if course_exists.fetchone() is None:
-            c.execute('insert into courses values (?,?,?,?,?)', input_data)
+        if course_exists.fetchall() is None:
+            c.execute('insert into courses values (?,?,?,?,?,?,?,?,?)', input_data)
 
         self.db_manager.db_conn.commit()
         c.close()
@@ -156,7 +221,7 @@ class _CourseHubDatabaseInitializer:
         """ Creates the comment and course tables in the db """
 
         comment_table = """  CREATE TABLE IF NOT EXISTS comments(
-            id integer PRIMARY KEY,
+            id text PRIMARY KEY,
             course_id text,
             comment text,
             timestamp integer,
@@ -169,7 +234,11 @@ class _CourseHubDatabaseInitializer:
             course_code text,
             course_description text,
             course_title text,
-            org_name text);
+            org_name text,
+            workload_rating float,
+            recommendation_rating float,
+            overall_rating float,
+            num_ratings integer);
         """
         self.db_manager.create_table(comment_table)
         self.db_manager.create_table(course_table)
