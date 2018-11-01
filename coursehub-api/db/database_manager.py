@@ -75,13 +75,13 @@ class CommentDatabaseWorker(DatabaseManager):
         :return:
         """
         cur = self.db_conn.cursor()
-        comment = cur.execute('SELECT * FROM comments WHERE id=?', comment_id).fetchone()
+        comment = cur.execute('SELECT * FROM comments WHERE id=?', [comment_id]).fetchone()
 
         cur.close()
         return comment
 
     def upvote(self, comment_id):
-        """
+        """Increment the vote count for the comment by one.
 
         :param comment_id:
         :return: new score
@@ -89,14 +89,14 @@ class CommentDatabaseWorker(DatabaseManager):
         # update the comment with comment_id by a value of 1
 
         cur = self.db_conn.cursor()
-        current_votes = cur.execute('SELECT votes FROM comments WHERE id=?', comment_id).fetchone()
-        update = cur.execute('UPDATE comments SET votes=? WHERE id=?', [current_votes[0] + 1, comment_id]).fetchone()
+        current_votes = cur.execute('SELECT votes FROM comments WHERE id=?', [comment_id]).fetchone()
+        cur.execute('UPDATE comments SET votes=? WHERE id=?', [current_votes[0] + 1, comment_id])
         self.db_conn.commit()
 
-        return update[0]
+        return current_votes[0] + 1
 
     def downvote(self, comment_id):
-        """
+        """Decrement the vote count for the comment by one.
 
         :param comment_id:
         :return: new score
@@ -104,11 +104,11 @@ class CommentDatabaseWorker(DatabaseManager):
         # update the comment with comment_id by decreasing by a value of 1
 
         cur = self.db_conn.cursor()
-        current_votes = cur.execute('SELECT votes FROM comments WHERE id=?', comment_id).fetchone()
-        update = cur.execute('UPDATE comments SET votes=? WHERE id=?', [current_votes[0] - 1, comment_id]).fetchone()
+        current_votes = cur.execute('SELECT votes FROM comments WHERE id=?', [comment_id]).fetchone()
+        cur.execute('UPDATE comments SET votes=? WHERE id=?', [current_votes[0] - 1, comment_id])
         self.db_conn.commit()
 
-        return update[0]
+        return current_votes[0] - 1
 
 
 class CourseDatabaseWorker(DatabaseManager):
