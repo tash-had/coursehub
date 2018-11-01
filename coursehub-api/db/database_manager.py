@@ -184,7 +184,6 @@ class _CourseHubDatabaseInitializer:
             workload = tuple_of_info[0]
             recommend = tuple_of_info[1]
             total = tuple_of_info[2]
-            print(tuple_of_info)
             cur.execute('UPDATE courses SET workload_rating = ? WHERE course_code = ?', [workload, key])
             cur.execute('UPDATE courses SET recommendation_rating = ? WHERE course_code = ?', [recommend, key])
             cur.execute('UPDATE courses SET num_ratings = ? WHERE course_code = ?', [total, key])
