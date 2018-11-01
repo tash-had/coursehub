@@ -13,13 +13,19 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CourseCardComponent } from './components/course-card/course-card.component';
 import { CourseCardService } from './components/course-card/course-card.service';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
+import { AppRoutingModule } from './app-routing.module';
+import { CoursePageComponent } from './course-page/course-page.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     CourseCardComponent,
-    SearchbarComponent
+    SearchbarComponent,
+    CoursePageComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +35,7 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
+    AppRoutingModule,
   ],
   providers: [CourseCardService],
   bootstrap: [AppComponent],
