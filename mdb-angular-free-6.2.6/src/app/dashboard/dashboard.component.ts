@@ -17,7 +17,6 @@ export class DashboardComponent implements OnInit {
 
   }
   receiveMessage($event) {
-    console.log($event)
     this.courseSearch = $event
   }
   addComment() {
