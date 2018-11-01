@@ -9,7 +9,6 @@ class CourseManager:
 
     @staticmethod
     def build_course_obj(course_row):
-        print(course_row)
         id_ = course_row[0]
         code = course_row[1]
         description = course_row[2]
