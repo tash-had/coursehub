@@ -5,7 +5,6 @@ import { CourseCardService } from './course-card.service';
   selector: 'app-course-card',
   templateUrl: './course-card.component.html',
   styleUrls: ['./course-card.component.scss'],
-  encapsulation: ViewEncapsulation.None
 })
 export class CourseCardComponent implements OnInit {
   @Input() name : String = 'CSC165H1';
