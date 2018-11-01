@@ -1,5 +1,4 @@
 from db.database_manager import DatabaseManager, CourseDatabaseWorker
-from objects.course import Course
 
 
 class CourseManager:

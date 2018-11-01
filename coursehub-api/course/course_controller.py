@@ -1,5 +1,4 @@
 from flask import Flask, jsonify, abort, request
-from managers.course_manager import CourseManager
 
 app = Flask(__name__)
 URL_PREFIX = "/api/v1.0"
