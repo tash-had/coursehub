@@ -9,8 +9,8 @@ class CourseManager:
 
     @staticmethod
     def build_course_obj(course_row):
-        code = course_row["code"]
         id_ = course_row["id"]
+        code = course_row["code"]
         description = course_row["description"]
         u_rating = course_row["usefulness"]
         d_rating = course_row["difficulty"]
