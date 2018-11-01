@@ -126,7 +126,10 @@ class CourseDatabaseWorker(DatabaseManager):
         """
         db_conn = sqlite3.connect(self._db_path)
         cur = db_conn.cursor()
-        cur.execute("SELECT * FROM courses WHERE course_code=?", [course_code])
+
+        query_str = "SELECT * FROM courses WHERE course_code LIKE '%" + course_code + "%'"
+
+        cur.execute(query_str)
 
         results = cur.fetchall()
         cur.close()
