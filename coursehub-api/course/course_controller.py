@@ -16,12 +16,14 @@ def search_for_course():
     return jsonify([course.__dict__ for course in courses])
 
 
-# endpoint goes here
+@course_controller_bp.route("select_course")
 def select_course():
     """
     :return: course by ID
     """
-    return jsonify(CourseManager.get_course_by_id(request.args.get("ID")).__dict__)
+    id_ = request.args.get("ID")
+
+    return jsonify(CourseManager.get_course_by_id(id_).__dict__)
 
 
 # endpoint goes here

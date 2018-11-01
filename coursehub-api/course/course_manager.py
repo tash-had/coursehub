@@ -9,6 +9,7 @@ class CourseManager:
 
     @staticmethod
     def build_course_obj(course_row):
+        print(course_row)
         id_ = course_row[0]
         code = course_row[1]
         description = course_row[2]
@@ -47,7 +48,10 @@ class CourseManager:
 
         course_info = CourseManager.course_db_worker.get_course_by_id(id_)
 
-        return CourseManager.build_course_obj(course_info)
+        if len(course_info) != 1:
+            raise Exception("invalid ID")
+
+        return CourseManager.build_course_obj(course_info[0])
 
     @staticmethod
     def update_course_rating(course, new_ratings):
@@ -60,12 +64,12 @@ class CourseManager:
         count = course.get_rating_count()
         rating_sum = 0
 
-        for type in new_ratings:
-            prev_rating = course.get_ratings()[type]
-            rating_sum += new_ratings[type]
+        for r_type in new_ratings:
+            prev_rating = course.get_ratings()[r_type]
+            rating_sum += new_ratings[r_type]
 
-            updated_rating = CourseManager.calculate_course_rating(prev_rating, count, new_ratings[type])
-            CourseManager.course_db_worker.update_course_field(course.get_id(), type, updated_rating)
+            updated_rating = CourseManager.calculate_course_rating(prev_rating, count, new_ratings[r_type])
+            CourseManager.course_db_worker.update_course_field(course.get_id(), r_type, updated_rating)
 
         rating_average = rating_sum / len(new_ratings)
         updated_overall_rating = CourseManager.calculate_course_rating(overall_rating, count, rating_average)
