@@ -8,6 +8,8 @@ import { Component,Input } from '@angular/core';
 export class CourseCardComponent {
   @Input() name : String = '';
   @Input() description: String;
+  @Input() color: String;
+  @Input() percentColor: String;
   textbooks: String[];
   difficultyRating: number;
   usefulnessRating: number;
@@ -15,6 +17,8 @@ export class CourseCardComponent {
 
   constructor() {
     this.totalRating = 86;
+    this.color = 'blue';
+    this.percentColor='orange';
   }
 
 

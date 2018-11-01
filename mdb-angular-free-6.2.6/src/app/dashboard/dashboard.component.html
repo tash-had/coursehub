@@ -27,13 +27,13 @@
     </div>
   </nav> -->
 
-<div class="container">
+<div class="container smooth-scroll">
 <div class="row justify-content-center">
     <img #coursehubLogo src="../../assets/Courshub.png" height="50%" width="50%" alt="coursehub logo" style="margin-top: 10%;">
     <app-searchbar (messageEvent)="receiveMessage($event)" class="col-md-8 offset-md-1"></app-searchbar>
 </div>
   <div class="row">
-    <ng-container *ngIf="courseSearchResponse">
+    <ng-container *ngIf="courseSearchResponse" id="courseSearchResults">
       <div *ngFor="let item of courseSearchResponse['matchingCourses']" class="col-md-4">
         <app-course-card name="{{item['courseCode']}}" description="{{item['courseDescription']}}"></app-course-card>
       </div>
