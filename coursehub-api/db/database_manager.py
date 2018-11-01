@@ -162,7 +162,9 @@ class CourseDatabaseWorker(DatabaseManager):
         """
         db_conn = sqlite3.connect(self._db_path)
         cur = db_conn.cursor()
-        cur.execute("UPDATE courses SET ?=? WHERE id=?", [field, new_value, id_])
+
+        query_str = "UPDATE courses SET " + field + " = " + str(new_value) + " WHERE id=?"
+        cur.execute(query_str, [id_])
         db_conn.commit()
 
 

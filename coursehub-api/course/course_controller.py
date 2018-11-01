@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from course.course_manager import CourseManager
+from .course_manager import CourseManager
 
 course_controller_bp = Blueprint("course_controller", __name__)
 
@@ -13,6 +13,9 @@ def search_for_course():
 
     courses = CourseManager.get_courses_by_code(course_code)
 
+    if courses is None or course_code == "":
+        return jsonify({"error": "No matching courses found for '" + course_code + "'"})
+
     return jsonify([course.__dict__ for course in courses])
 
 
@@ -21,21 +24,21 @@ def select_course():
     """
     :return: course by ID
     """
-    id_ = request.args.get("ID")
+    id_ = request.args.get("id")
 
     return jsonify(CourseManager.get_course_by_id(id_).__dict__)
 
 
-# endpoint goes here
+@course_controller_bp.route("add_course_ratings")
 def update_rating():
     """
     :return: course object with updated rating
     """
-    workload = request.args.get("workload")  # must be either 'workload' or 'recommendation'
-    recommendation = request.args.get("recommendation")
-    course_id = request.args.get("ID")
+    workload = request.args.get("workload_rating")  # must be either 'workload' or 'recommendation'
+    recommendation = request.args.get("recommendation_rating")
+    course_id = request.args.get("id")
 
-    rating_dict = {"workload": workload, "recommendation": recommendation}
+    rating_dict = {"workload_rating": workload, "recommendation_rating": recommendation}
 
     course = CourseManager.get_course_by_id(course_id)
 

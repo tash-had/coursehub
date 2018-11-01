@@ -1,5 +1,5 @@
 class Course:
-    def __init__(self, code, id_, description, title, org_name):
+    def __init__(self, code, id_, description, title, org_name, ratings, overall_rating, rating_count):
         """
         
         :param code: str 
@@ -12,9 +12,9 @@ class Course:
         self.description = description
         self.title = title
         self.org_name = org_name
-        # self.ratings = ratings
-        # self.overall_rating = overall_rating
-        # self.rating_count = rating_count
+        self.ratings = ratings
+        self.overall_rating = overall_rating
+        self.rating_count = rating_count
 
     def get_code(self):
         return self.code
