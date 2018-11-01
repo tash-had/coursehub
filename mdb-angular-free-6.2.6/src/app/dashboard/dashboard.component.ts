@@ -1,24 +1,29 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements AfterViewInit {
   comments: String[] = [];
   currentComment: String;
-  courseSearch:Object;
+  courseSearchResponse: Object;
+  @ViewChild('coursehubLogo') coursehubLogo; 
 
+  constructor(private elementRef: ElementRef) {}
 
-  constructor() {}
-  
-  ngOnInit() {
-
+  ngAfterViewInit(): void {
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'black';
   }
-  
+
   receiveMessage($event) {
-    this.courseSearch = $event
+    if (typeof($event) === "string" && $event === "update theme") {
+      this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
+      this.coursehubLogo.nativeElement.src = "../../assets/Courshub-blue.png";
+    } else {
+      this.courseSearchResponse = $event
+    }
   }
   addComment() {
     if (this.currentComment){

@@ -9,6 +9,7 @@ import {SearchbarService} from './searchbar.service';
 export class SearchbarComponent implements OnInit {
   COURSE_MATCHER = new RegExp("^[a-zA-Z]{3}[0-9]{1,3}$");
   course : string;
+  themeUpdated : boolean = false;
   @Output() messageEvent = new EventEmitter<Object>();
   
   constructor(private searchbarService: SearchbarService) { }
@@ -19,6 +20,9 @@ export class SearchbarComponent implements OnInit {
   checkValidInput(event: any) : void{
     let inputWasAlphanumeric = /[a-zA-Z0-9-_ ]/.test(String.fromCharCode(event.keyCode));
     if ((inputWasAlphanumeric && this.course && this.course.length > 3 && this.COURSE_MATCHER.test(this.course)) || this.course.length == 0){
+      if (!this.themeUpdated) {
+        this.messageEvent.emit("update theme");
+      }
       this.searchbarService.getCourses(this.course)
         .subscribe((data) => this.messageEvent.emit(data)
       );
