@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
 
   }
+  
   receiveMessage($event) {
     this.courseSearch = $event
   }

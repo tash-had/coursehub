@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { of } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +11,9 @@ export class SearchbarService {
   constructor(private http: HttpClient) { }
 
   getCourses(course: String) {
-    return this.http.get(this.courseUrl + course);
+    if (course.length > 0) {
+      return this.http.get(this.courseUrl + course);
+    }
+    return of([]);
   }
 }

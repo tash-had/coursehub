@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CourseCardComponent } from './components/course-card/course-card.component';
-import { CourseCardService } from './components/course-card/course-card.service';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 
 @NgModule({
@@ -30,7 +29,7 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
     MDBBootstrapModule.forRoot(),
     FormsModule,
   ],
-  providers: [CourseCardService],
+  providers: [],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]
 })
