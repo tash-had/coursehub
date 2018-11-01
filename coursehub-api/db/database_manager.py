@@ -178,25 +178,25 @@ class _CourseHubDatabaseInitializer:
 
         self.create_tables()
 
-    def set_course_ratings(self, tuple_of_info):
+    def set_course_ratings(self, data):
         """Initally sets the course rating using the information gathered from the course evals.
 
-        :param tuple_of_info: tuple that contains workload_rating, recomendation_rating, num_ratings and course code
+        :param data: dictionary that contains course code as key to a tuple with ratings
         :return:
         """
         # set the database values using info in the tuple
         cur = self.db_manager.db_conn.cursor()
-        workload = tuple_of_info[0]
-        recommend = tuple_of_info[1]
-        total = tuple_of_info[2]
-        course = tuple_of_info[3]
-        cur.execute('UPDATE course SET workload_rating = ? WHERE code = ?', [workload, course])
-        cur.execute('UPDATE course SET recommendation_rating = ? WHERE code = ?', [recommend, course])
-        cur.execute('UPDATE course SET num_ratings = ? WHERE code = ?', total)
-        combined_rating = (workload + recommend) / 2
-        cur.execute('UPDATE course SET overall_rating = ? over WHERE code = ?', [combined_rating, course])
-
-        self.db_manager.db_conn.commit()
+        for key in data.keys():
+            tuple_of_info = data[key]
+            workload = tuple_of_info[0]
+            recommend = tuple_of_info[1]
+            total = tuple_of_info[2]
+            cur.execute('UPDATE courses SET workload_rating = ? WHERE course_code = ?', [workload, key])
+            cur.execute('UPDATE courses SET recommendation_rating = ? WHERE course_code = ?', [recommend, key])
+            cur.execute('UPDATE courses SET num_ratings = ? WHERE course_code = ?', [total, key])
+            combined_rating = (workload + recommend) / 2
+            cur.execute('UPDATE courses SET overall_rating = ? WHERE course_code = ?', [combined_rating, key])
+            self.db_manager.db_conn.commit()
         cur.close()
 
     def insert_course(self, data):
@@ -214,12 +214,16 @@ class _CourseHubDatabaseInitializer:
 
         input_data = [course_id, code, course_description, course_title, org_name, 0, 0, 0, 0]
 
+        print(input_data)
+
         c = self.db_manager.db_conn.cursor()
         course_exists = c.execute('SELECT * FROM courses WHERE id = ?', [str(course_id)])
 
         # NOTE: this will makesure the same course in two different sections don't both get added.
-        if course_exists.fetchall() is None:
-            c.execute('insert into courses values (?,?,?,?,?,?,?,?,?)', input_data)
+        if course_exists.fetchall() == []:
+            c.execute('insert into courses (id, course_code, course_description, course_title, org_name,'
+                      'workload_rating, recommendation_rating, overall_rating, num_ratings) values (?,?,?,?,?,?,?,?,?)',
+                      input_data)
 
         self.db_manager.db_conn.commit()
         c.close()
