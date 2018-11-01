@@ -1,18 +1,20 @@
 class Course:
-    def __init__(self, code, id_, description, u_rating, d_rating, u_rating_count, d_rating_count):
+    def __init__(self, code, id_, description, title, org_name, ratings, overall_rating, rating_count):
         """
         
         :param code: str 
         :param id_: int
         :param description: str
+        :param ratings: dict
         """
         self.code = code
         self.id_ = id_
         self.description = description
-        self.usefulness_rating = u_rating
-        self.difficulty_rating = d_rating
-        self.u_rating_count = u_rating_count
-        self.d_rating_count = d_rating_count
+        self.title = title
+        self.org_name = org_name
+        self.ratings = ratings
+        self.overall_rating = overall_rating
+        self.rating_count = rating_count
 
     def get_code(self):
         return self.code
@@ -32,26 +34,20 @@ class Course:
     def set_description(self, description):
         self.description = description
 
-    def get_usefulness_rating(self):
-        return self.usefulness_rating
+    def get_ratings(self):
+        return self.ratings
 
-    def set_usefulness_rating(self, rating):
-        self.usefulness_rating = rating
+    def set_ratings(self, ratings):
+        self.ratings = ratings
 
-    def get_difficulty_rating(self):
-        return self.difficulty_rating
+    def get_rating_count(self):
+        return self.rating_count
 
-    def set_difficulty_rating(self, rating):
-        self.difficulty_rating = rating
+    def set_rating_count(self, count):
+        self.rating_count = count
 
-    def get_u_rating_count(self):
-        return self.u_rating_count
-
-    def set_u_rating_count(self, count):
-        self.u_rating_count = count
-
-    def get_d_rating_count(self):
-        return self.d_rating_count
-
-    def set_d_rating_count(self, count):
-        self.d_rating_count = count
+    def get_overall_rating(self):
+        return self.overall_rating
+                                             
+    def set_overall_rating(self, rating):
+        self.overall_rating = rating

@@ -29,14 +29,14 @@ def update_rating():
     """
     :return: course object with updated rating
     """
-    rating_type = request.args.get("ratingType")  # must be either 'difficulty' or 'usefulness'
-    rating_value = request.args.get("ratingValue")
+    workload = request.args.get("workload")  # must be either 'workload' or 'recommendation'
+    recommendation = request.args.get("recommendation")
     course_id = request.args.get("ID")
+
+    rating_dict = {"workload": workload, "recommendation": recommendation}
 
     course = CourseManager.get_course_by_id(course_id)
 
-    new_course = CourseManager.update_course_rating(course, rating_type, rating_value)
-    if new_course == 0:  # invalid rating type
-        return None
+    new_course = CourseManager.update_course_rating(course, rating_dict)
 
     return jsonify(new_course.__dict__)

@@ -8,15 +8,23 @@ class CourseManager:
 
     @staticmethod
     def build_course_obj(course_row):
-        id_ = course_row["id"]
-        code = course_row["code"]
-        description = course_row["description"]
-        u_rating = course_row["usefulness"]
-        d_rating = course_row["difficulty"]
-        u_rating_count = course_row["u_rating_count"]
-        d_rating_count = course_row["d_rating_count"]
+        id_ = course_row[0]
+        code = course_row[1]
+        description = course_row[2]
+        title = course_row[3]
+        org_name = course_row[4]
+        w_rating = course_row[5]
+        r_rating = course_row[6]
+        overall_rating = course_row[7]
+        rating_count = course_row[8]
 
-        return Course(code, id_, description, u_rating, d_rating, u_rating_count, d_rating_count)
+        ratings = {"workload": w_rating, "recommendation": r_rating}
+
+        return Course(code, id_, description, title, org_name, ratings, overall_rating, rating_count)
+
+    @staticmethod
+    def get_course_rating_names():
+        return ["workload", "recommendation"]
 
     @staticmethod
     def get_courses_by_code(course_code):
@@ -41,25 +49,26 @@ class CourseManager:
         return CourseManager.build_course_obj(course_info)
 
     @staticmethod
-    def update_course_rating(course, rating_type, new_rating):
+    def update_course_rating(course, new_ratings):
         """
         :param course: Course obj
-        :param rating_type: (str) usefulness or difficulty
-        :param new_rating: (int) newly added rating
+        :param new_ratings: (dict) newly added ratings
         :return:
         """
-        if rating_type == 'usefulness':
-            rating = course.get_usefulness_rating()
-            count = course.get_u_rating_count()
-        elif rating_type == 'difficulty':
-            rating = course.get_difficulty_rating()
-            count = course.get_d_rating_count()
-        else:
-            return 0
+        overall_rating = course.get_overall_rating()
+        count = course.get_rating_count()
+        rating_sum = 0
 
-        updated_rating = CourseManager.calculate_course_rating(rating, count, new_rating)
+        for type in new_ratings:
+            prev_rating = course.get_ratings()[type]
+            rating_sum += new_ratings[type]
 
-        CourseManager.course_db_worker.update_course_field(course.get_id(), rating_type, updated_rating)
+            updated_rating = CourseManager.calculate_course_rating(prev_rating, count, new_ratings[type])
+            CourseManager.course_db_worker.update_course_field(course.get_id(), type, updated_rating)
+
+        rating_average = rating_sum / len(new_ratings)
+        updated_overall_rating = CourseManager.calculate_course_rating(overall_rating, count, rating_average)
+        CourseManager.course_db_worker.update_course_field(course.get_id(), "overall_rating", updated_overall_rating)
 
         new_course = CourseManager.course_db_worker.get_course_by_id(course.get_id())
 
