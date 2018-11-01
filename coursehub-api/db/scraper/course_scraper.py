@@ -1,4 +1,5 @@
 import requests
+from db.scraper.courseEvalsParser import findCourseRatings
 from db.database_manager import _CourseHubDatabaseInitializer
 
 
@@ -35,6 +36,8 @@ class _CourseScraper:
                     "course_description": course["courseDescription"]
                 }
                 self.db_initializer.insert_course(data)
+        self.db_initializer.set_course_ratings(findCourseRatings(org_name))
+
 
 
 if __name__ == "__main__":
