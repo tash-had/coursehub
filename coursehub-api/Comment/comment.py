@@ -9,9 +9,9 @@ class Comment:
     ===========
     @type score: int
     @type text: str
-    @type time_stamp: datetime.datetime
-    @type courseID: int
-    @type ID: int
+    @type time_stamp: int
+    @type course_id: int
+    @type comment_id: str
     @rtype: None
 
     """
@@ -20,9 +20,9 @@ class Comment:
         """
         @type score: int
         @type text: str
-        @type time_stamp: datetime.datetime
-        @type course_id: int
-        @type comment_id: int
+        @type time_stamp: int
+        @type course_id: str
+        @type comment_id: str
         @rtype: None
 
         """
