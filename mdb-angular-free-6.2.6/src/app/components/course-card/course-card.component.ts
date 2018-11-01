@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component,Input } from '@angular/core';
 
 @Component({
   selector: 'app-course-card',
@@ -16,7 +16,6 @@ export class CourseCardComponent {
   constructor() {
     this.totalRating = 86;
   }
-
 
 
 }
