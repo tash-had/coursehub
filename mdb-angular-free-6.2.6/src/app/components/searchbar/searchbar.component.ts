@@ -17,9 +17,10 @@ export class SearchbarComponent implements OnInit {
   }
 
   checkValidInput(event: any) : void{
-    if (this.course && this.course.length > 3   && this.COURSE_MATCHER.test(this.course)){
+    let inputWasAlphanumeric = /[a-zA-Z0-9-_ ]/.test(String.fromCharCode(event.keyCode));
+    if ((inputWasAlphanumeric && this.course && this.course.length > 3 && this.COURSE_MATCHER.test(this.course)) || this.course.length == 0){
       this.searchbarService.getCourses(this.course)
-      .subscribe((data) => this.messageEvent.emit(data)
+        .subscribe((data) => this.messageEvent.emit(data)
       );
     }
     

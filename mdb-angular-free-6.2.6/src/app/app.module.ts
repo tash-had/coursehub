@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CourseCardComponent } from './components/course-card/course-card.component';
-import { CourseCardService } from './components/course-card/course-card.service';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CoursePageComponent } from './course-page/course-page.component';
@@ -37,7 +36,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     FormsModule,
     AppRoutingModule,
   ],
-  providers: [CourseCardService],
+  providers: [],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]
 })
