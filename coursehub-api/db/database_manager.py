@@ -124,8 +124,9 @@ class CourseDatabaseWorker(DatabaseManager):
         :param str course_code: courses we are retrieving
         :return:
         """
-        cur = self.db_conn.cursor()
-        cur.execute("SELECT * FROM courses WHERE course_code LIKE '%?%'", [course_code])
+        db_conn = sqlite3.connect(self._db_path)
+        cur = db_conn.cursor()
+        cur.execute("SELECT * FROM courses WHERE course_code=?", [course_code])
 
         results = cur.fetchall()
         cur.close()
@@ -139,7 +140,8 @@ class CourseDatabaseWorker(DatabaseManager):
         :param int id_: course to retrieve
         :return:
         """
-        cur = self.db_conn.cursor()
+        db_conn = sqlite3.connect(self._db_path)
+        cur = db_conn.cursor()
         cur.execute("SELECT * FROM courses WHERE id=?", [id_])
 
         results = cur.fetchall()
@@ -155,8 +157,10 @@ class CourseDatabaseWorker(DatabaseManager):
         :param new_value: int or str
         :return: nothing!
         """
-        cur = self.db_conn.cursor()
+        db_conn = sqlite3.connect(self._db_path)
+        cur = db_conn.cursor()
         cur.execute("UPDATE courses SET ?=? WHERE id=?", [field, new_value, id_])
+        db_conn.commit()
 
 
 class _CourseHubDatabaseInitializer:

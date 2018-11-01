@@ -1,4 +1,5 @@
 from db.database_manager import DatabaseManager, CourseDatabaseWorker
+from .course import Course
 
 
 class CourseManager:
@@ -13,14 +14,14 @@ class CourseManager:
         description = course_row[2]
         title = course_row[3]
         org_name = course_row[4]
-        w_rating = course_row[5]
-        r_rating = course_row[6]
-        overall_rating = course_row[7]
-        rating_count = course_row[8]
+        # w_rating = course_row[5]
+        # r_rating = course_row[6]
+        # overall_rating = course_row[7]
+        # rating_count = course_row[8]
 
-        ratings = {"workload": w_rating, "recommendation": r_rating}
+        # ratings = {"workload": w_rating, "recommendation": r_rating}
 
-        return Course(code, id_, description, title, org_name, ratings, overall_rating, rating_count)
+        return Course(code, id_, description, title, org_name)
 
     @staticmethod
     def get_course_rating_names():
