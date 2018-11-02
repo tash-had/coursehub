@@ -33,7 +33,7 @@
     <app-searchbar (messageEvent)="receiveMessage($event)" class="col-md-8 offset-md-1"></app-searchbar>
 </div>
   <div class="row">
-    <ng-container *ngIf="courseSearchResponse" id="courseSearchResults">
+    <ng-container *ngIf="courseSearchResponse && courseSearchResponse['matchingCourses']" id="courseSearchResults">
       <div *ngFor="let item of courseSearchResponse['matchingCourses']" class="col-md-4">
         <app-course-card name="{{item['courseCode']}}" description="{{item['courseDescription']}}"></app-course-card>
       </div>
