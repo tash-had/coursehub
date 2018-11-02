@@ -4,7 +4,8 @@
 }
 
 .border {
-    border-width:2px !important;
+    border-color: #eeeeee !important;
+    border-width:1px !important;
     border-radius: 25px
 }
 
@@ -14,9 +15,13 @@
 }*/
 
 #score {
-	font-size: x-large;
+    color: #d6d6d6 !important;
+	font-size: large;
 }
 
+#user {
+    color: #d6d6d6 !important;
+}
 /*.fa-thumbs-o-up:before {
     background-color: blue
 }
