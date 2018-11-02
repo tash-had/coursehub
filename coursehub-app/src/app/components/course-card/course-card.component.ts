@@ -20,7 +20,6 @@ export class CourseCardComponent {
   usefulnessRating: number;
 
   constructor(private courseCardDataService: CourseCardDataService, private _router: Router) {
-    this.totalRating = 86;
     this.color = 'blue';
     this.percentColor='orange';
   }

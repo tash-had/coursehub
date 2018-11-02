@@ -19,7 +19,6 @@ export class CoursePageComponent implements OnInit {
     this.courseCardDataService.courseCode.subscribe(courseCode => this.courseCode = courseCode)
     this.courseCardDataService.courseDescription.subscribe(courseDescription => this.courseDescription = courseDescription)
     this.courseCardDataService.courseOverallRating.subscribe(courseOverallRating => this.courseOverallRating = courseOverallRating)
-    console.log(this.courseCode);
   }
 
   addComment() {

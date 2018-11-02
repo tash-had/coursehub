@@ -9,9 +9,12 @@ export class DashboardComponent implements AfterViewInit {
   comments: String[] = [];
   currentComment: String;
   courseSearchResponse: Object;
+  Math: any;
   @ViewChild('coursehubLogo') coursehubLogo; 
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef) {
+    this.Math = Math;
+  }
 
   ngAfterViewInit(): void {
     this.toggleTheme(true)
