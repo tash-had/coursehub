@@ -19,9 +19,11 @@ export class SearchbarComponent implements OnInit {
 
   checkValidInput(event: any) : void{
     let inputWasAlphanumeric = /[a-zA-Z0-9-_ ]/.test(String.fromCharCode(event.keyCode));
-    if ((inputWasAlphanumeric && this.course && this.course.length > 3 && this.COURSE_MATCHER.test(this.course)) || this.course.length == 0){
-      if (!this.themeUpdated) {
-        this.messageEvent.emit("update theme");
+    if (this.course && (inputWasAlphanumeric && this.course && this.course.length > 3 && this.COURSE_MATCHER.test(this.course)) || this.course.length == 0){
+      if (this.course === "CSC69") {
+        this.messageEvent.emit("update theme - black");
+      } else {
+        this.messageEvent.emit("update theme - blue")
       }
       this.searchbarService.getCourses(this.course)
         .subscribe((data) => this.messageEvent.emit(data)
