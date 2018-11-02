@@ -36,11 +36,7 @@
 
 #### Goals and/or tasks that were met/completed:
 
- * From most to least important.
- * Refer/link to artifact(s) that show that a goal/task was met/completed.
- * If a goal/task was not part of the original iteration plan, please mention it.
- 
- The most important goal that we met was completing the MVP (all code in GitHub repo): 
+The most important goal that we met was completing the MVP (all code in GitHub repo): 
 
 Implemented the database which is the basis for our source of information. This is crucial to our website as all course information and comment information is stored in it and allows proper persistence of the data. We currently have two tables one for courses and one for comments. In our final iteration we will most likely add a user database so users can create an account. 
 
