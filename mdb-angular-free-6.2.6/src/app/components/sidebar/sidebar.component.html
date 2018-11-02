@@ -1,7 +1,5 @@
 <div id="mySidenav" class="container sidenav row-eq-height">
-
-
-  <app-course-card class="col-md-12" name='CSC165H1'></app-course-card>
+  <app-course-card class="col-md-12" name='{{courseCode}}' description='{{courseDescription}}' totalRating='{{courseTotalRating}}'></app-course-card>
   <div class="center">
       <div class="c100 p25 small" style="float: left;">
           <span>25%</span>
@@ -19,8 +17,4 @@
       </div>
   </div>
   <button routerLink='/dashboard' class="btn btn-primary btn-sm mt-auto">Back</button>
-
-
-
-
 </div>

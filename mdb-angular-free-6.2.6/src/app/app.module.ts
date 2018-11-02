@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // For MDB Angular Free
-import { WavesModule, CardsFreeModule } from 'angular-bootstrap-md'
+import { WavesModule, CardsFreeModule } from 'angular-bootstrap-md';
 
 import { AppComponent } from './app.component';
 
@@ -34,7 +34,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent],
