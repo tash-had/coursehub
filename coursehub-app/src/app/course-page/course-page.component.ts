@@ -21,7 +21,5 @@ export class CoursePageComponent implements OnInit {
        
       }
     }
-    console.log("DASH");
-    console.log(this.comments);
   }
 }
