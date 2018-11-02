@@ -9,14 +9,14 @@ import { CourseCardDataService } from '../course-card/course-card-data.service'
 export class SidebarComponent implements OnInit {
   courseCode: String;
   courseDescription: String;
-  courseTotalRating: number;
+  courseOverallRating: number;
 
   constructor(private courseCardDataService: CourseCardDataService) { }
 
   ngOnInit() {
     this.courseCardDataService.courseCode.subscribe(courseCode => this.courseCode = courseCode)
     this.courseCardDataService.courseDescription.subscribe(courseDescription => this.courseDescription = courseDescription)
-    this.courseCardDataService.courseTotalRating.subscribe(courseTotalRating => this.courseTotalRating = courseTotalRating)
+    this.courseCardDataService.courseOverallRating.subscribe(courseOverallRating => this.courseOverallRating = courseOverallRating)
   }
 
 }

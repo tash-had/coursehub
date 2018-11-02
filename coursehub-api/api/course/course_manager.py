@@ -29,8 +29,8 @@ class CourseManager:
 
     @staticmethod
     def course_to_search_dict(course):
-        return {"code": course.code, "description": course.description,
-                "courseId": course.id_, "overallRating": course.overall_rating}
+        return {"courseCode": course.code, "courseDescription": course.description,
+                "courseId": course.id_, "courseOverallRating": course.overall_rating}
 
     @staticmethod
     def get_courses_by_code(course_code):

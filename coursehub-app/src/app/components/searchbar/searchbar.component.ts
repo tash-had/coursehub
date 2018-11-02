@@ -18,8 +18,8 @@ export class SearchbarComponent implements OnInit {
   }
 
   checkValidInput(event: any) : void{
-    let inputWasAlphanumeric = /[a-zA-Z0-9-_ ]/.test(String.fromCharCode(event.keyCode));
-    if (this.course && (inputWasAlphanumeric && this.course && this.course.length > 3 && this.COURSE_MATCHER.test(this.course)) || this.course.length == 0){
+    let inputWasAlphanumeric = /[a-zA-Z0-9-]/.test(String.fromCharCode(event.keyCode));
+    if ((inputWasAlphanumeric && this.course && this.COURSE_MATCHER.test(this.course)) || event.keyCode === 8){
       if (this.course === "CSC69") {
         this.messageEvent.emit("update theme - black");
       } else {

@@ -19,7 +19,7 @@ def search_for_course():
     if courses is None:
         return jsonify({"error": "No matching courses found for '" + course_code + "'"})
 
-    return jsonify({"matchingCourses:": courses})
+    return jsonify({"matchingCourses": courses})
 
 
 @course_controller_bp.route("/select_course")

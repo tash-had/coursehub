@@ -13,10 +13,11 @@ export class CourseCardComponent {
   @Input() description: string;
   @Input() color: String;
   @Input() percentColor: String;
+  @Input() totalRating: number;
+
   textbooks: String[];
   difficultyRating: number;
   usefulnessRating: number;
-  totalRating: number;
 
   constructor(private courseCardDataService: CourseCardDataService, private _router: Router) {
     this.totalRating = 86;

@@ -16,6 +16,10 @@ export class DashboardComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.toggleTheme(true)
   }
+  
+  test(item) {
+    console.log("HERE", item);
+  }
 
   receiveMessage($event) {
     if (typeof($event) === "string") {
