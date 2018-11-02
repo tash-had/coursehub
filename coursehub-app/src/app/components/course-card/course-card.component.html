@@ -2,8 +2,8 @@
     <div class="view view-cascade gradient-card-header {{color}}-gradient">
       <h2 class="card-header-title mb-2">{{name}}</h2>
       <span><p>Rating:</p></span>
-      <div class="c100 p{{totalRating}} small center {{percentColor}}">
-          <span>{{totalRating}}%</span>
+      <div class="c100 p{{overallRating}} small center {{percentColor}}" [hidden]="overallRating == 0">
+          <span>{{overallRating}}%</span>
           <div class="slice">
               <div class="bar"></div>
               <div class="fill"></div>
