@@ -36,7 +36,7 @@
     <ng-container *ngIf="courseSearchResponse">
       <div *ngFor="let item of courseSearchResponse['matchingCourses']" class="col-md-4">
         <app-course-card name="{{item['courseCode']}}" description="{{item['courseDescription']}}" 
-        totalRating="{{Math.round(100*(item['courseOverallRating']/5))}}"></app-course-card>
+        overallRating="{{Math.round(100*(item['courseOverallRating']/5))}}" percentColor="orange"></app-course-card>
       </div>
     </ng-container>
   </div>
