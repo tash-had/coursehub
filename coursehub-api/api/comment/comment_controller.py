@@ -1,10 +1,8 @@
 from api.comment.comment_manager import CommentManager
 from flask import jsonify, Blueprint, request
-
 from api.comment.comment import Comment
 
 comment_controller_bp = Blueprint("comment_controller_bp", __name__)
-
 comment_manager = CommentManager()
 
 

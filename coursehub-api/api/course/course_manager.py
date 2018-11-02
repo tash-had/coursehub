@@ -1,5 +1,5 @@
 from db.database_manager import DatabaseManager, CourseDatabaseWorker
-from .course import Course
+from api.course.course import Course
 
 
 class CourseManager:
