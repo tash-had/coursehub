@@ -1,4 +1,4 @@
-from comment.comment_manager import CommentManager
+from api.comment.comment_manager import CommentManager
 from flask import jsonify, Blueprint, request
 
 from api.comment.comment import Comment
@@ -69,7 +69,6 @@ class CommentController:
 comment_controller = CommentController(CommentManager())
 
 @comment_controller_bp.route("/post_comment")
-
 
 def post_comment():
     text, course_id = request.args.get("comment_text"), request.args.get("course_id")

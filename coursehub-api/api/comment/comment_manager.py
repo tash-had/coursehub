@@ -2,7 +2,7 @@ import time
 import uuid
 
 from api.comment.comment import Comment
-from db.database_manager import CommentdatabaseWorker
+from db.database_manager import CommentDatabaseWorker
 
 
 class CommentManager:
@@ -13,7 +13,7 @@ class CommentManager:
         @type text: str
         @rtype: comment
         """
-        comment_database_worker = CommentdatabaseWorker()
+        comment_database_worker = CommentDatabaseWorker()
         comment_id = str(uuid.uuid4())
         time_stamp = time.time()
         data = {"id": comment_id, "course_id": course_id, "comment": text,
@@ -27,7 +27,7 @@ class CommentManager:
         @type course_id: str
         @rtype: comment[]
         """
-        comment_database_worker = CommentdatabaseWorker()
+        comment_database_worker = CommentDatabaseWorker()
         return comment_database_worker.get_comments_for_course(course_id)
 
     def get_comment_by_id(self, comment_id):
@@ -36,7 +36,7 @@ class CommentManager:
         @type comment_id: str
         @rtype: comment
         """
-        comment_database_worker = CommentdatabaseWorker()
+        comment_database_worker = CommentDatabaseWorker()
         result = comment_database_worker.get_comment_by_id(comment_id)
         return Comment(result[4], result[2], result[3], result[1], result[0])
 
@@ -46,7 +46,7 @@ class CommentManager:
         @rtype: comment
 
         """
-        comment_database_worker = CommentdatabaseWorker()
+        comment_database_worker = CommentDatabaseWorker()
         comment_to_upvote = self.get_comment_by_id(comment_id)
         comment_to_upvote.set_score(comment_database_worker.upvote(comment_id))
         return comment_to_upvote
@@ -57,7 +57,7 @@ class CommentManager:
         @rtype: comment
         """
 
-        comment_database_worker = CommentdatabaseWorker()
+        comment_database_worker = CommentDatabaseWorker()
         comment_to_downvote = self.get_comment_by_id(comment_id)
         comment_to_downvote.set_score(comment_database_worker.downvote(comment_id))
         return comment_to_downvote

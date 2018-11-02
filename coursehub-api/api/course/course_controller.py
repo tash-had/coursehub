@@ -4,7 +4,7 @@ from .course_manager import CourseManager
 course_controller_bp = Blueprint("course_controller", __name__)
 
 
-@course_controller_bp.route("search_course")
+@course_controller_bp.route("/search_course")
 def search_for_course():
     """
     :return: array of JSON dict of all matching courses
@@ -16,10 +16,10 @@ def search_for_course():
     if courses is None or course_code == "":
         return jsonify({"error": "No matching courses found for '" + course_code + "'"})
 
-    return jsonify([course.__dict__ for course in courses])
+    return jsonify({"matchingCourses": [course.__dict__ for course in courses]})
 
 
-@course_controller_bp.route("select_course")
+@course_controller_bp.route("/select_course")
 def select_course():
     """
     :return: course by ID
@@ -29,7 +29,7 @@ def select_course():
     return jsonify(CourseManager.get_course_by_id(id_).__dict__)
 
 
-@course_controller_bp.route("add_course_ratings")
+@course_controller_bp.route("/add_course_ratings")
 def update_rating():
     """
     :return: course object with updated rating
