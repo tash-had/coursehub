@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {CommentDataService} from './comment-data.service';
 
 @Component({
   selector: 'app-comment',
@@ -8,21 +9,13 @@ import { Component, OnInit, Input } from '@angular/core';
 
 export class CommentComponent implements OnInit {
   @Input() comments: String[] = [];
-  // currentComment: String;
-  constructor() {
-  	console.log("COMMENT");
-  	console.log(this.comments);
+  @Input() course: string;
+  constructor(private commentService: CommentDataService) {
   }
 
-  ngOnInit() {}
-
-  // addComment() {
-  //   if (this.currentComment){
-  //     if (this.currentComment.trim()){
-  //       this.comments.push(this.currentComment);
-  //       this.currentComment = null;
-       
-  //     }
-  //   }
-  // }
+  ngOnInit() {
+    // this.commentService.getComments(this.course)
+    // .subscribe((data) => this.comments = data
+    // );
+  }
 }

@@ -1,10 +1,13 @@
-<app-sidebar></app-sidebar>
+<div class="col-md-4">
+  <app-sidebar></app-sidebar>
+</div>
 
-<div class="col-md-6">
+
+<div class="container">
   <textarea class="form-control" id="comment-input" rows="3" placeholder="Enter text here" [(ngModel)]="currentComment"></textarea>
 
-  <button mdbBtn type="submit" color="primary" class="waves-light" mdbWavesEffect (click)='addComment()'>Submit</button>
+  <button mdbBtn type="submit" color="primary" class="waves-light float-right" mdbWavesEffect (click)='addComment()'>Submit</button>
 
-  <app-comment [comments]="comments"></app-comment>
+  <app-comment course="CSC165H1" [comments]="comments"></app-comment>
 </div>
 
