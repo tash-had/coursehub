@@ -51,6 +51,7 @@ def get_course_data_with_course_code():
 
     }})
 
+
 @app.route(URL_PREFIX + '/search_course')
 @cross_origin()
 def search_course():

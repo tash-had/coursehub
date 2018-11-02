@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 })
 
 export class CourseCardComponent {
-  @Input() name : String = '';
-  @Input() description: String;
+  @Input() name : string = '';
+  @Input() description: string;
   @Input() color: String;
   @Input() percentColor: String;
   textbooks: String[];
