@@ -1,4 +1,5 @@
 import requests
+from db.scraper.course_evals_parser import find_course_ratings
 from db.database_manager import _CourseHubDatabaseInitializer
 
 
@@ -35,6 +36,9 @@ class _CourseScraper:
                     "course_description": course["courseDescription"]
                 }
                 self.db_initializer.insert_course(data)
+        self.db_initializer.set_course_ratings(find_course_ratings(org_name))
+
+
 
 if __name__ == "__main__":
     _CourseScraper().populate_course_table()

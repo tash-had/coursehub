@@ -14,21 +14,6 @@ class DatabaseManager:
         if self.db_conn is None:
             raise sqlite3.DatabaseError("Could not establish a connection to the database.")
 
-    def get_course_data(self, course_code):
-        """
-        Query courses based on course code 
-
-        :param str course_code: course we are retrieving
-        :return:
-        """
-        cur = self.db_conn.cursor()
-        cur.execute("SELECT * FROM courses WHERE course_code=?", [course_code])
-
-        results = cur.fetchall()
-        if results is None:
-            return []
-        return results
-
     def create_table(self, instructions):
         """ create a table from the create_table_sql statement
         :param instructions: a CREATE TABLE statement
@@ -40,6 +25,147 @@ class DatabaseManager:
         except Error as e:
             print(e)
         return None
+
+
+class CommentDatabaseWorker(DatabaseManager):
+    """Contains the functions to add to and retrieve from the database"""
+
+    def __init__(self):
+        DatabaseManager.__init__(self)
+
+    def insert_comment(self, data):
+        """ Insert data into the comments table
+
+        :param dict data: Keys: [id, course_id, comment, timestamp, votes]
+        :return:
+        """
+
+        comment_id = data["id"]
+        course_id = data["course_id"]
+        comment = data["comment"]
+        time = data["timestamp"]
+        votes = data["votes"]
+
+        input_data = [comment_id, course_id, comment, time, votes]
+
+        c = self.db_conn.cursor()
+        c.execute('insert into comments (id, course_id, commment, timestamp, votes) values (?,?,?,?,?)', input_data)
+        self.db_conn.commit()
+        c.close()
+
+    def get_comments_for_course(self, course_id):
+        """
+        Get all comments for a specific course
+
+        :param str course_id: course we are retrieving data for
+        :return:
+        """
+        cur = self.db_conn.cursor()
+        cur.execute("SELECT * FROM comments WHERE course_id=?", [course_id])
+
+        results = cur.fetchall()
+        if results is None:
+            return []
+        return results
+
+    def get_comment_by_id(self, comment_id):
+        """Return the comment in the database that corresponds to comment_id.
+
+        :param comment_id:
+        :return:
+        """
+        cur = self.db_conn.cursor()
+        comment = cur.execute('SELECT * FROM comments WHERE id=?', [comment_id]).fetchone()
+
+        cur.close()
+        return comment
+
+    def upvote(self, comment_id):
+        """Increment the vote count for the comment by one.
+
+        :param comment_id:
+        :return: new score
+        """
+        # update the comment with comment_id by a value of 1
+
+        cur = self.db_conn.cursor()
+        current_votes = cur.execute('SELECT votes FROM comments WHERE id=?', [comment_id]).fetchone()
+        cur.execute('UPDATE comments SET votes=? WHERE id=?', [current_votes[0] + 1, comment_id])
+        self.db_conn.commit()
+
+        return current_votes[0] + 1
+
+    def downvote(self, comment_id):
+        """Decrement the vote count for the comment by one.
+
+        :param comment_id:
+        :return: new score
+        """
+        # update the comment with comment_id by decreasing by a value of 1
+
+        cur = self.db_conn.cursor()
+        current_votes = cur.execute('SELECT votes FROM comments WHERE id=?', [comment_id]).fetchone()
+        cur.execute('UPDATE comments SET votes=? WHERE id=?', [current_votes[0] - 1, comment_id])
+        self.db_conn.commit()
+
+        return current_votes[0] - 1
+
+
+class CourseDatabaseWorker(DatabaseManager):
+    """Updates and gets course information in the course database"""
+
+    def __init__(self):
+        DatabaseManager.__init__(self)
+
+    def get_courses_data(self, course_code):
+        """
+        Query courses based on partial (or complete) course code
+
+        :param str course_code: courses we are retrieving
+        :return:
+        """
+        db_conn = sqlite3.connect(self._db_path)
+        cur = db_conn.cursor()
+
+        query_str = "SELECT * FROM courses WHERE course_code LIKE '%" + course_code + "%'"
+
+        cur.execute(query_str)
+
+        results = cur.fetchall()
+        cur.close()
+        if results is None:
+            return []
+        return results
+
+    def get_course_by_id(self, id_):
+        """
+        Query courses based on course id
+        :param int id_: course to retrieve
+        :return:
+        """
+        db_conn = sqlite3.connect(self._db_path)
+        cur = db_conn.cursor()
+        cur.execute("SELECT * FROM courses WHERE id=?", [id_])
+
+        results = cur.fetchall()
+        if results is None:
+            return []
+        return results
+
+    def update_course_field(self, id_, field, new_value):
+        """
+        Update the field 'field' in course specified by 'id_' to 'new_value'
+        :param id_: str
+        :param field: str
+        :param new_value: int or str
+        :return: nothing!
+        """
+        db_conn = sqlite3.connect(self._db_path)
+        cur = db_conn.cursor()
+
+        query_str = "UPDATE courses SET " + field + " = " + str(new_value) + " WHERE id=?"
+        cur.execute(query_str, [id_])
+        db_conn.commit()
 
 
 class _CourseHubDatabaseInitializer:
@@ -54,6 +180,27 @@ class _CourseHubDatabaseInitializer:
 
         self.create_tables()
 
+    def set_course_ratings(self, data):
+        """Initally sets the course rating using the information gathered from the course evals.
+
+        :param data: dictionary that contains course code as key to a tuple with ratings
+        :return:
+        """
+        # set the database values using info in the tuple
+        cur = self.db_manager.db_conn.cursor()
+        for key in data.keys():
+            tuple_of_info = data[key]
+            workload = tuple_of_info[0]
+            recommend = tuple_of_info[1]
+            total = tuple_of_info[2]
+            cur.execute('UPDATE courses SET workload_rating = ? WHERE course_code = ?', [workload, key])
+            cur.execute('UPDATE courses SET recommendation_rating = ? WHERE course_code = ?', [recommend, key])
+            cur.execute('UPDATE courses SET num_ratings = ? WHERE course_code = ?', [total, key])
+            combined_rating = (workload + recommend) / 2
+            cur.execute('UPDATE courses SET overall_rating = ? WHERE course_code = ?', [combined_rating, key])
+            self.db_manager.db_conn.commit()
+        cur.close()
+
     def insert_course(self, data):
         """ Insert data into the table
 
@@ -67,14 +214,18 @@ class _CourseHubDatabaseInitializer:
         code = data["course_code"]
         course_description = data["course_description"]
 
-        input_data = [course_id, code, course_description, course_title, org_name]
+        input_data = [course_id, code, course_description, course_title, org_name, 0, 0, 0, 0]
+
+        print(input_data)
 
         c = self.db_manager.db_conn.cursor()
         course_exists = c.execute('SELECT * FROM courses WHERE id = ?', [str(course_id)])
 
         # NOTE: this will makesure the same course in two different sections don't both get added.
-        if course_exists.fetchone() is None:
-            c.execute('insert into courses values (?,?,?,?,?)', input_data)
+        if course_exists.fetchall() == []:
+            c.execute('insert into courses (id, course_code, course_description, course_title, org_name,'
+                      'workload_rating, recommendation_rating, overall_rating, num_ratings) values (?,?,?,?,?,?,?,?,?)',
+                      input_data)
 
         self.db_manager.db_conn.commit()
         c.close()
@@ -83,11 +234,11 @@ class _CourseHubDatabaseInitializer:
         """ Creates the comment and course tables in the db """
 
         comment_table = """  CREATE TABLE IF NOT EXISTS comments(
-            id integer PRIMARY KEY,
+            id text PRIMARY KEY,
             course_id text,
             comment text,
             timestamp integer,
-            votes integer); 
+            votes integer);
         """
 
         course_table = """
@@ -96,7 +247,11 @@ class _CourseHubDatabaseInitializer:
             course_code text,
             course_description text,
             course_title text,
-            org_name text);
+            org_name text,
+            workload_rating float,
+            recommendation_rating float,
+            overall_rating float,
+            num_ratings integer);
         """
         self.db_manager.create_table(comment_table)
         self.db_manager.create_table(course_table)

@@ -9,6 +9,9 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 URL_PREFIX = "/api/v1.0"
 
+from api.course.course_controller import course_controller_bp
+app.register_blueprint(course_controller_bp, url_prefix=URL_PREFIX)
+
 
 @app.route('/')
 def home():
