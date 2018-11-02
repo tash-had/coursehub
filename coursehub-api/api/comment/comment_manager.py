@@ -1,7 +1,8 @@
-from comment.comment import Comment
 import time
-from db.database_manager import CommentdatabaseWorker
 import uuid
+
+from api.comment.comment import Comment
+from db.database_manager import CommentdatabaseWorker
 
 
 class CommentManager:
@@ -10,7 +11,7 @@ class CommentManager:
 
         @type course_id: str
         @type text: str
-        @rtype: Comment
+        @rtype: comment
         """
         comment_database_worker = CommentdatabaseWorker()
         comment_id = str(uuid.uuid4())
@@ -24,7 +25,7 @@ class CommentManager:
         """
 
         @type course_id: str
-        @rtype: Comment[]
+        @rtype: comment[]
         """
         comment_database_worker = CommentdatabaseWorker()
         return comment_database_worker.get_comments_for_course(course_id)
@@ -33,7 +34,7 @@ class CommentManager:
         """
 
         @type comment_id: str
-        @rtype: Comment
+        @rtype: comment
         """
         comment_database_worker = CommentdatabaseWorker()
         result = comment_database_worker.get_comment_by_id(comment_id)
@@ -42,7 +43,7 @@ class CommentManager:
     def upvote(self, comment_id):
         """
         @type comment_id: str
-        @rtype: Comment
+        @rtype: comment
 
         """
         comment_database_worker = CommentdatabaseWorker()
@@ -53,7 +54,7 @@ class CommentManager:
     def downvote(self, comment_id):
         """
         @type comment_id: str
-        @rtype: Comment
+        @rtype: comment
         """
 
         comment_database_worker = CommentdatabaseWorker()

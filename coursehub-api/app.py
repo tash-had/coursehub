@@ -3,7 +3,7 @@ from flask import Flask, jsonify, abort, request
 app = Flask(__name__)
 URL_PREFIX = "/api/v1.0"
 
-from course.course_controller import course_controller_bp
+from api.course.course_controller import course_controller_bp
 app.register_blueprint(course_controller_bp, url_prefix=URL_PREFIX)
 
 
