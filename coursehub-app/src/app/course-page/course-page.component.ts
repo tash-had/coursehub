@@ -5,10 +5,23 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './course-page.component.html',
   styleUrls: ['./course-page.component.scss']
 })
+
 export class CoursePageComponent implements OnInit {
-  constructor() { }
+  comments: String[] = [];
+  currentComment: String;
+  constructor() {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  addComment() {
+    if (this.currentComment){
+      if (this.currentComment.trim()){
+        this.comments.push(this.currentComment);
+        this.currentComment = null;
+       
+      }
+    }
+    console.log("DASH");
+    console.log(this.comments);
   }
-
 }

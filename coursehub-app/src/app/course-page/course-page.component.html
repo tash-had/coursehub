@@ -1,2 +1,10 @@
 <app-sidebar></app-sidebar>
 
+<div class="col-md-6">
+  <textarea class="form-control" id="comment-input" rows="3" placeholder="Enter text here" [(ngModel)]="currentComment"></textarea>
+
+  <button mdbBtn type="submit" color="primary" class="waves-light" mdbWavesEffect (click)='addComment()'>Submit</button>
+
+  <app-comment [comments]="comments"></app-comment>
+</div>
+
