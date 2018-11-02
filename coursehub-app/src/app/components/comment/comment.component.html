@@ -1,5 +1,5 @@
 
-<div class="col-md-8 float-right pr-10" *ngFor="let comment of comments" >
+<div *ngFor="let comment of comments" >
 	<div class="media border  border-dark  mb-3 p-3" id="commentBorder">
 	  <!-- <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" alt="Generic placeholder image"> -->
 	  <div class="media-body">
@@ -12,15 +12,11 @@
         <span id="score" class="font-weight-bold float-right pr-2"> 150</span>
       </div>
  
-      <div class="d-block pt-4 text-left float-bottom">
+      <div class="d-block pt-3 text-left">
         <br>
         {{comment}}
         Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-        vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-        congue felis in faucibus.
-        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-        vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-        congue felis in faucibus. 
+        vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
       </div>
       
 	  </div>
