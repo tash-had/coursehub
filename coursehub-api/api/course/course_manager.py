@@ -28,6 +28,11 @@ class CourseManager:
         return ["workload_rating", "recommendation_rating"]
 
     @staticmethod
+    def course_to_search_dict(course):
+        return {"code": course.code, "description": course.description,
+                "courseId": course.id_, "overallRating": course.overall_rating}
+
+    @staticmethod
     def get_courses_by_code(course_code):
         """
         :param course_code: str
@@ -39,7 +44,9 @@ class CourseManager:
         if len(courses_info) == 0:
             return None
 
-        return [CourseManager.build_course_obj(course_info) for course_info in courses_info]
+        course_objects = [CourseManager.build_course_obj(course_info) for course_info in courses_info]
+
+        return [CourseManager.course_to_search_dict(course) for course in course_objects]
 
     @staticmethod
     def get_course_by_id(id_):
