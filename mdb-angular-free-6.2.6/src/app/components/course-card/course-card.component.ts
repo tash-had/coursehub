@@ -9,13 +9,19 @@ import { Router } from '@angular/router';
 })
 
 export class CourseCardComponent {
-  @Input() name : string = '';
-  @Input() description: string;
-  textbooks: string[];
+  @Input() name : String = '';
+  @Input() description: String;
+  @Input() color: String;
+  @Input() percentColor: String;
+  textbooks: String[];
+  difficultyRating: number;
+  usefulnessRating: number;
   totalRating: number;
 
   constructor(private courseCardDataService: CourseCardDataService, private _router: Router) {
     this.totalRating = 86;
+    this.color = 'blue';
+    this.percentColor='orange';
   }
 
   navigateToCoursePage() {
