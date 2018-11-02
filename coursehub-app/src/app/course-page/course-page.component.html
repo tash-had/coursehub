@@ -1,10 +1,30 @@
-<app-sidebar></app-sidebar>
+<div class="container">
+	<div class="row">
+		<div class="col-4">
+			<app-sidebar></app-sidebar>
+		</div>
+		<div class="col">
 
-<div class="col-md-6">
-  <textarea class="form-control" id="comment-input" rows="3" placeholder="Enter text here" [(ngModel)]="currentComment"></textarea>
+			<div class="pt-5 w-75">
+				<textarea class="form-control" id="comment-input" rows="3"
+			    placeholder="Enter course review..." [(ngModel)]="currentComment">
+			    </textarea>
+				
+				<button mdbBtn type="submit" color="primary"
+			  	class="waves-light float-right" mdbWavesEffect (click)='addComment()'>Submit
+				</button>
+			</div>
 
-  <button mdbBtn type="submit" color="primary" class="waves-light" mdbWavesEffect (click)='addComment()'>Submit</button>
+			<div class="float-left pt-3 w-80 h-75">
+				<app-comment [comments]="comments"></app-comment>
+			</div>
 
-  <app-comment [comments]="comments"></app-comment>
+			
+
+		</div>
+		
+	</div>
 </div>
+
+
 
