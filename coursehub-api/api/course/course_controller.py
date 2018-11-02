@@ -19,7 +19,7 @@ def search_for_course():
     if courses is None:
         return jsonify({"error": "No matching courses found for '" + course_code + "'"})
 
-    return jsonify({"matchingCourses": courses})
+    return jsonify({"matching_courses": courses})
 
 
 @course_controller_bp.route("/select_course")
@@ -48,8 +48,8 @@ def update_rating():
     new_course = CourseManager.update_course_rating(course, rating_dict)
 
     ratings = {}
-    ratings["overallRating"] = new_course.overall_rating
-    ratings["workloadRating"] = new_course.ratings["workload_rating"]
-    ratings["recommendationRating"] = new_course.ratings["recommendation_rating"]
+    ratings["overall_rating"] = new_course.overall_rating
+    ratings["workload_rating"] = new_course.ratings["workload_rating"]
+    ratings["recommendation_rating"] = new_course.ratings["recommendation_rating"]
 
     return jsonify(ratings)

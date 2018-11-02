@@ -16,7 +16,7 @@ class CommentManager:
         comment_database_worker = CommentDatabaseWorker()
         comment_id = str(uuid.uuid4())
         time_stamp = time.time()
-        data = {"id": comment_id, "course_id": course_id, "comment": text,
+        data = {"id": comment_id, "courseId": course_id, "comment": text,
                 "timestamp": time_stamp, "votes": 1}
         comment_database_worker.insert_comment(data)
         return Comment(1, text, time_stamp, course_id, comment_id)

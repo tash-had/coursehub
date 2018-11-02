@@ -7,8 +7,8 @@ from flask_cors import CORS, cross_origin
 URL_PREFIX = "/api/v1.0"
 
 app = Flask(__name__)
-app.register_blueprint(course_controller_bp, url_prefix=URL_PREFIX)
-app.register_blueprint(comment_controller_bp, url_prefix=URL_PREFIX)
+app.register_blueprint(course_controller_bp, url_prefix=URL_PREFIX + "/course")
+app.register_blueprint(comment_controller_bp, url_prefix=URL_PREFIX + "/comment")
 
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'

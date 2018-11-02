@@ -19,8 +19,8 @@ def post_new_comment():
     comment_text = request.args.get("commentText")
     course_id = request.args.get("courseId")
 
-    comment_to_post = comment_manager.create_comment(course_id, comment_text)
-    return jsonify(comment_to_post.__dict__)
+    posted_comment = comment_manager.create_comment(course_id, comment_text)
+    return jsonify(posted_comment.__dict__)
 
 
 @comment_controller_bp.route("/get_comments")
@@ -39,7 +39,7 @@ def get_comments_by_course(course_id):
     return jsonify(comments_dictionary)
 
 
-@comment_controller_bp.route("/upvote_comment")
+@comment_controller_bp.route("/upvote")
 def upvote(comment_id):
     """
     @type comment_id: str
@@ -52,7 +52,7 @@ def upvote(comment_id):
     return jsonify(comment_to_upvote.__dict__)
 
 
-@comment_controller_bp.route("/downvote_comment")
+@comment_controller_bp.route("/downvote")
 def downvote(comment_id):
     """
     @type comment_id: str

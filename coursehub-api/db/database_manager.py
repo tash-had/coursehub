@@ -49,7 +49,7 @@ class CommentDatabaseWorker(DatabaseManager):
         input_data = [comment_id, course_id, comment, time, votes]
 
         c = self.db_conn.cursor()
-        c.execute('insert into comments (id, course_id, commment, timestamp, votes) values (?,?,?,?,?)', input_data)
+        c.execute('insert into comments (id, course_id, comment, timestamp, votes) values (?,?,?,?,?)', input_data)
         self.db_conn.commit()
         c.close()
 
