@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { CourseCardDataService } from '../course-card/course-card-data.service'
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,16 +6,12 @@ import { CourseCardDataService } from '../course-card/course-card-data.service'
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  courseCode: String;
-  courseDescription: String;
-  courseOverallRating: number;
+  @Input() courseCode: String;
+  @Input() courseDescription: String;
+  @Input() courseOverallRating: number;
 
-  constructor(private courseCardDataService: CourseCardDataService) { }
+  constructor() { }
 
-  ngOnInit() {
-    this.courseCardDataService.courseCode.subscribe(courseCode => this.courseCode = courseCode)
-    this.courseCardDataService.courseDescription.subscribe(courseDescription => this.courseDescription = courseDescription)
-    this.courseCardDataService.courseOverallRating.subscribe(courseOverallRating => this.courseOverallRating = courseOverallRating)
-  }
+  ngOnInit() {}
 
 }
