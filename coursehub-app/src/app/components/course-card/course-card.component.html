@@ -1,7 +1,7 @@
   <mdb-card cascade="true" wider="false">
     <div class="view view-cascade gradient-card-header {{color}}-gradient">
       <h2 class="card-header-title mb-2">{{name}}</h2>
-      <span><p>Rating:</p></span>
+      <span><p>{{overallRating == 0 ? "No rating available." : "Rating:" }}</p></span>
       <div class="c100 p{{overallRating}} small center {{percentColor}}" [hidden]="overallRating == 0">
           <span>{{overallRating}}%</span>
           <div class="slice">
