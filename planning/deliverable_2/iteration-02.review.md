@@ -1,28 +1,13 @@
-# YOUR PRODUCT/TEAM NAME
+# CourseHub
 
- > _Note:_ This document is meant to be written during (or shortly after) your review meeting, which should happen fairly close to the due date.      
- >      
- > _Suggestion:_ Have your review meeting a day or two before the due date. This way you will have some time to go over (and edit) this document, and all team members should have a chance to make their contribution.
+## Iteration 02 - Review & Retrospect
 
-
-## Iteration XX - Review & Retrospect
-
- * When: October 31, 2018
+ * When: November 2, 2018
  * Where: BA6180
 
 ## Process - Reflection
 
-(Optional) Short introduction
-
 #### Decisions that turned out well
-
-List process-related (i.e. team organization) decisions that, in retrospect, turned out to be successful.
-
-
- * 2 - 4 decisions.
- * Ordered from most to least important.
- * Explain why (i.e. give a supporting argument) you consider a decision to be successful.
- * Feel free to refer/link to process artifact(s).
  
    Our most important decision that turned out to be successful was splitting up into groups.  Our three groups were: frontend, backend and database.  This made it easier to organize the work that had to be done.  It is easier to organize a small amount of work between 2-3 people as opposed to having 6 people trying to tackle the entire project together. 
  
@@ -32,12 +17,6 @@ List process-related (i.e. team organization) decisions that, in retrospect, tur
 
 
 #### Decisions that did not turn out as well as we hoped
-
-List process-related (i.e. team organization) decisions that, in retrospect, were not as successful as you thought they would be.
-
- * 2 - 4 decisions.
- * Ordered from most to least important.
- * Feel free to refer/link to process artifact(s).
  
    Most important decision that did not turn out well: Initially, having only Labib on front-end turned out to be totally insufficient, as we underestimated the amount of work that this would be. Ultimately, Tash-had and Andrew put in many hours assisting in this part of the project while Nathan, Ted, and Cullen worked on the backend/database.
 
@@ -46,11 +25,6 @@ List process-related (i.e. team organization) decisions that, in retrospect, wer
 
 
 #### Planned changes
-
-List any process-related changes you are planning to make (if there are any)
-
- * Ordered from most to least important.
- * Explain why you are making a change.
  
    Most important process-related change that we will make: One decision that proved to be misguided was to delay coding and committing changes until the past week or so. The reason for this was because we were all busy with midterms, however in retrospect it would seem that putting in only a small amount of work on a consistent basis would have helped us have a clear focus and put us at less risk of not completing our MVP. In the future we should avoid spending more than a week without meeting and/or committing changes to the codebase.
 
@@ -75,7 +49,7 @@ Implemented the database which is the basis for our source of information. This 
    The front-end is important to visualize all of the information in a clean manner for the users. We wanted to have to logic implemented first so that the front-end had all the information it needed to display the courses and comments.
 
 Our other main goal of completing the video was completed:
-	[This](link to video) is the link to our video.
+	[This](https://www.youtube.com/watch?v=cWvscooP2Ao&feature=youtu.be) is the link to our video.
 	[Here](https://docs.google.com/document/d/1ct0GLvdP1TsfQiNHcfIvCtAZUAlxfRm4cf7fKQ3mErQ/edit?usp=sharing) is the link to our script.
 
 A secondary goal that we met was meeting weekly:
@@ -88,22 +62,10 @@ We added the ability to upvote/downvote a comment and implemented a basic rating
 
 
 #### Goals and/or tasks that were planned but not met/completed:
-
- * From most to least important.
- * For each goal/task, explain why it was not met/completed.      
-   e.g. Did you change your mind, or did you just not get to it yet?
    
    We completed all our goals that we planned.
 
 ## Meeting Highlights
-
-Going into the next iteration, our main insights are:
-
- * 2 - 4 items
- * Short (no more than one short paragraph per item)
- * High-level concepts that should guide your work for the next iteration.
- * These concepts should help you decide on where to focus your efforts.
- * Can be related to product and/or process.
  
    First of all, we will implement more advanced features on top of our MVP that we have created for deliverable 2.  We will add different types of comments: replies to comments, review comments and questions with answers. Further, the aesthetic of the UI will be improved.
 
