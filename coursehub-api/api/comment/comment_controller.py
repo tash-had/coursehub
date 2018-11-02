@@ -24,7 +24,7 @@ def post_new_comment():
 
 
 @comment_controller_bp.route("/get_comments")
-def get_comments_by_course(course_id):
+def get_comments_by_course():
     """
     @type course_id: str
     @rtype: JSON[]
@@ -40,7 +40,7 @@ def get_comments_by_course(course_id):
 
 
 @comment_controller_bp.route("/upvote")
-def upvote(comment_id):
+def upvote():
     """
     @type comment_id: str
     @rtype: JSON[]
@@ -53,7 +53,7 @@ def upvote(comment_id):
 
 
 @comment_controller_bp.route("/downvote")
-def downvote(comment_id):
+def downvote():
     """
     @type comment_id: str
     @rtype: JSON[]
