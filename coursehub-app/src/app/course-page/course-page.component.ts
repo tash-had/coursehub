@@ -11,7 +11,9 @@ export class CoursePageComponent implements OnInit {
   courseCode: string;
   courseDescription: string;
   courseOverallRating: number;
-  comments: String[] = [];
+  //mock comments
+  comments: String[] = ['Hey, I love CSC301', 'Hey, I do not like CSC301 that much', 
+  'Why does no one shower??', 'I failed my assignment, can I drop this course?', "Why don't we just use reddit"];
   currentComment: String;
   constructor(private courseCardDataService: CourseCardDataService) {}
 
