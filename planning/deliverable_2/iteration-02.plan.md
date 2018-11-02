@@ -18,6 +18,9 @@ Backend - Ted, Nathan, Tash-had:
 -Get data from timetable api and parse necessary information 
 -Send data to backend to be able to put in database  
 
+Frontend - Labib:  
+-Implement frontend portion of web-app to display to users
+
 Connecting frontend to backend - Andrew, Labib, Tash-had:  
 -Send comments and posts to backend when user interacts with basic webpage  
 -Display information received from backend i.e. ratings, textbook information
