@@ -1,14 +1,20 @@
 <div id="mySidenav" class="container sidenav">
-  <app-course-card  name='{{courseCode}}' description='{{courseDescription}}' totalRating='{{courseTotalRating}}' color='peach' percentColor=''></app-course-card>
-  <div class="center">
-      <div class="c100 p25 small orange" style="float: left;">
+
+
+  <div>
+    <app-course-card  name='{{courseCode}}' description='{{courseDescription}}' totalRating='{{courseTotalRating}}' color='peach' percentColor=''></app-course-card>
+    <button routerLink='/dashboard' class="btn btn-warning btn-sm float-right">Back</button>
+  </div>
+
+  <div class="pt-2 pl-4">
+      <div class="c100 p25 small orange">
           <span>25%</span>
           <div class="slice">
               <div class="bar"></div>
               <div class="fill"></div>
           </div>
       </div>
-      <div class="c100 p25 small orange" style="float: right; ">
+      <div class="c100 p25 small orange float-right">
           <span>25%</span>
           <div class="slice">
               <div class="bar"></div>
@@ -16,5 +22,5 @@
           </div>
       </div>
   </div>
-  <button routerLink='/dashboard' class="btn btn-primary btn-sm mt-auto">Back</button>
+
 </div>
