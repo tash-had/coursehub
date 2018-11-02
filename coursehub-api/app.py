@@ -2,7 +2,6 @@ from flask import Flask, abort, jsonify, request
 from api.course.course_controller import course_controller_bp
 from api.comment.comment_controller import comment_controller_bp
 from flask_cors import CORS, cross_origin
-from db.database_manager import CourseDatabaseWorker
 
 
 URL_PREFIX = "/api/v1.0"
