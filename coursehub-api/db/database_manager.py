@@ -214,7 +214,7 @@ class _CourseHubDatabaseInitializer:
         code = data["course_code"]
         course_description = data["course_description"]
 
-        input_data = [course_id, code, course_description, course_title, org_name, 0, 0, 0, 0
+        input_data = [course_id, code, course_description, course_title, org_name, 0, 0, 0, 0]
 
         c = self.db_manager.db_conn.cursor()
         course_exists = c.execute('SELECT * FROM courses WHERE id = ?', [str(course_id)])
