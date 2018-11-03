@@ -49,7 +49,7 @@ class CommentDatabaseWorker(DatabaseManager):
         input_data = [comment_id, course_id, comment, time, votes]
 
         c = self.db_conn.cursor()
-        c.execute('insert into comments (id, course_id, commment, timestamp, votes) values (?,?,?,?,?)', input_data)
+        c.execute('insert into comments (id, course_id, comment, timestamp, votes) values (?,?,?,?,?)', input_data)
         self.db_conn.commit()
         c.close()
 
@@ -214,9 +214,7 @@ class _CourseHubDatabaseInitializer:
         code = data["course_code"]
         course_description = data["course_description"]
 
-        input_data = [course_id, code, course_description, course_title, org_name, 0, 0, 0, 0]
-
-        print(input_data)
+        input_data = [course_id, code, course_description, course_title, org_name, 0, 0, 0, 0
 
         c = self.db_manager.db_conn.cursor()
         course_exists = c.execute('SELECT * FROM courses WHERE id = ?', [str(course_id)])

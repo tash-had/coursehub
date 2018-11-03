@@ -1,0 +1,19 @@
+<div class="container">
+	<div class="row">
+		<div class="col-4">
+			<app-sidebar courseCode={{courseCode}} courseDescription={{courseDescription}} 
+			courseOverallRating={{courseOverallRating}}></app-sidebar>
+		</div>
+		<div class="col-md-8">
+
+			<div class="pt-5 w-75">
+				<textarea class="form-control" id="comment-input" rows="3" placeholder="Enter course review..." [(ngModel)]="currentComment"></textarea>
+				<button mdbBtn type="submit" color="primary" class="waves-light float-right" mdbWavesEffect (click)='addComment()'>Submit
+				</button>
+			</div>
+			<div class="float-left pt-3 w-80 h-75">
+				<app-comment course="courseCode" [comments]="comments"></app-comment>
+			</div>
+		</div>
+	</div>
+</div>

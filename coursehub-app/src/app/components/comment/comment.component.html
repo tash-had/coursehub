@@ -1,0 +1,22 @@
+
+<div *ngFor="let comment of comments" >
+	<div class="media border  border-dark  mb-3 p-3" id="commentBorder">
+	  <!-- <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" alt="Generic placeholder image"> -->
+	  <div class="media-body">
+
+      <div class="d-inline">
+        <span><h5 class="font-weight-bold float-left">Anon</h5></span>
+        <span id="timestamp" class="font-italic float-right">9:06 Thu Nov 1</span>
+        <span><i class="fa fa-thumbs-o-down  pr-5 float-right " aria-hidden="true" style="color: #2196fe"></i></span>
+        <span><i class="fa fa-thumbs-o-up  pr-3 float-right"  aria-hidden="true" style="color:orange"></i></span>
+        <span id="score" class="font-weight-bold float-right pr-2"> 150</span>
+      </div>
+ 
+      <div class="d-block pt-3 text-left">
+        <br>
+        {{comment}}
+      </div>
+      
+	  </div>
+	</div>
+</div>
