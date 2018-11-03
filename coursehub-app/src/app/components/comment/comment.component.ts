@@ -16,14 +16,13 @@ export class CommentComponent implements OnInit {
 
   ngOnInit() {
     this.commentService.getComments(this.courseId.toString())
-    .subscribe((data) => this.comments = this.parseData(data)
+    .subscribe((data) => this.parseData(data)
     );
   }
 
-  parseData(data: Object) : String[] {
+  parseData(data: Object) : void{
     for (let comment in data['comments']){
       this.comments.push(comment['text']);
     }
-    return []
   }
 }
