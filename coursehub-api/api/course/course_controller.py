@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from .course_manager import CourseManager
+from api.course.course_manager import CourseManager
 
 course_controller_bp = Blueprint("course_controller", __name__)
 

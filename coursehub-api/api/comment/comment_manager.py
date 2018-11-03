@@ -2,7 +2,7 @@ import time
 import uuid
 
 from api.comment.comment import Comment
-from db.database_manager import CommentDatabaseWorker
+from db.workers.comment_database_worker import CommentDatabaseWorker
 
 
 class CommentManager:

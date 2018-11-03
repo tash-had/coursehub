@@ -127,5 +127,5 @@ def find_course_ratings(course_code):
     parser = MyHTMLParser()
     parser.feed(soup_str)
 
-    retVal = parser.printList(course_code)
-    return retVal
+    ret_val = parser.printList(course_code)
+    return ret_val
