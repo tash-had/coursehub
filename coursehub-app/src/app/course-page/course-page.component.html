@@ -1,8 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-4">
-			<app-sidebar courseCode={{courseCode}} courseDescription={{courseDescription}} 
-			courseOverallRating={{courseOverallRating}}></app-sidebar>
+			<app-sidebar [courseData]="courseData"></app-sidebar>
 		</div>
 		<div class="col-md-8">
 
@@ -12,7 +11,7 @@
 				</button>
 			</div>
 			<div class="float-left pt-3 w-80 h-75">
-				<app-comment course="courseCode" [comments]="comments"></app-comment>
+				<app-comment courseId="courseData['course_id']" [comments]="comments"></app-comment>
 			</div>
 		</div>
 	</div>

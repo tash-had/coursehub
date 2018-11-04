@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { CourseCardDataService } from "./course-card-data.service";
 import { Router } from '@angular/router';
 
@@ -9,11 +9,10 @@ import { Router } from '@angular/router';
 })
 
 export class CourseCardComponent {
-  @Input() name : string = '';
-  @Input() description: string;
+  @Input() courseData : Object;
   @Input() color: String;
   @Input() percentColor: String;
-  @Input() overallRating: number;
+  Math: any;
 
   textbooks: String[];
   difficultyRating: number;
@@ -21,10 +20,15 @@ export class CourseCardComponent {
 
   constructor(private courseCardDataService: CourseCardDataService, private _router: Router) {
     this.color = 'blue';
+    this.Math = Math;
+  }
+
+  getOverallRatingAsPercent() {
+    return this.Math.round(100*(this.courseData['course_overall_rating']/5));
   }
 
   navigateToCoursePage() {
-    this._router.navigate(['/course-page']);
-    this.courseCardDataService.populateCourseCardData(this.name, this.description, this.overallRating);
+    this._router.navigate(['/course/']);
+    this.courseCardDataService.setCourseCardData(this.courseData);
   }
 }

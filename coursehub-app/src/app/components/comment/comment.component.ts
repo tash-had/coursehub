@@ -9,7 +9,6 @@ import {CommentDataService} from './comment-data.service';
 
 export class CommentComponent implements OnInit {
   @Input() comments: String[] = [];
-  @Input() course: string;
   @Input() courseId: number;
   constructor(private commentService: CommentDataService) {
   }
