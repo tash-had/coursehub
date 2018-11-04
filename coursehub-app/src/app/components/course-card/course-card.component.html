@@ -12,7 +12,9 @@
     </div>
 
     <mdb-card-body cascade="true" class="text-center">
-      <mdb-card-text [innerHTML]="courseData['course_description']">
+      <mdb-card-text>
+          <read-more [text]="courseData['course_description']" [maxLength]="150"></read-more>
+      <!-- <mdb-card-text [innerHTML]="courseData['course_description']"> -->
           <!-- {{courseData['course_description']}} -->
       </mdb-card-text>
 
@@ -20,4 +22,4 @@
         <i class="fa fa-chevron-right"></i>
       </a> -->
     </mdb-card-body>
-  </mdb-card>
+  </mdb-card><br><br>
