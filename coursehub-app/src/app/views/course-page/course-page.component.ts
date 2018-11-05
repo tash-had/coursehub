@@ -24,7 +24,7 @@ export class CoursePageComponent implements OnInit {
 
   courseCardDataReceived(courseData: Object) {
     console.log(courseData);
-    if (courseData && courseData.hasOwnProperty("courseId")) {
+    if (courseData && courseData.hasOwnProperty("id_")) {
       this.courseData = courseData;
     } else {
       console.log("hey");
@@ -33,6 +33,7 @@ export class CoursePageComponent implements OnInit {
   }
 
   getCourseData() {
+    console.log('got called fam');
     const courseId = +this.route.snapshot.paramMap.get('courseId');
     this.coursePageDataService.getCourseData(courseId.toString())
       .subscribe((courseData) => this.courseData = courseData);

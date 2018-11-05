@@ -38,7 +38,7 @@ class CourseManager:
         if len(courses_info) == 0:
             return None
 
-        return [CourseManager.build_course_obj(course_info).__dict__() for course_info in courses_info]
+        return [CourseManager.build_course_obj(course_info).__dict__ for course_info in courses_info]
 
     @staticmethod
     def get_course_by_id(id_):
