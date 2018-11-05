@@ -14,10 +14,6 @@ export class CourseCardComponent {
   @Input() percentColor: String;
   Math: any;
 
-  textbooks: String[];
-  difficultyRating: number;
-  usefulnessRating: number;
-
   constructor(private courseCardDataService: CourseCardDataService, private _router: Router) {
     this.color = 'blue';
     this.Math = Math;
@@ -28,7 +24,7 @@ export class CourseCardComponent {
   }
 
   navigateToCoursePage() {
-    this._router.navigate(['/course/']);
+    this._router.navigate(['/course/' + this.courseData['course_id']]);
     this.courseCardDataService.setCourseCardData(this.courseData);
   }
 }

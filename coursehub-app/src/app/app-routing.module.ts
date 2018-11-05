@@ -1,10 +1,10 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CoursePageComponent } from './course-page/course-page.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { CoursePageComponent } from './views/course-page/course-page.component';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
 
 const routes: Routes = [  {
-  path: 'course',
+  path: 'course/:courseId',
   component: CoursePageComponent
 },
 {

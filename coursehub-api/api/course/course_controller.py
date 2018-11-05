@@ -22,12 +22,12 @@ def search_for_course():
     return jsonify({"matching_courses": courses})
 
 
-@course_controller_bp.route("/select_course")
-def select_course():
+@course_controller_bp.route("/get_course_data")
+def get_course_data():
     """
     :return: course by ID
     """
-    id_ = request.args.get("id")
+    id_ = request.args.get("courseId")
 
     return jsonify(CourseManager.get_course_by_id(id_).__dict__)
 
@@ -37,9 +37,9 @@ def update_rating():
     """
     :return: course object with updated rating
     """
-    workload = request.args.get("workload_rating")  # must be either 'workload' or 'recommendation'
-    recommendation = request.args.get("recommendation_rating")
-    course_id = request.args.get("id")
+    workload = request.args.get("workloadRating")  # must be either 'workload' or 'recommendation'
+    recommendation = request.args.get("recommendationRating")
+    course_id = request.args.get("courseId")
 
     rating_dict = {"workload_rating": workload, "recommendation_rating": recommendation}
 
