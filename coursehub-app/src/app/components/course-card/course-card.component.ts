@@ -20,11 +20,11 @@ export class CourseCardComponent {
   }
 
   getOverallRatingAsPercent() {
-    return this.Math.round(100*(this.courseData['course_overall_rating']/5));
+    return this.Math.round(100*(this.courseData['overall_rating']/5));
   }
 
   navigateToCoursePage() {
-    this._router.navigate(['/course/' + this.courseData['course_id']]);
+    this._router.navigate(['/course/' + this.courseData['id_']]);
     this.courseCardDataService.setCourseCardData(this.courseData);
   }
 }

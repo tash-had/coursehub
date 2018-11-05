@@ -1,8 +1,8 @@
   <mdb-card cascade="true" wider="false">
     <div id="courseCardHeader" class="view view-cascade gradient-card-header {{color}}-gradient" (click)="navigateToCoursePage()">
-      <h2 class="card-header-title mb-2">{{courseData['course_code']}}</h2>
-      <span><p>{{courseData['course_overall_rating'] == 0 ? "No rating available." : "Rating:" }}</p></span>
-      <div class="c100 p{{getOverallRatingAsPercent()}} small center {{percentColor}}" [hidden]="courseData['course_overall_rating'] == 0">
+      <h2 class="card-header-title mb-2">{{courseData['code']}}</h2>
+      <span><p>{{courseData['overall_rating'] == 0 ? "No rating available." : "Rating:" }}</p></span>
+      <div class="c100 p{{getOverallRatingAsPercent()}} small center {{percentColor}}" [hidden]="courseData['overall_rating'] == 0">
           <span>{{getOverallRatingAsPercent()}}%</span>
           <div class="slice">
               <div class="bar"></div>
@@ -13,9 +13,9 @@
 
     <mdb-card-body cascade="true" class="text-center">
       <mdb-card-text>
-          <read-more [text]="courseData['course_description']" [maxLength]="150"></read-more>
-      <!-- <mdb-card-text [innerHTML]="courseData['course_description']"> -->
-          <!-- {{courseData['course_description']}} -->
+          <read-more [text]="courseData['description']" [maxLength]="150"></read-more>
+      <!-- <mdb-card-text [innerHTML]="courseData['description']"> -->
+          <!-- {{courseData['description']}} -->
       </mdb-card-text>
 
       <!-- <a class="blue-text mt-1 d-flex flex-row-reverse">
