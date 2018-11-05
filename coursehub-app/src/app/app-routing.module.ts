@@ -4,7 +4,7 @@ import { CoursePageComponent } from './course-page/course-page.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [  {
-  path: 'course-page',
+  path: 'course',
   component: CoursePageComponent
 },
 {

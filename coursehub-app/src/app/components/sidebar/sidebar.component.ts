@@ -6,12 +6,13 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  @Input() courseCode: String;
-  @Input() courseDescription: String;
-  @Input() courseOverallRating: number;
+  @Input() courseData: Object;
 
   constructor() { }
 
   ngOnInit() {}
 
+  test(t){
+    console.log(t);
+  }
 }

@@ -1,7 +1,7 @@
-from flask import Flask, abort, jsonify, request
+from flask import Flask, abort
 from api.course.course_controller import course_controller_bp
 from api.comment.comment_controller import comment_controller_bp
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 
 
 URL_PREFIX = "/api/v1.0"
@@ -17,6 +17,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @app.route('/')
 def home():
     abort(403)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

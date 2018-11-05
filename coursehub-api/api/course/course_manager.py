@@ -1,10 +1,9 @@
-from db.database_manager import DatabaseManager, CourseDatabaseWorker
 from api.course.course import Course
+from db.workers.course_database_worker import CourseDatabaseWorker
 
 
 class CourseManager:
 
-    db_manager = DatabaseManager()
     course_db_worker = CourseDatabaseWorker()
 
     @staticmethod

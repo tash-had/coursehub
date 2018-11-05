@@ -2,6 +2,11 @@
     margin: auto;
     width: 50%;
 }
+
+#courseCardHeader {
+  cursor: pointer;
+}
+
 /****************************************************************
  *
  * CSS Percentage Circle
@@ -196,6 +201,7 @@
   -o-transform: rotate(36deg);
   transform: rotate(36deg);
 }
+
 .c100.p11 .bar {
   -webkit-transform: rotate(39.6deg);
   -moz-transform: rotate(39.6deg);

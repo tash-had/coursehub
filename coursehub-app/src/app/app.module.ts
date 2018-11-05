@@ -16,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoursePageComponent } from './course-page/course-page.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CommentComponent } from  './components/comment/comment.component';
+import { ReadMoreComponent } from './components/read-more/read-more.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { CommentComponent } from  './components/comment/comment.component';
     SearchbarComponent,
     CoursePageComponent,
     SidebarComponent,
-    CommentComponent
+    CommentComponent,
+    ReadMoreComponent
   ],
   imports: [
     BrowserModule,
