@@ -4,13 +4,12 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "e2e": "ng e2e coursehub-app",
+    "ci": "npm run e2e",
     "start": "ng serve coursehub-app",
     "build": "ng build coursehub-app",
     "test": "ng test coursehub-app",
-    "lint": "ng lint coursehub-app",
-    "e2e": "ng e2e coursehub-app",
-    "remove-demo-unix": "rm -rf projects && rm angular.json && mv angular-clean.json angular.json",
-    "remove-demo-windows": "rmdir /s /q projects && del angular.json && ren angular-clean.json angular.json"
+    "lint": "ng lint coursehub-app"
   },
   "private": true,
   "dependencies": {
@@ -35,11 +34,10 @@
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
-    "@angular/compiler-cli": "^6.0.0-rc.1",
     "@angular-devkit/build-angular": "^0.5.7",
-    "typescript": "~2.7.2",
     "@angular/cli": "^6.0.0-rc.1",
     "@angular/compiler": "^6.0.0",
+    "@angular/compiler-cli": "^6.0.0-rc.1",
     "@angular/language-service": "^6.0.0-rc.1",
     "@types/jasmine": "~2.8.3",
     "@types/jasminewd2": "~2.0.2",
@@ -55,6 +53,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.2",
     "ts-node": "~4.1.0",
-    "tslint": "~5.9.1"
+    "tslint": "~5.9.1",
+    "typescript": "~2.7.2"
   }
 }

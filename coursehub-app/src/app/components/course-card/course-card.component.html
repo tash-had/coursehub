@@ -1,6 +1,6 @@
   <mdb-card cascade="true" wider="false" *ngIf="courseData">
     <div id="courseCardHeader" class="view view-cascade gradient-card-header {{color}}-gradient" (click)="navigateToCoursePage()">
-      <h2 class="card-header-title mb-2">{{courseData['code']}}</h2>
+      <h2 class="card-header-title mb-2" class="courseCode">{{courseData['code']}}</h2>
       <span><p>{{courseData['overall_rating'] == 0 ? "No rating available." : "Rating:" }}</p></span>
       <div class="c100 p{{getOverallRatingAsPercent()}} small center {{percentColor}}" [hidden]="courseData['overall_rating'] == 0">
           <span>{{getOverallRatingAsPercent()}}%</span>
