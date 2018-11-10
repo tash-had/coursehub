@@ -1,4 +1,6 @@
-import { Component, AfterViewInit, ElementRef, ViewChild, } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, OnInit} from '@angular/core';
+import { SearchbarService } from '../../components/searchbar/searchbar.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -9,13 +11,18 @@ export class DashboardComponent implements AfterViewInit {
   comments: String[] = [];
   currentComment: String;
   courseSearchResponse: Object;
+  searchQuery: string;
+  
   @ViewChild('coursehubLogo') coursehubLogo; 
-
-  constructor(private elementRef: ElementRef) {
+  
+  constructor(private elementRef: ElementRef, private searchService: SearchbarService) {
+  }
+  ngOnInit() {
   }
 
   ngAfterViewInit(): void {
-    this.toggleTheme(true)
+    this.toggleTheme(true);
+    this.searchQuery = this.searchService.lastSearchQuery;
   }
 
   receiveMessage($event) {
@@ -24,6 +31,9 @@ export class DashboardComponent implements AfterViewInit {
         this.toggleTheme(true);
       } else if ($event === "update theme - black") {
         this.toggleTheme(false);
+      } else {
+        // searchQuery was passed in
+        this.searchQuery = $event;
       }
     } else {
       this.courseSearchResponse = $event
@@ -37,16 +47,6 @@ export class DashboardComponent implements AfterViewInit {
     } else {
       this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'black';
       this.coursehubLogo.nativeElement.src = "../../assets/Courshub.png";
-    }
-  }
-
-  addComment() {
-    if (this.currentComment){
-      if (this.currentComment.trim()){
-        this.comments.push(this.currentComment);
-        this.currentComment = null;
-       
-      }
     }
   }
 }

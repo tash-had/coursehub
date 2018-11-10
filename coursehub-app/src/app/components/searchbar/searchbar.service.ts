@@ -8,11 +8,16 @@ import { of } from 'rxjs';
 })
 export class SearchbarService {
   courseUrl = 'http://127.0.0.1:5000/api/v1.0/course/search_course?searchQuery=';
-  constructor(private http: HttpClient) { }
+  public lastSearchQuery: string;
+  public COURSE_MATCHER = new RegExp("^[a-zA-Z]{3}[0-9]{1,3}$");
+  public searchResults: object = {};
 
-  getCourses(course: String) {
-    if (course.length > 0) {
-      return this.http.get(this.courseUrl + course);
+  constructor(private http: HttpClient) { }
+  
+  getCourses(searchQuery: string) {
+    if (searchQuery.length > 0) {
+      this.lastSearchQuery = searchQuery;
+      return this.http.get(this.courseUrl + searchQuery);
     }
     return of([]);
   }

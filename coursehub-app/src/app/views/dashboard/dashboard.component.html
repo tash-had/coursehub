@@ -35,7 +35,7 @@
   <div class="row">
     <ng-container *ngIf="courseSearchResponse">
       <div *ngFor="let item of courseSearchResponse['matching_courses']" class="col-md-4">
-        <app-course-card [courseData]="item" percentColor="orange"></app-course-card>
+        <app-course-card searchQuery="{{searchQuery}}" [courseData]="item" percentColor="orange"></app-course-card>
       </div>
     </ng-container>
   </div>

@@ -12,6 +12,8 @@ export class CourseCardComponent {
   @Input() courseData : Object;
   @Input() color: String;
   @Input() percentColor: String;
+  @Input() searchQuery: string;
+  
   Math: any;
 
   constructor(private courseCardDataService: CourseCardDataService, private _router: Router) {
@@ -24,7 +26,13 @@ export class CourseCardComponent {
   }
 
   navigateToCoursePage() {
-    this._router.navigate(['/course/' + this.courseData['id_']]);
+    if (this._router.url.toString().indexOf("dashboard") > 0) {
+      this._router.navigate(['/dashboard/' + this.searchQuery]).then(() => {
+        this._router.navigate(['/course/' + this.courseData['id_']]);    
+      });    
+    } else {
+      this._router.navigate(['/course/' + this.courseData['id_']]);    
+    }
     this.courseCardDataService.setCourseCardData(this.courseData);
   }
 }
