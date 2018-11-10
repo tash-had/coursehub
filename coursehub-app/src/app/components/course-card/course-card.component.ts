@@ -26,8 +26,8 @@ export class CourseCardComponent {
   }
 
   navigateToCoursePage() {
-    if (this._router.url.toString().indexOf("dashboard") > 0) {
-      this._router.navigate(['/dashboard/' + this.searchQuery]).then(() => {
+    if (this._router.url.toString().indexOf("search") > 0) {
+      this._router.navigate(['/search/' + this.searchQuery]).then(() => {
         this._router.navigate(['/course/' + this.courseData['id_']]);    
       });    
     } else {

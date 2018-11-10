@@ -8,11 +8,11 @@ const routes: Routes = [  {
   component: CoursePageComponent
 },
 {
-  path: 'dashboard/:searchQuery',
+  path: 'search/:searchQuery',
   component: DashboardComponent
 },
-{ path: 'dashboard', component: DashboardComponent},
-{ path: '', redirectTo: '/dashboard', pathMatch: 'full' }];
+{ path: 'search', component: DashboardComponent},
+{ path: '', redirectTo: '/search', pathMatch: 'full' }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,6 +1,6 @@
 import { Component, AfterViewInit, ElementRef, ViewChild, OnInit} from '@angular/core';
 import { SearchbarService } from '../../components/searchbar/searchbar.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +15,7 @@ export class DashboardComponent implements AfterViewInit {
   
   @ViewChild('coursehubLogo') coursehubLogo; 
   
-  constructor(private elementRef: ElementRef, private searchService: SearchbarService) {
+  constructor(private elementRef: ElementRef, private searchService: SearchbarService, private _router : Router) {
   }
   ngOnInit() {
   }
@@ -48,5 +48,9 @@ export class DashboardComponent implements AfterViewInit {
       this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'black';
       this.coursehubLogo.nativeElement.src = "../../assets/Courshub.png";
     }
+  }
+
+  navigateHome() {
+    location.reload();
   }
 }
