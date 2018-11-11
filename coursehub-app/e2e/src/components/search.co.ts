@@ -5,6 +5,10 @@ export class Search {
         return element(by.css('app-searchbar input'));
     }
 
+    getSearchBarInputValue() {
+        return element(by.css('app-searchbar input')).getAttribute("value");
+    }
+
     typeInSearchBar(text: string) {
         browser.actions().sendKeys(text).perform();
     }

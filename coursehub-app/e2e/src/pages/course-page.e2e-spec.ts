@@ -2,7 +2,7 @@ import { CourseCard } from '../components/course-card.co';
 import { Search } from '../components/search.co';
 import { TestUtils } from '../utils/test-utils.uo';
 
-describe('Test course search', () => {
+describe('Test course page', () => {
   let courseCard: CourseCard;
   let search: Search;
   let testUtils: TestUtils;
@@ -10,6 +10,7 @@ describe('Test course search', () => {
   beforeEach(() => {
     courseCard = new CourseCard();
     search = new Search();
+    testUtils = new TestUtils();
   });
 
   it('should search for csc165 clicking it should lead to course page', () => {
@@ -28,7 +29,7 @@ describe('Test course search', () => {
     expect(testUtils.getCurrentPageUrl()).toEqual("http://localhost:4200/course/20043");
     expect(courseCard.getCourseCardHeader()).toBeDefined();
     expect(courseCard.getCourseCardHeaderText()).toEqual("CSC165H1");
-    expect(courseCard.getCourseCardDescriptionText()).toEqual("Introduction to abstraction and rigour. Informal introduction to logical notation and reasoning. Understanding, using and developing precise expressio...");
+    expect(courseCard.getCourseCardDescriptionText()).toContain("Introduction to abstraction and rigour. Informal");
   });
 
 
@@ -36,6 +37,7 @@ describe('Test course search', () => {
     testUtils.navigateTo("http://localhost:4200/course/20043");
     expect(courseCard.getCourseCardHeader()).toBeDefined();
     expect(courseCard.getCourseCardHeaderText()).toEqual("CSC165H1");
-    expect(courseCard.getCourseCardDescriptionText()).toEqual("Introduction to abstraction and rigour. Informal introduction to logical notation and reasoning. Understanding, using and developing precise expressio...");
+    expect(courseCard.getCourseCardDescriptionText()).toContain("Introduction to abstraction and rigour. Informal");
   });
+
 });

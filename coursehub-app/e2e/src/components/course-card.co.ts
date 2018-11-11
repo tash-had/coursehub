@@ -13,5 +13,3 @@ export class CourseCard {
     return element(by.css('.readMoreCurrentText')).getText();
     }
 }
-
-// FIX TESTS
