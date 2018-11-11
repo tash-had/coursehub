@@ -6,7 +6,7 @@ import { Component, Input, ElementRef, OnChanges} from '@angular/core';
 @Component({    
     selector: 'read-more',
     template: `
-        <div [innerHTML]="currentText">
+        <div class="readMoreCurrentText" [innerHTML]="currentText">
         </div>
             <a [class.hidden]="hideToggle" (click)="toggleView()" id="readMoreToggle">Read {{isCollapsed? 'more':'less'}}</a>`,
     styleUrls: ['./read-more.component.scss']

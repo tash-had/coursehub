@@ -1,6 +1,6 @@
 <div class="sw">
     <form>
-      <input type="search" class="search" placeholder="eg. CSC165" id="course-input"  (keyup)="checkValidInput($event)"
+      <input type="search" class="search" placeholder="eg. CSC165" id="courseInput" (keyup)="fetchSearchResults($event)"
       [(ngModel)]='course' name='course'/>
       <button class="go"><span class="entypo-search"></span></button>
     </form>

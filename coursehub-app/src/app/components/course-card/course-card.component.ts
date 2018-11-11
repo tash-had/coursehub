@@ -12,11 +12,9 @@ export class CourseCardComponent {
   @Input() courseData : Object;
   @Input() color: String;
   @Input() percentColor: String;
+  @Input() searchQuery: string;
+  
   Math: any;
-
-  textbooks: String[];
-  difficultyRating: number;
-  usefulnessRating: number;
 
   constructor(private courseCardDataService: CourseCardDataService, private _router: Router) {
     this.color = 'blue';
@@ -24,11 +22,17 @@ export class CourseCardComponent {
   }
 
   getOverallRatingAsPercent() {
-    return this.Math.round(100*(this.courseData['course_overall_rating']/5));
+    return this.Math.round(100*(this.courseData['overall_rating']/5));
   }
 
   navigateToCoursePage() {
-    this._router.navigate(['/course/']);
+    if (this._router.url.toString().indexOf("search") > 0) {
+      this._router.navigate(['/search/' + this.searchQuery]).then(() => {
+        this._router.navigate(['/course/' + this.courseData['id_']]);    
+      });    
+    } else {
+      this._router.navigate(['/course/' + this.courseData['id_']]);    
+    }
     this.courseCardDataService.setCourseCardData(this.courseData);
   }
 }
