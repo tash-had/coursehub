@@ -14,7 +14,7 @@ describe('Test course search', () => {
   });
 
   it('should search for csc165 and have one search result', () => {
-    search.navigateTo();
+    testUtils.navigateTo();
     search.getSearchBarInput().click();
     search.typeInSearchBar("CSC165");
 
@@ -24,7 +24,7 @@ describe('Test course search', () => {
   });
 
   it('should search for csc165 and go to corresponding course page', () => {
-    search.navigateTo();
+    testUtils.navigateTo();
     search.getSearchBarInput().click();
     search.typeInSearchBar("CSC165");
 
