@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, abort
 from api.course.course_controller import course_controller_bp
 from api.comment.comment_controller import comment_controller_bp
@@ -20,4 +22,6 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
+    # app.run(debug=True)
