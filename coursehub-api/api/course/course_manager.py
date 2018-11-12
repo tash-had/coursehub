@@ -1,10 +1,9 @@
-from db.database_manager import DatabaseManager, CourseDatabaseWorker
 from api.course.course import Course
+from db.workers.course_database_worker import CourseDatabaseWorker
 
 
 class CourseManager:
 
-    db_manager = DatabaseManager()
     course_db_worker = CourseDatabaseWorker()
 
     @staticmethod
@@ -28,11 +27,6 @@ class CourseManager:
         return ["workload_rating", "recommendation_rating"]
 
     @staticmethod
-    def course_to_search_dict(course):
-        return {"course_code": course.code, "course_description": course.description,
-                "course_id": course.id_, "course_overall_rating": course.overall_rating}
-
-    @staticmethod
     def get_courses_by_code(course_code):
         """
         :param course_code: str
@@ -44,9 +38,7 @@ class CourseManager:
         if len(courses_info) == 0:
             return None
 
-        course_objects = [CourseManager.build_course_obj(course_info) for course_info in courses_info]
-
-        return [CourseManager.course_to_search_dict(course) for course in course_objects]
+        return [CourseManager.build_course_obj(course_info).__dict__ for course_info in courses_info]
 
     @staticmethod
     def get_course_by_id(id_):

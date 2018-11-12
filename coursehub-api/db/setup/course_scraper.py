@@ -1,6 +1,7 @@
 import requests
-from db.scraper.course_evals_parser import find_course_ratings
-from db.database_manager import _CourseHubDatabaseInitializer
+
+from db.setup._database_initializer import _CourseHubDatabaseInitializer
+from db.setup.course_evals_parser import find_course_ratings
 
 
 class _CourseScraper:

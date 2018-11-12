@@ -8,19 +8,13 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable()
 export class CourseCardDataService {
 
-  private courseCodeDataSource = new BehaviorSubject('Course');
-  private courseDescriptionDataSource = new BehaviorSubject('Course Description');
-  private courseOverallRatingDataSource = new BehaviorSubject(0);
+  private courseDataSource = new BehaviorSubject({});
 
-  courseCode = this.courseCodeDataSource.asObservable();
-  courseDescription = this.courseDescriptionDataSource.asObservable();
-  courseOverallRating = this.courseOverallRatingDataSource.asObservable();
+  courseData = this.courseDataSource.asObservable();
 
   constructor() { }
 
-  populateCourseCardData(courseCode: string, courseDescription: string, courseOverallRating: number) {
-    this.courseCodeDataSource.next(courseCode);
-    this.courseDescriptionDataSource.next(courseDescription);
-    this.courseOverallRatingDataSource.next(courseOverallRating);
+  setCourseCardData(courseData: Object) {
+    this.courseDataSource.next(courseData);
   }
 }

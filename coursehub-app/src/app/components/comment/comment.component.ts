@@ -9,14 +9,13 @@ import {CommentDataService} from './comment-data.service';
 
 export class CommentComponent implements OnInit {
   @Input() comments: String[] = [];
-  @Input() course: string;
   @Input() courseId: number;
   constructor(private commentService: CommentDataService) {
   }
 
   ngOnInit() {
     this.commentService.getComments(this.courseId.toString())
-    .subscribe((data) => this.parseData(data)
+      .subscribe((data) => this.parseData(data)
     );
   }
 

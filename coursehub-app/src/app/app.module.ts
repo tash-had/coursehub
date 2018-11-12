@@ -9,13 +9,14 @@ import { AppComponent } from './app.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { CourseCardComponent } from './components/course-card/course-card.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { AppRoutingModule } from './app-routing.module';
-import { CoursePageComponent } from './course-page/course-page.component';
+import { CoursePageComponent } from './views/course-page/course-page.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CommentComponent } from  './components/comment/comment.component';
+import { ReadMoreComponent } from './components/read-more/read-more.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { CommentComponent } from  './components/comment/comment.component';
     SearchbarComponent,
     CoursePageComponent,
     SidebarComponent,
-    CommentComponent
+    CommentComponent,
+    ReadMoreComponent
   ],
   imports: [
     BrowserModule,
