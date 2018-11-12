@@ -1,1 +1,1 @@
-web: python coursehub-api/app.py
+web: python 'coursehub-api/app.py'
