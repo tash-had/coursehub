@@ -260,33 +260,6 @@
           }
         }
       }
-    },
-    "mdb-demo-e2e": {
-      "root": "projects/mdb-demo-e2e/",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/mdb-demo-e2e/protractor.conf.js",
-            "devServerTarget": "mdb-demo:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "mdb-demo:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "projects/mdb-demo-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
     }
   },
   "schematics": {
