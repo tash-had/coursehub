@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- '7'
+- '10'
 sudo: true
 dist: trusty
 branches:
@@ -15,7 +15,7 @@ before_script:
 - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 - sudo dpkg -i google-chrome*.deb
 script:
-- sh e2e.sh
+- sh travis_e2e.sh
 deploy:
   provider: heroku
   api_key:
