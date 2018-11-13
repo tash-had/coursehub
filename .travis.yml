@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+- '7'
+sudo: true
+dist: trusty
+branches:
+  only:
+  - master
+before_script:
+- export CHROME_BIN=/usr/bin/google-chrome
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sudo apt-get update
+- sudo apt-get install -y libappindicator1 fonts-liberation
+- wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+- sudo dpkg -i google-chrome*.deb
+script:
+- sh e2e.sh
+deploy:
+  provider: heroku
+  api_key:
+    secure: atMLEo8RIZeHp8D+bG6A+pmneIHmwxOe+9rTlPvXVPu2HVXhx1/NEJpaPVqpBnH5Ns+Qp/gs9WpFxh2fr9ryQYwOW3B9j7Q2N3TaF2WJEPoE0uHDtn1KtblAYXdDkuvif1gjBtSR0+FfxLFlcY/tEPHcX0+gion8H0uhJEu4Us//BMB+vJytCjlbWtrIeMC8UCS2BTodMm3YQOqjUokflXLD3kgwCgnhdC1vvebs9SmUJw+e3TH8iSy9hKKUl7MPSgohc1n4QTAu7RNvOxKEDr0eyGF/N7zvKp9z/OmfbpayDGk37RkkWFZU8YZx0A0G4Bwhn6JnvUcF8sswiwhQ1lkw6Q34JK0RqtG9JWOuzaF3NvZ2uymTX7Bsw1wFWO7e55sdfxzF30U/5PmELF34I2XE4MqyPNcnUdKlErLEUbltyt9t6RIOfQzHW7ATbgd2LB63Z/Mg5B5FXIXI+YJnodEjT+VrWqpCG67ySjVwa9GU/Xsc5sAwtDR2lyMMCkofK09Ka+fYkG9QfCCz/lbZFYrLvNogoVuqbXH7KaV9ZPT1RoFV9kpPTcXdkQGXokyIv79dCTpl9THxUC3cfSG/cvZbr3l07DdHbITcyvVZs3ooew9/hBtvFZC6BRmaNOrWavCR/KP6SDF7PdkZDeNh86RmfuWr1rWEj5prziY4hV4=
+    app: coursehubapi
