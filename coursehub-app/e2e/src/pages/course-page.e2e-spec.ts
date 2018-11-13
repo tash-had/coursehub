@@ -13,14 +13,6 @@ describe('Test course page', () => {
     testUtils = new TestUtils();
   });
 
-  it('should search for csc165 clicking it should lead to course page', () => {
-    testUtils.navigateTo();
-    search.getSearchBarInput().click();
-    search.typeInSearchBar("CSC165");
-    courseCard.getCourseCardHeader().click();
-    expect(testUtils.getCurrentPageUrl()).toEqual("http://localhost:4200/course/20043");
-  });
-
   it('should search for csc165 clicking it should lead to course page with populated course card', () => {
     testUtils.navigateTo();
     search.getSearchBarInput().click();
