@@ -18,11 +18,14 @@ before_script:
 - curl https://coursehubapi.herokuapp.com/api/v1.0/
 - npm install
 - npm install -g @angular/cli
-- git reset --hard
-- git clean -fd
 
 script:
 - ng e2e coursehub-app
+
+after_success:
+  - git reset --hard 
+  - git clean -fd
+
 deploy:
   provider: heroku
   api_key:
