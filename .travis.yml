@@ -22,9 +22,7 @@ before_script:
 script:
 - ng e2e coursehub-app
 
-after_success:
-  - git reset --hard 
-  - git clean -fd
+after_script:
   - rm 	../google-chrome-stable_current_amd64.deb
   - cd ../
 
