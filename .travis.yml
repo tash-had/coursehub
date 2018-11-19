@@ -26,6 +26,7 @@ after_success:
   - git reset --hard 
   - git clean -fd
   - rm 	../google-chrome-stable_current_amd64.deb
+  - cd ../
   - git checkout master
 
 deploy:
