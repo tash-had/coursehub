@@ -26,6 +26,7 @@ after_success:
   - cd ../
   - git reset --hard 
   - git clean -fd
+  - git checkout master
 
 deploy:
   provider: heroku
