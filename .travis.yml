@@ -27,7 +27,6 @@ after_success:
   - git clean -fd
   - rm 	../google-chrome-stable_current_amd64.deb
   - cd ../
-  - git checkout master
 
 deploy:
   provider: heroku
