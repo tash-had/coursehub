@@ -22,9 +22,10 @@ before_script:
 script:
 - ng e2e coursehub-app
 
-after_script:
-  - rm 	../google-chrome-stable_current_amd64.deb
+after_success:
   - cd ../
+  - git reset --hard 
+  - git clean -fd
 
 deploy:
   provider: heroku
