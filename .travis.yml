@@ -14,10 +14,10 @@ before_script:
 - sudo apt-get install -y libappindicator1 fonts-liberation
 - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 - sudo dpkg -i google-chrome*.deb
+- cd coursehub-app
 - curl https://coursehubapi.herokuapp.com/api/v1.0/
 - npm install
 - npm install -g @angular/cli
-- cd coursehub-app
 
 script:
 - ng e2e coursehub-app
