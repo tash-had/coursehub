@@ -10,6 +10,6 @@ export class Search {
     }
 
     typeInSearchBar(text: string) {
-        browser.actions().sendKeys(text).perform();
+        return browser.actions().sendKeys(text).perform();
     }
 }

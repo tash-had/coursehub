@@ -1,0 +1,38 @@
+language: node_js
+node_js:
+- '10'
+sudo: true
+dist: trusty
+branches:
+  only:
+  - master
+before_script:
+- export CHROME_BIN=/usr/bin/google-chrome
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sudo apt-get update
+- sudo apt-get install -y libappindicator1 fonts-liberation
+- wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+- sudo dpkg -i google-chrome*.deb
+- cd coursehub-app
+- curl https://coursehubapi.herokuapp.com/api/v1.0/
+- npm install
+- npm install -g @angular/cli
+
+script:
+- ng e2e coursehub-app
+
+after_success:
+  - cd ../
+  - git reset --hard 
+  - git clean -fd
+  - git checkout master
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: p1oZCERuCXNvqHW8POc9dFwsjnGPbLgZi8hL9BO+RO/A/12sLBJ7A+kbgPMwJwwgkswH8TrKl5xhxc3CRl8ejI7bDpPmPHZbl4zmzsYq9ltfDcfVT4YMuRettI9SGPE9DOcREXswvR/Q0gGuYdKV649AMagqsBxt1qSbpBieXQ8ojCQ16stxfoa8OV7EyW7pDh/hP/6njOguuIvQuF9cP/J0NxlS2J0XV10A2IMW0JqwFAmNgDkyf/DRjZ5v7KR2LPRENUJe2Uw4e8okJjcEM4+ddQL5Rfc0LrjieOX1MENR2RGx3mewXyv0nEYqBAw/UEzW8Y9jOMEWusF5bUad0oFQpbt8/t6YosbyOVFyaR61aJYDJQoWFiFZ54PiXyFOlKBgNEVUL785po+vVyDTWdNoA3xSDL6yzwNoMnXhYFz4qCWueOXica4unjVJRQNRfU389MSL9zENLfchgg2XzRuTDvxIFwquMkGFndTu+SqZ7VHuGEJOuPhJg5C1XvW3NtdEx+UN3hbIisM8ptp5PtRFDPiJ77ALfwpY5Kvb0uqy0UziecW2+m6gUvfcMQIUr26m5bGDevRTTRCsOgZsBbERBKgrklavF+7rjLF3a1WY/mb4pe4XKpCgSu+sFhC0QcQ18PrVL/E1tufivORT4WgQ4QzccpGjFO4bAKZVNhQ=
+  app: coursehubapi
+  on:
+    repo: csc301-fall-2018/project-team-19
+    branch: master

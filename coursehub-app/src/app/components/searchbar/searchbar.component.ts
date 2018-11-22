@@ -32,7 +32,7 @@ export class SearchbarComponent implements OnInit {
   }
 
   fetchSearchResults(event: any) : void{
-    if (this.checkValidInput(String.fromCharCode(event.keyCode)), event.keyCode) {
+    if (this.checkValidInput(String.fromCharCode(event.keyCode), event.keyCode)) {
       if (this.course === "CSC69") {
         this.messageEvent.emit("update theme - black");
       } else {

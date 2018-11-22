@@ -26,9 +26,10 @@ describe('Test course search', () => {
   it('should search for csc165 clicking it should lead to course page', () => {
     testUtils.navigateTo();
     search.getSearchBarInput().click();
-    search.typeInSearchBar("CSC165");
-    courseCard.getCourseCardHeader().click();
-    expect(testUtils.getCurrentPageUrl()).toEqual("http://localhost:4200/course/20043");
+    search.typeInSearchBar("CSC165").then(() => {
+      courseCard.getCourseCardHeader().click();
+      expect(testUtils.getCurrentPageUrl()).toEqual("http://localhost:4200/course/20043");
+    });
   });
 
   it('should persist previous search results and input when back button pressed from course-page', () => {
