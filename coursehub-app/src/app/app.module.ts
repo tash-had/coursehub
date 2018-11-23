@@ -17,6 +17,10 @@ import { CoursePageComponent } from './views/course-page/course-page.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CommentComponent } from  './components/comment/comment.component';
 import { ReadMoreComponent } from './components/read-more/read-more.component';
+import { CommentDataService } from './components/comment/comment-data.service';
+import { SearchbarService } from './components/searchbar/searchbar.service';
+import { CourseCardDataService } from './components/course-card/course-card-data.service';
+import { CoursePageDataService } from './views/course-page/course-page-data.service';
 
 
 @NgModule({
@@ -40,7 +44,7 @@ import { ReadMoreComponent } from './components/read-more/read-more.component';
     FormsModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [SearchbarService, CourseCardDataService, CoursePageDataService, CommentDataService],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]
 })
