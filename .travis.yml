@@ -27,6 +27,7 @@ after_success:
 - git checkout master
 - cd coursehub-app/
 - sh build.sh
+- cd ../
 deploy:
 - provider: heroku
   api_key:
