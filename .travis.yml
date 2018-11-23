@@ -35,8 +35,7 @@ deploy:
   app: coursehubapi
 - provider: pages
   skip-cleanup: true
-  github-token:
-    secure: Ws+sZdMrU1QQIwrM3QxjS+9DhneI/Me80WGg8mRHD4ijdcmC3ImgW8Z8h+ycKjIIhDBTt2ItwiNuBcCEoGb2z+DXw2A6KZUqGyuyipD368dSjkmvzxxm5KXy+FcgqD5uDmJWX25+HZPonn4/wzUtk4eciI2FFLfTwxsqxjJcbjOTDzwUnKMCyWZW15EU1gnHSLjF69/zn8K/ppb2RmaPrNZw5ewcmAr/AjF3TOymgPTJpAmkim74JUaaT6ulloDyQbZAe7W0jaUkJwhw7xWdAgsmRCXRD5sMevFR2UL42FeiXNxX/QsufY7VADQCnxWl6udOP4hy24yJptW/jdrfc0rqY/QyNPG86KlkDJUCIdpdVhetvMjAJmbIPotGAbFGmZ0GXj3acHyA6vUmdH0h5LAnu+CL2611Zh4GuMdbNuEFQZA9GBGNPtfHearKMzT/e/FGxZiJg11tUS2UoNCrVzN0MZJcNLKyK3ocHBWs26sqVSO9NwmjGQliMbHn11tNBmzRWceINh3OT6zI9gxxtyo9XizMVtQ4oivHwT7Hki3v3XIpGxbMYU9AVh7bYJF7f0Ij/Dae4I4wkNvZ5/V0/0Vak6+W75J3ttNePGBrnEt4VGt6AT1lsFlyCH5cvVsss9ZCV2xMER9VV5HcE3B+jMflitl8IhTRtTpf9AXBk/8=
+  github-token: ${GH_TOKEN}
   keep-history: true
   target-branch: master
   local-dir: coursehub-app/dist
