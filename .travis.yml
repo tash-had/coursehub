@@ -27,6 +27,7 @@ after_success:
   - git reset --hard 
   - git clean -fd
   - git checkout master
+  - sh travis-deploy-app.sh
 
 deploy:
   provider: heroku
