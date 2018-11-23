@@ -43,10 +43,10 @@ export class DashboardComponent implements AfterViewInit {
   toggleTheme(blueTheme: boolean) {
     if (blueTheme) {
       this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
-      this.coursehubLogo.nativeElement.src = "../../assets/Courshub-blue.png";
+      this.coursehubLogo.nativeElement.src = "/assets/Courshub-blue.png";
     } else {
       this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'black';
-      this.coursehubLogo.nativeElement.src = "../../assets/Courshub.png";
+      this.coursehubLogo.nativeElement.src = "/assets/Courshub.png";
     }
   }
 
