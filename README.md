@@ -1,3 +1,5 @@
+# [coursehub.ca](http://coursehub.ca)
+
 [![Build Status](https://travis-ci.com/csc301-fall-2018/project-team-19.svg?token=qETbktD22yrkujYmzsdp&branch=master)](https://travis-ci.com/csc301-fall-2018/project-team-19)
 
 # Testing 
