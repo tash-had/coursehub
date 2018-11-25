@@ -6,20 +6,22 @@ from db.workers.comment_database_worker import CommentDatabaseWorker
 
 
 class CommentManager:
-    def create_comment(self, course_id, text):
+    def create_comment(self, course_id, text, username, user_id):
         """
 
         @type course_id: str
         @type text: str
+        @type username: str
+        @type user_id: int
         @rtype: comment
         """
         comment_database_worker = CommentDatabaseWorker()
         comment_id = str(uuid.uuid4())
         time_stamp = time.time()
         data = {"id": comment_id, "courseId": course_id, "comment": text,
-                "timestamp": time_stamp, "votes": 1}
+                "timestamp": time_stamp, "votes": 1, "username": username, "userID": user_id}
         comment_database_worker.insert_comment(data)
-        return Comment(1, text, time_stamp, course_id, comment_id)
+        return Comment(1, text, time_stamp, course_id, comment_id, user_id, username)
 
     def get_comments_by_course(self, course_id):
         """
@@ -38,7 +40,7 @@ class CommentManager:
         """
         comment_database_worker = CommentDatabaseWorker()
         result = comment_database_worker.get_comment_by_id(comment_id)
-        return Comment(result[4], result[2], result[3], result[1], result[0])
+        return Comment(result[4], result[2], result[3], result[1], result[0], result[5], result[6])
 
     def upvote(self, comment_id):
         """

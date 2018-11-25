@@ -10,17 +10,21 @@ class Comment:
     @type time_stamp: int
     @type course_id: int
     @type comment_id: str
+    @type user_id: int
+    @type username: str
     @rtype: None
 
     """
 
-    def __init__(self, score, text, time_stamp, course_id, comment_id):
+    def __init__(self, score, text, time_stamp, course_id, comment_id, user_id, username):
         """
         @type score: int
         @type text: str
         @type time_stamp: int
         @type course_id: str
         @type comment_id: str
+        @type user_id: int
+        @type username: str
         @rtype: None
 
         """
@@ -29,6 +33,21 @@ class Comment:
         self.time_stamp = time_stamp
         self.course_id = course_id
         self.comment_id = comment_id
+        self.user_id = user_id
+        self.username = username
+
+    def get_username(self):
+        return self.username
+
+    def set_username(self, username):
+        self.username = username
+
+    def get_user_id(self):
+        return self.user_id
+
+    def set_user_id(self, user_id):
+        self.user_id = user_id
+
 
     def get_score(self):
         return self.score
@@ -38,12 +57,6 @@ class Comment:
 
     def get_time_stamp(self):
         return self.time_stamp
-
-    def get_course(self):
-        pass
-
-    def set_course(self, course):
-        pass
 
     def get_text(self):
         return self.text
