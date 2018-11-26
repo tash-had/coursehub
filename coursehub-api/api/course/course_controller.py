@@ -40,12 +40,18 @@ def update_rating():
     workload = request.args.get("workloadRating")  # must be either 'workload' or 'recommendation'
     recommendation = request.args.get("recommendationRating")
     course_id = request.args.get("courseId")
+    user_id = request.args.get("userId")
 
     rating_dict = {"workload_rating": workload, "recommendation_rating": recommendation}
 
     course = CourseManager.get_course_by_id(course_id)
 
-    new_course = CourseManager.update_course_rating(course, rating_dict)
+    if CourseManager.did_user_already_rate_course(user_id, course):
+        prev_ratings = CourseManager.get_prev_ratings(rating_dict)
+        CourseManager.update_course_rating(course, prev_ratings, "remove")
+        CourseManager.update_user_course_ratings(course, user_id, rating_dict)
+
+    new_course = CourseManager.update_course_rating(course, rating_dict, "add")
 
     ratings = {}
     ratings["overall_rating"] = new_course.overall_rating
