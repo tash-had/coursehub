@@ -1,12 +1,13 @@
 from api.comment.comment_manager import CommentManager
 from flask import jsonify, Blueprint, request
 from api.comment.comment import Comment
+from api.auth import get_user_with_request
 
 comment_controller_bp = Blueprint("comment_controller_bp", __name__)
 comment_manager = CommentManager()
 
 
-@comment_controller_bp.route("/post_comment")
+@comment_controller_bp.route("/post_comment", methods=["POST"])
 def post_new_comment():
     """
     @type text: str
@@ -14,9 +15,9 @@ def post_new_comment():
     @rtype: JSON[]
 
     """
+    user = get_user_with_request(request)
     comment_text = request.args.get("commentText")
     course_id = request.args.get("courseId")
-
     posted_comment = comment_manager.create_comment(course_id, comment_text)
     return jsonify(posted_comment.__dict__)
 
@@ -37,7 +38,7 @@ def get_comments_by_course():
     return jsonify(comments_dictionary)
 
 
-@comment_controller_bp.route("/upvote")
+@comment_controller_bp.route("/upvote", methods=["UPDATE"])
 def upvote():
     """
     @type comment_id: str
@@ -50,7 +51,7 @@ def upvote():
     return jsonify(comment_to_upvote.__dict__)
 
 
-@comment_controller_bp.route("/downvote")
+@comment_controller_bp.route("/downvote", methods=["UPDATE"])
 def downvote():
     """
     @type comment_id: str
