@@ -18,3 +18,14 @@ def view_user_profile():
     profile_dict["comment_history"] = CommentManager.get_comments_by_user()
 
     return jsonify(profile_dict)
+
+
+@user_controller_bp.route("/sign_in")
+def sign_in():
+    """
+    if this is their first time signing in, add them to DB
+    """
+    user = get_user_with_request(request)
+
+    if not UserManager.is_user_in_DB(user):
+        UserManager.add_new_user(user)
