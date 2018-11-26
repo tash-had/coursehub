@@ -1,14 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// For MDB Angular Free
 import { WavesModule, CardsFreeModule } from 'angular-bootstrap-md'
-
-import { AppComponent } from './app.component';
-
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth.interceptor';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { CourseCardComponent } from './components/course-card/course-card.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
@@ -21,6 +18,11 @@ import { CommentDataService } from './components/comment/comment-data.service';
 import { SearchbarService } from './components/searchbar/searchbar.service';
 import { CourseCardDataService } from './components/course-card/course-card-data.service';
 import { CoursePageDataService } from './views/course-page/course-page-data.service';
+import { AuthService } from './auth/auth.service';
+import { LoadingComponent } from './components/loading/loading.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
+import { AppComponent } from './app.component';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { CoursePageDataService } from './views/course-page/course-page-data.serv
     CoursePageComponent,
     SidebarComponent,
     CommentComponent,
-    ReadMoreComponent
+    ReadMoreComponent,
+    LoadingComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,18 @@ import { CoursePageDataService } from './views/course-page/course-page-data.serv
     FormsModule,
     AppRoutingModule,
   ],
-  providers: [SearchbarService, CourseCardDataService, CoursePageDataService, CommentDataService],
+  providers: [
+    SearchbarService, 
+    CourseCardDataService, 
+    CoursePageDataService, 
+    CommentDataService,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]
 })
