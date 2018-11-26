@@ -2,6 +2,7 @@ import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CoursePageComponent } from './views/course-page/course-page.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 const routes: Routes = [  {
   path: 'course/:courseId',
@@ -12,7 +13,8 @@ const routes: Routes = [  {
   component: DashboardComponent
 },
 { path: 'search', component: DashboardComponent},
-{ path: '', redirectTo: '/search', pathMatch: 'full' }];
+{ path: '', redirectTo: '/search', pathMatch: 'full'},
+{ path: 'callback', component: LoadingComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
