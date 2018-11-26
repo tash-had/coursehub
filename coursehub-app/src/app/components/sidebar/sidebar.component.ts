@@ -11,8 +11,4 @@ export class SidebarComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {}
-
-  test(t){
-    console.log(t);
-  }
 }

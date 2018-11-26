@@ -1,8 +1,6 @@
+<app-navbar></app-navbar>  
 <div class="container">
 	<div class="row">
-		<div class="col-4">
-			<app-sidebar [courseData]="courseData"></app-sidebar>
-		</div>
 		<div class="col-md-8">
 
 			<div class="pt-5 w-75">
@@ -13,6 +11,10 @@
 			<div class="float-left pt-3 w-80 h-75">
 				<app-comment courseId="courseData['id_']" [comments]="comments"></app-comment>
 			</div>
+		</div>
+		<div class="col-4">
+				<br><br>
+				<app-course-card searchQuery="{{searchQuery}}" [courseData]="courseData" percentColor="orange"></app-course-card>
 		</div>
 	</div>
 </div>
