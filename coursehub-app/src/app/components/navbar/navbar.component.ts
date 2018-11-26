@@ -13,4 +13,9 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
+  
+  navigateHome() {
+    location.reload();
+  }
+
 }
