@@ -12,9 +12,9 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CoursePageComponent } from './views/course-page/course-page.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { CommentComponent } from  './components/comment/comment.component';
+import { CommentComponent } from  './components/comments/comment/comment.component';
 import { ReadMoreComponent } from './components/read-more/read-more.component';
-import { CommentDataService } from './components/comment/comment-data.service';
+import { CommentDataService } from './components/comments/comment/comment-data.service';
 import { SearchbarService } from './components/searchbar/searchbar.service';
 import { CourseCardDataService } from './components/course-card/course-card-data.service';
 import { CoursePageDataService } from './views/course-page/course-page-data.service';
@@ -23,6 +23,8 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
 import { AppComponent } from './app.component';
+import { CommentListComponent } from './components/comments/comment-list/comment-list.component';
+import { CommentInputComponent } from './components/comments/comment-input/comment-input.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { AppComponent } from './app.component';
     CommentComponent,
     ReadMoreComponent,
     LoadingComponent,
-    NavbarComponent
+    NavbarComponent,
+    CommentListComponent,
+    CommentInputComponent
   ],
   imports: [
     BrowserModule,

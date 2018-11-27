@@ -1,0 +1,61 @@
+
+<!-- <div *ngFor="let comment of comments" >
+	<div class="media border  border-dark  mb-3 p-3" id="commentBorder"> -->
+	  <!-- <div class="media-body">
+
+      <div class="d-inline">
+        <span><h5 class="font-weight-bold float-left">Anon</h5></span>
+        <span id="timestamp" class="font-italic float-right">9:06 Thu Nov 1</span>
+        <span><i class="fa fa-thumbs-o-down  pr-5 float-right " aria-hidden="true" style="color: #2196fe"></i></span>
+        <span><i class="fa fa-thumbs-o-up  pr-3 float-right"  aria-hidden="true" style="color:orange"></i></span>
+        <span id="score" class="font-weight-bold float-right pr-2"> 150</span>
+      </div>
+ 
+      <div class="d-block pt-3 text-left">
+        <br>
+        {{comment}}
+      </div>
+      
+	  </div>
+	</div>
+</div> -->
+<div class="media d-block d-md-flex mt-4">
+  <div class="media d-block d-md-flex mt-3">
+      <span><i class="fa fa-thumbs-o-up  pr-3 float-right"  aria-hidden="true" style="color:orange"></i></span>
+      <span id="score" class="font-weight-bold float-right pr-2"> 150</span>
+      <span><i class="fa fa-thumbs-o-down  pr-5 float-right " aria-hidden="true" style="color: #2196fe"></i></span>
+    <div class="media-body text-center text-md-left ml-md-3 ml-0">
+      <h5 class="font-weight-bold mt-0">
+        <a href="">Sylvester the Cat</a>
+        <a href="" class="pull-right">
+          <i class="fa fa-reply"></i>
+        </a>
+      </h5>
+      Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia
+      <!-- TO ACTUALL HAVE REPLIES: USE RECURSION!
+        CREATE A FOR LOOP HERE IN THE HTML. USE 
+        NGIF TO CHECK IF THIS COMMENT HAS REPLIES, AND IF SO,
+        CREATE NEW <app-comment></app-comment> TAGS FOR EACH REPLY.
+        THAT WAY, WE KEEP CREATING COMMENT TAGS UNTIL
+        WE REACH THE REPLY WITH NO MORE replies
+      -->
+      <div class="media d-block d-md-flex mt-4">
+          <div class="media d-block d-md-flex mt-3">
+              <span><i class="fa fa-thumbs-o-up  pr-3 float-right"  aria-hidden="true" style="color:orange"></i></span>
+              <span id="score" class="font-weight-bold float-right pr-2"> 150</span>
+              <span><i class="fa fa-thumbs-o-down  pr-5 float-right " aria-hidden="true" style="color: #2196fe"></i></span>
+            <div class="media-body text-center text-md-left ml-md-3 ml-0">
+              <h5 class="font-weight-bold mt-0">
+                <a href="">Sylvester the Cat</a>
+                <a href="" class="pull-right">
+                  <i class="fa fa-reply"></i>
+                </a>
+              </h5>
+              Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia
+              non numquam eius modi
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
