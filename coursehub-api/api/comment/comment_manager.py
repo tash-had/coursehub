@@ -3,7 +3,7 @@ import uuid
 
 from api.comment.comment import Comment
 from db.workers.comment_database_worker import CommentDatabaseWorker
-
+from db.workers.user_to_comment_database_worker import UserToCommentDatabaseWorker
 
 class CommentManager:
 
@@ -12,8 +12,8 @@ class CommentManager:
 
         @type course_id: str
         @type text: str
-        @type user_id: int
-        @type parent_id: int
+        @type user_id: str
+        @type parent_id: str
         @rtype: comment
         """
         comment_database_worker = CommentDatabaseWorker()

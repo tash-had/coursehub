@@ -23,7 +23,7 @@ class Comment:
         @type time_stamp: int
         @type course_id: str
         @type comment_id: str
-        @type user_id: int
+        @type user_id: str
         @type replies: [Comment]
         @type root: bool
         @type username: str
