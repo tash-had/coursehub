@@ -11,12 +11,12 @@ class Comment:
     @type course_id: int
     @type comment_id: str
     @type user_id: int
-    @type username: str
+    @type replies: [int]
     @rtype: None
 
     """
 
-    def __init__(self, score, text, time_stamp, course_id, comment_id, user_id, username):
+    def __init__(self, score, text, time_stamp, course_id, comment_id, user_id, replies, root):
         """
         @type score: int
         @type text: str
@@ -24,7 +24,8 @@ class Comment:
         @type course_id: str
         @type comment_id: str
         @type user_id: int
-        @type username: str
+        @type replies: [int]
+        @type root: bool
         @rtype: None
 
         """
@@ -34,13 +35,18 @@ class Comment:
         self.course_id = course_id
         self.comment_id = comment_id
         self.user_id = user_id
-        self.username = username
+        self.replies = replies
+        self.root = root
 
-    def get_username(self):
-        return self.username
+    def is_root(self):
+        return self.root
 
-    def set_username(self, username):
-        self.username = username
+
+    def get_replies(self):
+        return self.replies
+
+    def add_reply(self, comment_id):
+        self.replies.append(int)
 
     def get_user_id(self):
         return self.user_id

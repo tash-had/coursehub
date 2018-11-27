@@ -14,10 +14,12 @@ def post_new_comment():
     """
     comment_text = request.args.get("commentText")
     course_id = request.args.get("courseId")
-    username = request.args.get("username")
     user_id = request.args.get("userId")
 
-    posted_comment = comment_manager.create_comment(course_id, comment_text, username, user_id)
+    #0 if it has no parent
+    parent_id = request.args.get("parentId")
+
+    posted_comment = comment_manager.create_comment(course_id, comment_text, user_id, parent_id)
     return jsonify(posted_comment.__dict__)
 
 
@@ -31,8 +33,9 @@ def get_comments_by_course():
 
     comments = comment_manager.get_comments_by_course(course_id)
     comments_dictionary = {
-        "comments": [Comment(comment[4], comment[2], comment[3], comment[1], comment[0], comment[5], comment[6]).__dict__ for comment in
+        "comments": [Comment(comment[4], comment[2], comment[3], comment[1], comment[0], comment[7], comment[6], comment[5]).__dict__ for comment in
                      comments]}
+
     return jsonify(comments_dictionary)
 
 
@@ -57,7 +60,6 @@ def downvote():
 
     comment_to_downvote = comment_manager.downvote(comment_id)
     return jsonify(comment_to_downvote.__dict__)
-
 
 
 
