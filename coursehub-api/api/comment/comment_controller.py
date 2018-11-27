@@ -33,9 +33,15 @@ def get_comments_by_course():
     course_id = request.args.get("courseId")
 
     comments = comment_manager.get_comments_by_course(course_id)
+    a = Comment(1, "hi", 17, "courseid", "commentId", )
+    b = Comment()
+    # Comment(comment[4], comment[2], comment[3], comment[1], comment[0],
+    #         comment[7], comment[6], comment[5]).__dict__
+    # for comment in
+    #     comments]
+    #
     comments_dictionary = {
-        "comments": [Comment(comment[4], comment[2], comment[3], comment[1], comment[0], comment[7], comment[6], comment[5]).__dict__ for comment in
-                     comments]}
+        "comments": [a, b]}
 
     return jsonify(comments_dictionary)
 

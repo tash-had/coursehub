@@ -24,7 +24,7 @@ class Comment:
         @type course_id: str
         @type comment_id: str
         @type user_id: int
-        @type replies: [int]
+        @type replies: [Comment]
         @type root: bool
         @rtype: None
 
