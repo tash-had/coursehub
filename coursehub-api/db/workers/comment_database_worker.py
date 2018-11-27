@@ -19,11 +19,15 @@ class CommentDatabaseWorker(DatabaseManager):
         comment = data["comment"]
         time = data["timestamp"]
         votes = data["votes"]
+        root = data["root"]
+        children = data["children"]
+        user = data["user_id"]
 
-        input_data = [comment_id, course_id, comment, time, votes]
+        input_data = [comment_id, course_id, comment, time, votes, root, children, user]
 
         c = self.db_conn.cursor()
-        c.execute('insert into comments (id, course_id, comment, timestamp, votes) values (?,?,?,?,?)', input_data)
+        c.execute('insert into comments (id, course_id, comment, timestamp, votes, root, children, user_id) '
+                  'values (?,?,?,?,?,?,?,?)', input_data)
         self.db_conn.commit()
         c.close()
 
@@ -83,3 +87,22 @@ class CommentDatabaseWorker(DatabaseManager):
         self.db_conn.commit()
 
         return current_votes[0] - 1
+
+    def add_children_to_comment(self, comment_id, child_id):
+        """
+        Update a comments children
+
+        :param str comment_id:
+        :param str child_id:
+        :return:
+        """
+        cur = self.db_conn.cursor()
+        cur.execute("SELECT children FROM comments WHERE id=?", [comment_id])
+        results = cur.fetchall()
+        children = results[0][0]
+        new_children = children + " " + child_id
+
+        cur.execute("UPDATE comments SET children =? WHERE id=?", [new_children, comment_id])
+
+        self.db_conn.commit()
+        cur.close()
