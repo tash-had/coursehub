@@ -16,7 +16,7 @@ class Comment:
 
     """
 
-    def __init__(self, score, text, time_stamp, course_id, comment_id, user_id, replies, root):
+    def __init__(self, score, text, time_stamp, course_id, comment_id, user_id, replies, root, username):
         """
         @type score: int
         @type text: str
@@ -26,6 +26,7 @@ class Comment:
         @type user_id: int
         @type replies: [Comment]
         @type root: bool
+        @type username: str
         @rtype: None
 
         """
@@ -37,6 +38,10 @@ class Comment:
         self.user_id = user_id
         self.replies = replies
         self.root = root
+        self.username = username
+
+    def get_username(self):
+        return self.username
 
     def is_root(self):
         return self.root

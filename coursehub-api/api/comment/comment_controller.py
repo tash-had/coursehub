@@ -38,7 +38,7 @@ def get_comments_by_course():
     # put all comments into a dictionary mapping comment id to Comment object
     for comment in comments:
         comments_dic[comment.get_comment_id()] = Comment(comment[4], comment[2], comment[3], comment[1], comment[0],
-            comment[7], comment[6], comment[5])
+            comment[7], comment[6], comment[5], get_username_by_id(comment[0]))
 
     # empty comments and fill it only with root comments
     comments = []

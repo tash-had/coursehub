@@ -26,7 +26,7 @@ class CommentManager:
         data = {"id": comment_id, "course_id": course_id, "comment": text,
                 "timestamp": time_stamp, "votes": 1, "user_id": user_id, "children": ""}
         comment_database_worker.insert_comment(data)
-        return Comment(1, text, time_stamp, course_id, comment_id, user_id, [], is_root)
+        return Comment(1, text, time_stamp, course_id, comment_id, user_id, [], is_root, get_username_by_id(comment_id))
 
     def get_comments_by_course(self, course_id):
         """
@@ -46,7 +46,7 @@ class CommentManager:
         """
         comment_database_worker = CommentDatabaseWorker()
         result = comment_database_worker.get_comment_by_id(comment_id)
-        return Comment(result[4], result[2], result[3], result[1], result[0], result[7], result[6], result[5])
+        return Comment(result[4], result[2], result[3], result[1], result[0], result[7], result[6], result[5], get_username_by_id(result[0]))
 
     def upvote(self, comment_id, user_id):
         """
