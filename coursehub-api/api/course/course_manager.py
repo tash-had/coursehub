@@ -1,10 +1,12 @@
 from api.course.course import Course
 from db.workers.course_database_worker import CourseDatabaseWorker
+from db.workers.UserToCourseDatabaseWorker import UserToCourseDatabaseWorker
 
 
 class CourseManager:
 
     course_db_worker = CourseDatabaseWorker()
+    user_to_course_db_worker = UserToCourseDatabaseWorker()
 
     @staticmethod
     def build_course_obj(course_row):
@@ -105,35 +107,42 @@ class CourseManager:
             return (old_rating * rating_count + new_rating) / (rating_count + 1)
 
     @staticmethod
-    def did_user_already_rate_course(user_id, course):
+    def did_user_already_rate_course(user_id, course_id):
         """
         param user_id: str
-        param course: Course
+        param course_id: str
         """
-
-        # if there exists an entry in user-course-ratings table
-        # with the given course and id, return True
-
-        return True
+        return len(CourseManager.user_to_course_db_worker.get_row(user_id, course_id)) > 0
 
     @staticmethod
-    def get_prev_ratings(user_id, course, ratings):
+    def get_prev_ratings(user_id, course_id, ratings):
         """
         param user_id: str
-        param course: Course
+        param course_id: str
         """
+        prev_ratings = dict()
 
         for rating_type in ratings:
-            ratings[rating_type] = None  # DB.user_course_ratings.get[rating_type]where[user_id]=user_id
+            prev_ratings[rating_type] = CourseManager.user_to_course_db_worker.get_rating(user_id, course_id,
+                                                                                          rating_type)
 
-        return ratings
+        return prev_ratings
 
     @staticmethod
-    def update_user_course_ratings(user_id, course, ratings):
+    def update_user_course_ratings(user_id, course_id, ratings):
         """
         :param user_id: str
-        :param course: Course
+        :param course_id: str
         :param ratings: dict[rating type (str): int]
         """
         for rating_type, rating in ratings:
-            pass  # DB.user_course_ratings.where[user_id]=user_id.update[rating_type]=rating
+            CourseManager.user_to_course_db_worker.update_rating(user_id, course_id, rating_type, rating)
+
+    @staticmethod
+    def insert_course_rating(user_id, course_id, ratings):
+        """
+        :param user_id: str
+        :param course_id: str
+        :param ratings: dict[]
+        """
+        CourseManager.user_to_course_db_worker.insert_row(user_id, course_id, ratings)

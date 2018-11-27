@@ -38,6 +38,7 @@ class CourseDatabaseWorker(DatabaseManager):
         cur.execute("SELECT * FROM courses WHERE id=?", [id_])
 
         results = cur.fetchall()
+        cur.close()
         if results is None:
             return []
         return results

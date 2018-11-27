@@ -18,6 +18,7 @@ class UserDatabaseWorker(DatabaseManager):
         cur.execute("SELECT username FROM users WHERE id=?", [user_id])
 
         results = cur.fetchall()
+        cur.close()
         if results is None:
             return []
         return results
@@ -34,4 +35,3 @@ class UserDatabaseWorker(DatabaseManager):
         c.execute('insert into users (id, username, email, picture) '
                   'values (?,?,?,?,?,?,?,?)', input_data)
         self.db_conn.commit()
-        c.close()
