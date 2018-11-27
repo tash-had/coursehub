@@ -73,6 +73,8 @@ class Comment:
     def get_comment_id(self):
         return self.comment_id
 
+    def set_replies(self, replies):
+        self.replies = replies
 
 
 
