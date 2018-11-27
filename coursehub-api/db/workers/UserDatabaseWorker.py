@@ -21,3 +21,17 @@ class UserDatabaseWorker(DatabaseManager):
         if results is None:
             return []
         return results
+
+    def add_new_user(self, user):
+        user_id = user.id
+        username = user.username
+        email = user.email
+        picture = user.picture
+
+        input_data = [user_id, username, email, picture]
+
+        c = self.db_conn.cursor()
+        c.execute('insert into users (id, username, email, picture) '
+                  'values (?,?,?,?,?,?,?,?)', input_data)
+        self.db_conn.commit()
+        c.close()
