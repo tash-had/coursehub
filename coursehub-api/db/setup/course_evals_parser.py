@@ -74,7 +74,6 @@ class MyHTMLParser(HTMLParser):
         list_of_course_evals = [round(difficulty_rating_total / total_students, 1), round(reccommended_rating_total / total_students, 1), total_students]
         return list_of_course_evals
 
-
     def printList(self, course_code):
         global list_courses
         global list_dict_courses

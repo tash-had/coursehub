@@ -16,6 +16,7 @@ def post_new_comment():
 
     """
     user = get_user_with_request(request)
+
     comment_text = request.args.get("commentText")
     course_id = request.args.get("courseId")
     posted_comment = comment_manager.create_comment(course_id, comment_text)
