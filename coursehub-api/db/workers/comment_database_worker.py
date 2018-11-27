@@ -7,7 +7,7 @@ class CommentDatabaseWorker(DatabaseManager):
     def __init__(self):
         DatabaseManager.__init__(self)
 
-    def insert_comment(self, data): # update to new db
+    def insert_comment(self, data):
         """ Insert data into the comments table
 
         :param dict data: Keys: [id, course_id, comment, timestamp, votes]

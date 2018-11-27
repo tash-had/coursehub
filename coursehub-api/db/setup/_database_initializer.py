@@ -99,13 +99,13 @@ class _CourseHubDatabaseInitializer:
         user_to_comment_table = """
                  CREATE TABLE IF NOT EXISTS user_to_comment(
                      user_id text,
-                     course_id text,
+                     comment_id text,
                      upvote_or_downvote text);
                          """
         user_to_course_table = """
                  CREATE TABLE IF NOT EXISTS user_to_course(
                      user_id text,
-                     comment_id text,
+                     course_id text,
                      workload_rating float,
                      recommendation_rating float);
                          """

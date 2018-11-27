@@ -16,7 +16,7 @@ class UserToCommentDatabaseWorker(DatabaseManager):
         """
         cur = self.db_conn.cursor()
         cur.execute("""SELECT c.id,
-                    FROM user_to_comment_table uc
+                    FROM user_to_comment uc
                     INNER JOIN comments c ON uc.comment_id = c.id
                     WHERE uc.user_id = ?""", [user_id])
 
