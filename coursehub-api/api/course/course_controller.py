@@ -4,7 +4,7 @@ from api.course.course_manager import CourseManager
 course_controller_bp = Blueprint("course_controller", __name__)
 
 
-@course_controller_bp.route("/search_course")
+@course_controller_bp.route("/search_course", methods=["GET"])
 def search_for_course():
     """
     :return: array of JSON dict of all matching courses
@@ -22,7 +22,7 @@ def search_for_course():
     return jsonify({"matching_courses": courses})
 
 
-@course_controller_bp.route("/get_course_data")
+@course_controller_bp.route("/get_course_data", methods=["GET"])
 def get_course_data():
     """
     :return: course by ID
@@ -32,7 +32,7 @@ def get_course_data():
     return jsonify(CourseManager.get_course_by_id(id_).__dict__)
 
 
-@course_controller_bp.route("/add_course_ratings")
+@course_controller_bp.route("/add_course_ratings", methods=["PUT"])
 def update_rating():
     """
     :return: course object with updated rating

@@ -5,7 +5,7 @@ from api.auth import get_user_with_request
 user_controller_bp = Blueprint("user_controller", __name__)
 
 
-@user_controller_bp.route("/view_user_profile")
+@user_controller_bp.route("/view_user_profile", methods=["GET"])
 def view_user_profile():
     """
     :return: array of JSON dict of the user's info
@@ -19,7 +19,7 @@ def view_user_profile():
     return jsonify(profile_dict)
 
 
-@user_controller_bp.route("/sign_in")
+@user_controller_bp.route("/sign_in", methods=["POST"])
 def sign_in():
     """
     if this is their first time signing in, add them to DB
