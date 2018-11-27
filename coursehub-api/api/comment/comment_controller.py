@@ -16,12 +16,11 @@ def post_new_comment():
     user = get_user_with_request(request)
     comment_text = request.args.get("commentText")
     course_id = request.args.get("courseId")
-    user_id = request.args.get("userId")
 
     #0 if it has no parent
     parent_id = request.args.get("parentId")
 
-    posted_comment = comment_manager.create_comment(course_id, comment_text, user_id, parent_id)
+    posted_comment = comment_manager.create_comment(course_id, comment_text, user.id, parent_id)
     return jsonify(posted_comment.__dict__)
 
 
@@ -47,9 +46,10 @@ def upvote():
     @rtype: JSON[]
 
     """
+    user = get_user_with_request(request)
     comment_id = request.args.get("commentId")
 
-    comment_to_upvote = comment_manager.upvote(comment_id)
+    comment_to_upvote = comment_manager.upvote(comment_id, user.id)
     return jsonify(comment_to_upvote.__dict__)
 
 
@@ -58,9 +58,10 @@ def downvote():
     """
     @rtype: JSON[]
     """
+    user = get_user_with_request(request)
     comment_id = request.args.get("commentId")
 
-    comment_to_downvote = comment_manager.downvote(comment_id)
+    comment_to_downvote = comment_manager.downvote(comment_id, user.id)
     return jsonify(comment_to_downvote.__dict__)
 
 
