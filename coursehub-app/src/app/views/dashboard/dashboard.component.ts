@@ -1,6 +1,7 @@
 import { Component, AfterViewInit, ElementRef, ViewChild, OnInit} from '@angular/core';
 import { SearchbarService } from '../../components/searchbar/searchbar.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +16,7 @@ export class DashboardComponent implements AfterViewInit {
   
   @ViewChild('coursehubLogo') coursehubLogo; 
   
-  constructor(private elementRef: ElementRef, private searchService: SearchbarService, private _router : Router) {
+  constructor(private elementRef: ElementRef, private searchService: SearchbarService, private _router : Router, public auth: AuthService) {
   }
   ngOnInit() {
   }
