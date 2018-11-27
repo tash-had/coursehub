@@ -82,18 +82,18 @@ class CommentManager:
         comment_database_worker = CommentDatabaseWorker()
         user_to_comment_database_worker = UserToCommentDatabaseWorker()
         comment_to_upvote = self.get_comment_by_id(comment_id)
-        # if user_to_comment_database_worker.get_rating(user_id, comment_id) == upvote
-            # user_to_comment_database_worker.set_rating(user_id, comment_id, downvote)
-            # comment_to_upvote.set_score(comment_database_worker.downvote(comment_id))
-            # comment_to_upvote.set_score(comment_database_worker.downvote(comment_id))
+        if user_to_comment_database_worker.get_rating(user_id, comment_id) == upvote
+            user_to_comment_database_worker.set_rating(user_id, comment_id, downvote)
+            comment_to_upvote.set_score(comment_database_worker.downvote(comment_id))
+            comment_to_upvote.set_score(comment_database_worker.downvote(comment_id))
 
-        # elif user_to_comment_database_worker.get_rating(user_id, comment_id) == none
-            # user_to_comment_database_worker.set_rating(user_id, comment_id, downvote)
-            # comment_to_upvote.set_score(comment_database_worker.downvote(comment_id))
+        elif user_to_comment_database_worker.get_rating(user_id, comment_id) == none
+            user_to_comment_database_worker.set_rating(user_id, comment_id, downvote)
+            comment_to_upvote.set_score(comment_database_worker.downvote(comment_id))
 
-        # elif user_to_comment_database_worker.get_rating(user_id, comment_id) == downvote
-            # user_to_comment_database_worker.set_rating(user_id, comment_id, none)
-            # comment_to_upvote.set_score(comment_database_worker.upvote(comment_id))
+        elif user_to_comment_database_worker.get_rating(user_id, comment_id) == downvote
+            user_to_comment_database_worker.set_rating(user_id, comment_id, none)
+            comment_to_upvote.set_score(comment_database_worker.upvote(comment_id))
 
         return comment_to_upvote
 
