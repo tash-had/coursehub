@@ -1,4 +1,4 @@
-from db.database_manager import DatabaseManager
+from db.database_manager import DatabaseManager, sqlite3
 
 
 class UserToCourseDatabaseWorker(DatabaseManager):
@@ -15,7 +15,7 @@ class UserToCourseDatabaseWorker(DatabaseManager):
         :param course_id:
         :return:
         """
-        cur = self.db_conn.cursor()
+        cur = sqlite3.connect(self._db_path).cursor()
         cur.execute("""SELECT * FROM user_to_course uc WHERE uc.user_id = ? AND uc.course_id = ?""",
                     [user_id, course_id])
 
@@ -29,13 +29,14 @@ class UserToCourseDatabaseWorker(DatabaseManager):
 
         input_data = [user_id, course_id, ratings["workload_rating"], ratings["recommendation_rating"]]
 
-        cur = self.db_conn.cursor()
-        cur.execute('insert into users (user_id, course_id, workload_rating, recommendation_rating) '
-                    'values (?,?,?,?,?,?,?,?)', input_data)
-        self.db_conn.commit()
+        db_conn = sqlite3.connect(self._db_path)
+        cur = db_conn.cursor()
+        cur.execute('insert into user_to_course (user_id, course_id, workload_rating, recommendation_rating) '
+                    'values (?,?,?,?)', input_data)
+        db_conn.commit()
 
     def get_rating(self, user_id, course_id, rating_type):
-        cur = self.db_conn.cursor()
+        cur = sqlite3.connect(self._db_path).cursor()
         cur.execute("""SELECT ? FROM user_to_course uc WHERE uc.user_id = ? AND uc.course_id = ?""",
                     [rating_type, user_id, course_id])
 
@@ -47,8 +48,11 @@ class UserToCourseDatabaseWorker(DatabaseManager):
         return results
 
     def update_rating(self, user_id, course_id, rating_type, rating_value):
-        cur = self.db_conn.cursor()
-        cur.execute("""UPDATE user_to_course uc SET ?=? WHERE uc.user_id = ? AND uc.course_id = ?""",
-                    [rating_type, rating_value, user_id, course_id])
+        db_conn = sqlite3.connect(self._db_path)
+        cur = db_conn.cursor()
+        query_str1 = "UPDATE user_to_course SET " + rating_type + " = " + str(rating_value)
+        query_str2 = " WHERE user_id = ? AND course_id = " + course_id
+        query = query_str1 + query_str2
+        cur.execute(query, [user_id])
 
-        self.db_conn.commit()
+        db_conn.commit()

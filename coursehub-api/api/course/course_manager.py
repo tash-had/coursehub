@@ -102,6 +102,8 @@ class CourseManager:
         :return: aggregated rating (float)
         """
         if remove_or_add == 'remove':
+            if rating_count == 1:
+                return 0
             return (old_rating * rating_count - new_rating) / (rating_count - 1)
         else:
             return (old_rating * rating_count + new_rating) / (rating_count + 1)
@@ -115,16 +117,16 @@ class CourseManager:
         return len(CourseManager.user_to_course_db_worker.get_row(user_id, course_id)) > 0
 
     @staticmethod
-    def get_prev_ratings(user_id, course_id, ratings):
+    def get_prev_ratings(user_id, course_id):
         """
         param user_id: str
         param course_id: str
         """
         prev_ratings = dict()
 
-        for rating_type in ratings:
-            prev_ratings[rating_type] = CourseManager.user_to_course_db_worker.get_rating(user_id, course_id,
-                                                                                          rating_type)
+        rating_row = CourseManager.user_to_course_db_worker.get_row(user_id, course_id)
+        prev_ratings["workload_rating"] = rating_row[0][2]
+        prev_ratings["recommendation_rating"] = rating_row[0][3]
 
         return prev_ratings
 
@@ -135,8 +137,8 @@ class CourseManager:
         :param course_id: str
         :param ratings: dict[rating type (str): int]
         """
-        for rating_type, rating in ratings:
-            CourseManager.user_to_course_db_worker.update_rating(user_id, course_id, rating_type, rating)
+        for rating_type in ratings:
+            CourseManager.user_to_course_db_worker.update_rating(user_id, course_id, rating_type, ratings[rating_type])
 
     @staticmethod
     def insert_course_rating(user_id, course_id, ratings):

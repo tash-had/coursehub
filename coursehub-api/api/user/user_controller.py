@@ -28,3 +28,5 @@ def sign_in():
 
     if not UserManager.is_user_in_db(user.id):
         UserManager.add_new_user(user)
+
+    return jsonify(user.__dict__)

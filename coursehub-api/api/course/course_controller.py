@@ -46,10 +46,10 @@ def update_rating():
 
     course = CourseManager.get_course_by_id(course_id)
 
-    if CourseManager.did_user_already_rate_course(user_id, course):
-        prev_ratings = CourseManager.get_prev_ratings(user_id, course_id, rating_dict)
+    if CourseManager.did_user_already_rate_course(user_id, course_id):
+        prev_ratings = CourseManager.get_prev_ratings(user_id, course_id)
         CourseManager.update_course_rating(course, prev_ratings, "remove")
-        CourseManager.update_user_course_ratings(course, user_id, rating_dict)
+        CourseManager.update_user_course_ratings(user_id, course_id, rating_dict)
     else:
         CourseManager.insert_course_rating(user_id, course_id, rating_dict)
 
