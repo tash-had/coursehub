@@ -91,7 +91,7 @@ class _CourseHubDatabaseInitializer:
         user_table = """
                  CREATE TABLE IF NOT EXISTS users(
                      id text PRIMARY KEY,
-                     password text,
+                     picture text,
                      username text,
                      email text);
                  """

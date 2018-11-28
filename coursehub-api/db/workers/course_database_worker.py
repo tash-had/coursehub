@@ -38,6 +38,7 @@ class CourseDatabaseWorker(DatabaseManager):
         cur.execute("SELECT * FROM courses WHERE id=?", [id_])
 
         results = cur.fetchall()
+        cur.close()
         if results is None:
             return []
         return results
@@ -53,6 +54,6 @@ class CourseDatabaseWorker(DatabaseManager):
         db_conn = sqlite3.connect(self._db_path)
         cur = db_conn.cursor()
 
-        query_str = "UPDATE courses SET " + field + " = " + str(new_value) + " WHERE id=?"
-        cur.execute(query_str, [id_])
+        query_str = "UPDATE courses SET " + field + " = " + str(new_value) + " WHERE id=" + id_
+        cur.execute(query_str)
         db_conn.commit()

@@ -58,6 +58,18 @@ class CommentDatabaseWorker(DatabaseManager):
         cur.close()
         return comment
 
+    def get_comments_by_user_id(self, user_id):
+        """Return the comments in the database that correspond to user_id.
+
+        :param user_id:
+        :return:
+        """
+        cur = self.db_conn.cursor()
+        comment = cur.execute('SELECT * FROM comments WHERE user_id=?', [user_id]).fetchall()
+
+        cur.close()
+        return comment
+
     def upvote(self, comment_id):
         """Increment the vote count for the comment by one.
 
