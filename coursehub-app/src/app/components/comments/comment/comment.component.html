@@ -1,50 +1,58 @@
-
-<!-- <div *ngFor="let comment of comments" >
-	<div class="media border  border-dark  mb-3 p-3" id="commentBorder"> -->
-	  <!-- <div class="media-body">
-
-      <div class="d-inline">
-        <span><h5 class="font-weight-bold float-left">Anon</h5></span>
-        <span id="timestamp" class="font-italic float-right">9:06 Thu Nov 1</span>
-        <span><i class="fa fa-thumbs-o-down  pr-5 float-right " aria-hidden="true" style="color: #2196fe"></i></span>
-        <span><i class="fa fa-thumbs-o-up  pr-3 float-right"  aria-hidden="true" style="color:orange"></i></span>
-        <span id="score" class="font-weight-bold float-right pr-2"> 150</span>
-      </div>
- 
-      <div class="d-block pt-3 text-left">
-        <br>
-        {{comment}}
-      </div>
-      
-	  </div>
-	</div>
-</div> -->
-<div class="media d-block d-md-flex mt-4">
-  <div class="media d-block d-md-flex mt-3">
-      <span><i class="fa fa-thumbs-o-up  pr-3 float-right"  aria-hidden="true" style="color:orange"></i></span>
+<!-- Nav tabs -->
+<!-- <ul class="nav nav-tabs md-tabs nav-justified">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#panel2" role="tab">Follow</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#panel3" role="tab">Contact</a>
+    </li>
+  </ul> -->
+<!-- <div class="tab-content card">
+    <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
+      <br>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus
+        reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat
+        ratione porro voluptate odit minima.</p>
+    </div> -->
+<div class="container">
+  <!--Grid row-->
+  <div class="row commentCard">
+    <!--Grid column-->
+    <div class="col-sm-1">
+      <span><i class="fa fa-thumbs-o-up float-right pr-2" aria-hidden="true" style="color:orange"></i></span>
       <span id="score" class="font-weight-bold float-right pr-2"> 150</span>
-      <span><i class="fa fa-thumbs-o-down  pr-5 float-right " aria-hidden="true" style="color: #2196fe"></i></span>
-    <div class="media-body text-center text-md-left ml-md-3 ml-0">
-      <h5 class="font-weight-bold mt-0">
-        <a href="">Sylvester the Cat</a>
-        <a href="" class="pull-right">
-          <i class="fa fa-reply"></i>
-        </a>
-      </h5>
-      Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia
-      <!-- TO ACTUALL HAVE REPLIES: USE RECURSION!
+      <span><i class="fa fa-thumbs-o-down float-right pr-2" aria-hidden="true" style="color: #2196fe"></i></span>
+    </div>
+    <div class="col-sm-11">
+      <div class="media-body text-center text-md-left ml-0">
+        <h5 class="font-weight-bold mt-0">
+          <a href="">Sylvester the Cat</a>
+          <a href="" class="pull-right">
+            <i class="fa fa-reply"></i>
+          </a>
+        </h5>
+        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia
+        non numquam eius modi
+        <!-- TO ACTUALL HAVE REPLIES: USE RECURSION!
         CREATE A FOR LOOP HERE IN THE HTML. USE 
         NGIF TO CHECK IF THIS COMMENT HAS REPLIES, AND IF SO,
         CREATE NEW <app-comment></app-comment> TAGS FOR EACH REPLY.
         THAT WAY, WE KEEP CREATING COMMENT TAGS UNTIL
         WE REACH THE REPLY WITH NO MORE replies
       -->
-      <div class="media d-block d-md-flex mt-4">
-          <div class="media d-block d-md-flex mt-3">
-              <span><i class="fa fa-thumbs-o-up  pr-3 float-right"  aria-hidden="true" style="color:orange"></i></span>
-              <span id="score" class="font-weight-bold float-right pr-2"> 150</span>
-              <span><i class="fa fa-thumbs-o-down  pr-5 float-right " aria-hidden="true" style="color: #2196fe"></i></span>
-            <div class="media-body text-center text-md-left ml-md-3 ml-0">
+        <!--Grid row-->
+        <div class="row commentCard">
+          <!--Grid column-->
+          <div class="col-sm-1">
+            <span><i class="fa fa-thumbs-o-up float-right pr-2" aria-hidden="true" style="color:orange"></i></span>
+            <span id="score" class="font-weight-bold float-right pr-2"> 150</span>
+            <span><i class="fa fa-thumbs-o-down float-right pr-2" aria-hidden="true" style="color: #2196fe"></i></span>
+          </div>
+          <div class="col-sm-11">
+            <div class="media-body text-center text-md-left ml-0">
               <h5 class="font-weight-bold mt-0">
                 <a href="">Sylvester the Cat</a>
                 <a href="" class="pull-right">
@@ -53,9 +61,16 @@
               </h5>
               Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia
               non numquam eius modi
+              <!-- TO ACTUALL HAVE REPLIES: USE RECURSION!
+          CREATE A FOR LOOP HERE IN THE HTML. USE 
+          NGIF TO CHECK IF THIS COMMENT HAS REPLIES, AND IF SO,
+          CREATE NEW <app-comment></app-comment> TAGS FOR EACH REPLY.
+          THAT WAY, WE KEEP CREATING COMMENT TAGS UNTIL
+          WE REACH THE REPLY WITH NO MORE replies
+        -->
             </div>
           </div>
         </div>
+      </div>
     </div>
   </div>
-</div>
