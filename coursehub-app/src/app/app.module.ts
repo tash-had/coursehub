@@ -25,6 +25,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AppComponent } from './app.component';
 import { CommentListComponent } from './components/comments/comment-list/comment-list.component';
 import { CommentInputComponent } from './components/comments/comment-input/comment-input.component';
+import { SlidersComponent } from './components/sliders/sliders.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { CommentInputComponent } from './components/comments/comment-input/comme
     LoadingComponent,
     NavbarComponent,
     CommentListComponent,
-    CommentInputComponent
+    CommentInputComponent,
+    SlidersComponent
   ],
   imports: [
     BrowserModule,

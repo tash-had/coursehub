@@ -11,25 +11,17 @@ import { CoursePageDataService } from './course-page-data.service'
 
 export class CoursePageComponent implements OnInit {
   courseData: Object;
-  @ViewChild("useRating") usefulRating: ElementRef;
-  @ViewChild("usefulnessSlider") usefulSlider: ElementRef;
-  @ViewChild("diffRating") diffRating: ElementRef;
-  @ViewChild("difficultySlider") difficultSlider: ElementRef;
-  @ViewChild("slidersForm") slidersForm: ElementRef;
-  
   usefulCourseRating: number;
   difficultCourseRating: number;
   ratingsExist: boolean = true;
-
-  //mock comments
-  comments: String[] = ['Hey, I love CSC301', 'Hey, I do not like CSC301 that much', 
-  'Why does no one shower??', 'I failed my assignment, can I drop this course?', "Why don't we just use reddit"];
+  comments: String[] = [];
   currentComment: String;
   constructor(private courseCardDataService: CourseCardDataService, private coursePageDataService: CoursePageDataService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.courseCardDataService.courseData.subscribe(courseData => this.courseCardDataReceived(courseData));
-    this.setSliders();
+    this.checkForRatings();
+    this.initializeRatings();
 
   }
 
@@ -41,23 +33,32 @@ export class CoursePageComponent implements OnInit {
     }
   }
 
-  setSliders(){
+  checkForRatings(){
     if (this.courseData){
       if (this.courseData['rating_count'] == 0){
         this.ratingsExist = false;
-        this.slidersForm.nativeElement.empty();
       }
-      else{
-    this.usefulCourseRating = this.courseData['ratings']['recommendation_rating'];
-    this.difficultCourseRating = this.courseData['ratings']['workload_rating'];
-      }
+    }
+  }
 
+  initializeRatings(){
+    if (this.courseData){
+      this.difficultCourseRating = Math.round(100*(this.courseData['ratings']['workload_rating']/5));
+      this.usefulCourseRating = Math.round(100*(this.courseData['ratings']['recommendation_rating']/5));
+    }
+    
+  
+  }
+  setRatings(type:string) : number {
+    if (this.courseData){
+      if (type == 'useful'){
+        return this.usefulCourseRating;
+      }
+      else {
+        return this.difficultCourseRating;
+      }
     }
 
-    this.usefulSlider.nativeElement.value = Math.round(100*(this.usefulCourseRating / 5));
-    this.usefulRating.nativeElement.innerHTML = Math.round(100*(this.usefulCourseRating / 5));
-    this.difficultSlider.nativeElement.value = Math.round(100*(this.difficultCourseRating / 5));
-    this.diffRating.nativeElement.innerHTML = Math.round(100*(this.difficultCourseRating / 5));
   }
 
   getCourseData() {
@@ -65,7 +66,8 @@ export class CoursePageComponent implements OnInit {
     this.coursePageDataService.getCourseData(courseId.toString())
       .subscribe((courseData) => {
         this.courseData = courseData;
-        this.setSliders();
+        this.checkForRatings();
+        this.initializeRatings();
       });
   }
 
@@ -75,41 +77,4 @@ export class CoursePageComponent implements OnInit {
         this.currentComment = null;       
     }
   }
-
-  updateRating(type: String){
-    if (type == 'usefulness'){
-      this.usefulRating.nativeElement.innerHTML = this.usefulSlider.nativeElement.value;
-    }else if (type == 'difficulty'){
-      this.diffRating.nativeElement.innerHTML = this.difficultSlider.nativeElement.value;
-    }
-    
-  }
-
-  assignRatingLevel(type: string) : string {
-    if (type == 'usefulness'){
-      var usefulNum = Math.round(100*(this.usefulCourseRating / 5));
-      if (usefulNum > 79){
-        return 'green';
-      }
-      else if (usefulNum <= 79 && usefulNum > 59){
-        return 'yellow';
-      }
-      else{
-        return 'red';
-      }
-    }
-    else if (type == 'difficulty'){
-      var difficultNum = Math.round(100*(this.difficultCourseRating / 5));
-      if (difficultNum > 79){
-        return 'green';
-        
-      }
-      else if (difficultNum <= 79 && difficultNum > 59){
-        return 'yellow';
-      }
-      else{
-        return 'red';
-      }
-    }
-  } 
 }

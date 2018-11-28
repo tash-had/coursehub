@@ -11,15 +11,15 @@
 				<br><br>
 				<app-course-card searchQuery="{{searchQuery}}" [courseData]="courseData" percentColor="orange"></app-course-card>
 				<div *ngIf='!ratingsExist' style="text-align:center"> <strong>No ratings available</strong>  </div>
-				<form #slidersForm class="my-4 w-100">
-					<p class="float-right">Usefulness: <span class='badge badge-info' #useRating></span></p>
-					<input #usefulnessSlider [attr.rating-level]="assignRatingLevel('usefulness')" disabled="disabled" (input)="updateRating('usefulness')" type="range" min="0" max="100"/>
-			
-					<p class="float-right">Difficulty: <span class='badge badge-info' #diffRating></span></p>
-					<input #difficultySlider [attr.rating-level]="assignRatingLevel('difficulty')" disabled="disabled" (input)="updateRating('difficulty')" type="range" min="0" max="100"/>
-					
-				</form>
-				
+				<div *ngIf="ratingsExist">
+					<app-sliders [initialRating]="setRatings('useful')" 
+								 [sliderDisabled]='true'
+								 [label]="'Usefulness'"></app-sliders>
+					<app-sliders [initialRating]="setRatings('difficult')" 
+								 [sliderDisabled]='true'
+								 [label]="'Difficulty'"></app-sliders>
+				</div>
+
 				
 		</div>
 	</div>

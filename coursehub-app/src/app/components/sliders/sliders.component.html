@@ -1,0 +1,7 @@
+<form #slidersForm class="my-4 w-100">
+  <p class="float-right">{{ label }} : <span class='badge badge-info' #numRating></span></p>
+  <input #ratingSlider 
+  [attr.disabled]="sliderDisabled?'true':null"
+  [ngClass]="assignRatingLevel()"
+  (input)="updateRating()" type="range" min="0" max="100"/>
+</form>
