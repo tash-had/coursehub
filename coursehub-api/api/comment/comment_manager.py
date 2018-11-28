@@ -4,8 +4,11 @@ import uuid
 from api.comment.comment import Comment
 from db.workers.comment_database_worker import CommentDatabaseWorker
 from db.workers.user_to_comment_database_worker import UserToCommentDatabaseWorker
+from db.workers.user_database_worker import UserDatabaseWorker
 
 class CommentManager:
+    def __init__(self):
+        self.user_database_worker = UserDatabaseWorker()
 
     def create_comment(self, course_id, text, user_id, parent_id):
         """
@@ -18,15 +21,16 @@ class CommentManager:
         """
         comment_database_worker = CommentDatabaseWorker()
         comment_id = str(uuid.uuid4())
-        comment_database_worker.add_children_to_comment(parent_id, comment_id)
-        is_root = True
-        if parent_id:
-            is_root = False
+        is_root = 1
+        if parent_id is not None:
+            is_root = 0
+            comment_database_worker.add_children_to_comment(parent_id,
+                                                            comment_id)
         time_stamp = time.time()
         data = {"id": comment_id, "course_id": course_id, "comment": text,
-                "timestamp": time_stamp, "votes": 1, "user_id": user_id, "children": ""}
+                "timestamp": time_stamp, "votes": 1, "user_id": user_id, "children": "", "root": is_root}
         comment_database_worker.insert_comment(data)
-        return Comment(1, text, time_stamp, course_id, comment_id, user_id, [], is_root, get_username_by_id(comment_id))
+        return Comment(1, text, time_stamp, course_id, comment_id, user_id, [], is_root, self.user_database_worker.get_username_by_id(comment_id))
 
     def get_comments_by_course(self, course_id):
         """
@@ -46,7 +50,7 @@ class CommentManager:
         """
         comment_database_worker = CommentDatabaseWorker()
         result = comment_database_worker.get_comment_by_id(comment_id)
-        return Comment(result[4], result[2], result[3], result[1], result[0], result[7], result[6], result[5], get_username_by_id(result[0]))
+        return Comment(result[4], result[2], result[3], result[1], result[0], result[7], result[6], result[5], self.user_database_worker.get_username_by_id(result[0]))
 
     def upvote(self, comment_id, user_id):
         """

@@ -25,7 +25,7 @@ class Comment:
         @type comment_id: str
         @type user_id: str
         @type replies: [Comment]
-        @type root: bool
+        @type root: int
         @type username: str
         @rtype: None
 
@@ -49,9 +49,6 @@ class Comment:
 
     def get_replies(self):
         return self.replies
-
-    def add_reply(self, comment_id):
-        self.replies.append(int)
 
     def get_user_id(self):
         return self.user_id

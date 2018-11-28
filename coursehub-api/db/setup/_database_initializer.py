@@ -70,7 +70,7 @@ class _CourseHubDatabaseInitializer:
              comment text,
              timestamp integer,
              votes integer,
-             root boolean,
+             root integer,
              children text,
              user_id text);
          """
@@ -115,3 +115,4 @@ class _CourseHubDatabaseInitializer:
         self.db_manager.create_table(user_table)
         self.db_manager.create_table(user_to_comment_table)
         self.db_manager.create_table(user_to_course_table)
+
