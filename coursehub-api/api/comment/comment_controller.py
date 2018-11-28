@@ -81,7 +81,7 @@ def get_comments_helper(course_id):
                 replies.append(comment_manager.get_comment_by_id(comment_id))
 
         comments_dic[comment[0]] = Comment(comment[4], comment[2], comment[3], comment[1], comment[0],
-            comment[7], replies, comment[5], user_database_worker.get_username_by_id(comment[0]))
+            comment[7], replies, comment[5], user_database_worker.get_username_by_id(comment[7])[0][0])
 
     # empty comments and fill it only with root comments
     comments = []

@@ -50,7 +50,7 @@ class CommentManager:
         """
         comment_database_worker = CommentDatabaseWorker()
         result = comment_database_worker.get_comment_by_id(comment_id)
-        return Comment(result[4], result[2], result[3], result[1], result[0], result[7], result[6], result[5], self.user_database_worker.get_username_by_id(result[0]))
+        return Comment(result[4], result[2], result[3], result[1], result[0], result[7], result[6], result[5], self.user_database_worker.get_username_by_id(result[7])[0][0])
 
     def upvote(self, comment_id, user_id):
         """
