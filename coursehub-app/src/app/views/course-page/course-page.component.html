@@ -4,10 +4,10 @@
 		<div class="col-md-8">
 			<div class="float-left pt-3 w-80 h-75">
 				<app-comment-input></app-comment-input>
-				<app-comment-list></app-comment-list>
+				<app-comment-list [courseData]="courseData"></app-comment-list>
 			</div>
 		</div>
-		<div class="col-4">
+		<div class="col-md-4">
 				<br><br>
 				<app-course-card searchQuery="{{searchQuery}}" [courseData]="courseData" percentColor="orange"></app-course-card>
 		</div>
