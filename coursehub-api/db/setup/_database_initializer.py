@@ -4,7 +4,7 @@ from db.database_manager import DatabaseManager
 class _CourseHubDatabaseInitializer:
     """ A set of functions to help setup the database. Use cautiously. """
 
-    def __init__(self, drop_courses_table=True):
+    def __init__(self, drop_courses_table=False):
         self.db_manager = DatabaseManager()
         if drop_courses_table:
             conn = self.db_manager.db_conn
