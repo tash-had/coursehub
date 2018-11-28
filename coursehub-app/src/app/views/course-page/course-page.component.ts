@@ -15,8 +15,11 @@ export class CoursePageComponent implements OnInit {
   @ViewChild("usefulnessSlider") usefulSlider: ElementRef;
   @ViewChild("diffRating") diffRating: ElementRef;
   @ViewChild("difficultySlider") difficultSlider: ElementRef;
+  @ViewChild("slidersForm") slidersForm: ElementRef;
+  
   usefulCourseRating: number;
   difficultCourseRating: number;
+  ratingsExist: boolean = true;
 
   //mock comments
   comments: String[] = ['Hey, I love CSC301', 'Hey, I do not like CSC301 that much', 
@@ -39,8 +42,18 @@ export class CoursePageComponent implements OnInit {
   }
 
   setSliders(){
+    if (this.courseData){
+      if (this.courseData['rating_count'] == 0){
+        this.ratingsExist = false;
+        this.slidersForm.nativeElement.empty();
+      }
+      else{
     this.usefulCourseRating = this.courseData['ratings']['recommendation_rating'];
     this.difficultCourseRating = this.courseData['ratings']['workload_rating'];
+      }
+
+    }
+
     this.usefulSlider.nativeElement.value = Math.round(100*(this.usefulCourseRating / 5));
     this.usefulRating.nativeElement.innerHTML = Math.round(100*(this.usefulCourseRating / 5));
     this.difficultSlider.nativeElement.value = Math.round(100*(this.difficultCourseRating / 5));
