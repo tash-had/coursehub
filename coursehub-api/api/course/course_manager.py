@@ -70,10 +70,10 @@ class CourseManager:
 
         for r_type in new_ratings:
             prev_rating = course.get_ratings()[r_type]
-            rating_sum += int(new_ratings[r_type])
+            rating_sum += float(new_ratings[r_type])
 
             updated_rating = CourseManager.calculate_course_rating(prev_rating, count,
-                                                                   int(new_ratings[r_type]), remove_or_add)
+                                                                   float(new_ratings[r_type]), remove_or_add)
             CourseManager.course_db_worker.update_course_field(course.get_id(), r_type, updated_rating)
 
         rating_average = rating_sum / len(new_ratings)

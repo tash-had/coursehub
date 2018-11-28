@@ -57,3 +57,4 @@ class CourseDatabaseWorker(DatabaseManager):
         query_str = "UPDATE courses SET " + field + " = " + str(new_value) + " WHERE id=" + id_
         cur.execute(query_str)
         db_conn.commit()
+        cur.close()
