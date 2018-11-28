@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef, Input} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, OnChanges, SimpleChanges} from '@angular/core';
 
 @Component({
   selector: 'app-sliders',
   templateUrl: './sliders.component.html',
   styleUrls: ['./sliders.component.scss']
 })
-export class SlidersComponent implements OnInit {
+export class SlidersComponent implements OnInit, OnChanges {
 
   @ViewChild('ratingSlider') ratingSlider: ElementRef;
   @ViewChild('numRating') rating: ElementRef;
@@ -16,6 +16,11 @@ export class SlidersComponent implements OnInit {
 
   ngOnInit() {
     this.rating.nativeElement.innerHTML = this.initialRating;
+    this.ratingSlider.nativeElement.value = this.initialRating;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.rating.nativeElement.innerHTML = this.initialRating;;
     this.ratingSlider.nativeElement.value = this.initialRating;
   }
 
