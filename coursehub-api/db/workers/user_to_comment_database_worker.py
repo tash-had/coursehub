@@ -25,4 +25,40 @@ class UserToCommentDatabaseWorker(DatabaseManager):
             return []
         return results
 
+    # insert a upvote or donwvote func for logic
+    def get_rating(self, user_id, comment_id):
+        """Get the upvote or downvote value for a users comment
 
+        :param comment_id:
+        :type comment_id:
+        :param user_id:
+        :type user_id:
+        :return:
+        """
+        cur = self.db_conn.cursor()
+        cur.execute("""SELECT upvote_or_downvote FROM user_to_comment WHERE comment_id = ? AND
+        user_id = ?""", [comment_id, user_id])
+
+        results = cur.fetchall()
+        if results is None:
+            return []
+        return results[0][0]
+
+    def set_rating(self, user_id, comment_id, value):
+        """Set the upvote or downvote value for a users comment to value
+
+        :param comment_id:
+        :type comment_id:
+        :param user_id:
+        :type user_id:
+        :param value:
+        :type value:
+        :return:
+        :rtype:
+        """
+        cur = self.db_conn.cursor()
+        cur.execute("""UPDATE user_to_comment SET upvote_or_downvote = ? WHERE comment_id = ? AND
+                user_id = ?""", [value, comment_id, user_id])
+
+        self.db_conn.commit()
+        cur.close()
