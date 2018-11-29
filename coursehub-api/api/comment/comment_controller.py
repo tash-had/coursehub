@@ -22,6 +22,19 @@ def post_new_comment():
     return jsonify(posted_comment.__dict__)
 
 
+@comment_controller_bp.route("/delete_comment", methods=["DELETE"])
+def delete_comment():
+    """
+
+    """
+    user = get_user_with_request(request)
+    comment_id = request.args.get("commentId")
+    if comment_manager.get_comment_by_id(comment_id).user_id == user.id:
+        return comment_manager.delete_comment(comment_id)
+
+    return {"error": "denied access to delete comment"}
+
+
 @comment_controller_bp.route("/get_comments")
 def get_comments_by_course():
     """
