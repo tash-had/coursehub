@@ -6,6 +6,10 @@ from db.workers.comment_database_worker import CommentDatabaseWorker
 from db.workers.user_to_comment_database_worker import UserToCommentDatabaseWorker
 from db.workers.user_database_worker import UserDatabaseWorker
 
+comment_database_worker = CommentDatabaseWorker()
+user_to_comment_database_worker = UserToCommentDatabaseWorker()
+
+
 class CommentManager:
     def __init__(self):
         self.user_database_worker = UserDatabaseWorker()
@@ -19,9 +23,11 @@ class CommentManager:
         @type parent_id: str
         @rtype: comment
         """
-        comment_database_worker = CommentDatabaseWorker()
         comment_id = str(uuid.uuid4())
         time_stamp = time.time()
+
+        user_to_comment_database_worker.insert_row(user_id, comment_id)
+        user_to_comment_database_worker.set_rating(user_id, comment_id, "upvote")
 
         is_root = 1
         if parent_id is not None:
@@ -45,7 +51,6 @@ class CommentManager:
         @type course_id: str
         @rtype: comment[]
         """
-        comment_database_worker = CommentDatabaseWorker()
         return comment_database_worker.get_comments_for_course(course_id)
 
     def get_comment_by_id(self, comment_id):
@@ -54,7 +59,6 @@ class CommentManager:
         @type comment_id: str
         @rtype: comment
         """
-        comment_database_worker = CommentDatabaseWorker()
         result = comment_database_worker.get_comment_by_id(comment_id)
         return Comment(result[4], result[2], result[3], result[1], result[0],
                        result[7], result[6], result[5], self.user_database_worker.get_username_by_id(result[7])[0][0])
@@ -66,14 +70,13 @@ class CommentManager:
         @rtype: comment
 
         """
-        comment_database_worker = CommentDatabaseWorker()
-        user_to_comment_database_worker = UserToCommentDatabaseWorker()
+        user_to_comment_database_worker.insert_row(user_id, comment_id)
         comment_to_upvote = self.get_comment_by_id(comment_id)
         if user_to_comment_database_worker.get_rating(user_id, comment_id) == "upvote":
-            user_to_comment_database_worker.set_rating(user_id, comment_id, "none")
+            user_to_comment_database_worker.set_rating(user_id, comment_id, "None")
             comment_to_upvote.set_score(comment_database_worker.downvote(comment_id))
 
-        elif user_to_comment_database_worker.get_rating(user_id, comment_id) == "none":
+        elif user_to_comment_database_worker.get_rating(user_id, comment_id) == "None":
             user_to_comment_database_worker.set_rating(user_id, comment_id, "upvote")
             comment_to_upvote.set_score(comment_database_worker.upvote(comment_id))
 
@@ -91,20 +94,19 @@ class CommentManager:
         @rtype: comment
         """
 
-        comment_database_worker = CommentDatabaseWorker()
-        user_to_comment_database_worker = UserToCommentDatabaseWorker()
+        user_to_comment_database_worker.insert_row(user_id, comment_id)
         comment_to_upvote = self.get_comment_by_id(comment_id)
         if user_to_comment_database_worker.get_rating(user_id, comment_id) == "upvote":
             user_to_comment_database_worker.set_rating(user_id, comment_id, "downvote")
             comment_to_upvote.set_score(comment_database_worker.downvote(comment_id))
             comment_to_upvote.set_score(comment_database_worker.downvote(comment_id))
 
-        elif user_to_comment_database_worker.get_rating(user_id, comment_id) == "none":
+        elif user_to_comment_database_worker.get_rating(user_id, comment_id) == "None":
             user_to_comment_database_worker.set_rating(user_id, comment_id, "downvote")
             comment_to_upvote.set_score(comment_database_worker.downvote(comment_id))
 
         elif user_to_comment_database_worker.get_rating(user_id, comment_id) == "downvote":
-            user_to_comment_database_worker.set_rating(user_id, comment_id, "none")
+            user_to_comment_database_worker.set_rating(user_id, comment_id, "None")
             comment_to_upvote.set_score(comment_database_worker.upvote(comment_id))
 
         return comment_to_upvote
