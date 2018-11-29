@@ -1,10 +1,12 @@
 from api.course.course import Course
 from db.workers.course_database_worker import CourseDatabaseWorker
+from db.workers.UserToCourseDatabaseWorker import UserToCourseDatabaseWorker
 
 
 class CourseManager:
 
     course_db_worker = CourseDatabaseWorker()
+    user_to_course_db_worker = UserToCourseDatabaseWorker()
 
     @staticmethod
     def build_course_obj(course_row):
@@ -55,10 +57,11 @@ class CourseManager:
         return CourseManager.build_course_obj(course_info[0])
 
     @staticmethod
-    def update_course_rating(course, new_ratings):
+    def update_course_rating(course, new_ratings, remove_or_add):
         """
         :param course: Course obj
         :param new_ratings: (dict) newly added ratings
+        :param remove_or_add: str - "remove" or "add"
         :return:
         """
         overall_rating = course.get_overall_rating()
@@ -67,27 +70,81 @@ class CourseManager:
 
         for r_type in new_ratings:
             prev_rating = course.get_ratings()[r_type]
-            rating_sum += int(new_ratings[r_type])
+            rating_sum += float(new_ratings[r_type])
 
-            updated_rating = CourseManager.calculate_course_rating(prev_rating, count, int(new_ratings[r_type]))
+            updated_rating = CourseManager.calculate_course_rating(prev_rating, count,
+                                                                   float(new_ratings[r_type]), remove_or_add)
             CourseManager.course_db_worker.update_course_field(course.get_id(), r_type, updated_rating)
 
         rating_average = rating_sum / len(new_ratings)
-        updated_overall_rating = CourseManager.calculate_course_rating(overall_rating, count, rating_average)
+
+        updated_overall_rating = CourseManager.calculate_course_rating(overall_rating, count,
+                                                                       rating_average, remove_or_add)
         CourseManager.course_db_worker.update_course_field(course.get_id(), "overall_rating", updated_overall_rating)
 
-        CourseManager.course_db_worker.update_course_field(course.get_id(), "num_ratings", course.rating_count + 1)
+        if remove_or_add == 'remove':
+            new_rating_count = course.rating_count - 1
+        else:
+            new_rating_count = course.rating_count + 1
+        CourseManager.course_db_worker.update_course_field(course.get_id(), "num_ratings", new_rating_count)
 
         new_course = CourseManager.course_db_worker.get_course_by_id(course.get_id())
 
         return CourseManager.build_course_obj(new_course[0])
 
     @staticmethod
-    def calculate_course_rating(old_rating, rating_count, new_rating):
+    def calculate_course_rating(old_rating, rating_count, new_rating, remove_or_add):
         """
         :param old_rating: prev rating(float)
         :param rating_count: # of ratings in prev rating(int)
         :param new_rating: int
+        :param remove_or_add: str ("remove" or "add")
         :return: aggregated rating (float)
         """
-        return (old_rating * rating_count + new_rating)/(rating_count + 1)
+        if remove_or_add == 'remove':
+            if rating_count == 1:
+                return 0
+            return (old_rating * rating_count - new_rating) / (rating_count - 1)
+        else:
+            return (old_rating * rating_count + new_rating) / (rating_count + 1)
+
+    @staticmethod
+    def did_user_already_rate_course(user_id, course_id):
+        """
+        param user_id: str
+        param course_id: str
+        """
+        return len(CourseManager.user_to_course_db_worker.get_row(user_id, course_id)) > 0
+
+    @staticmethod
+    def get_prev_ratings(user_id, course_id):
+        """
+        param user_id: str
+        param course_id: str
+        """
+        prev_ratings = dict()
+
+        rating_row = CourseManager.user_to_course_db_worker.get_row(user_id, course_id)
+        prev_ratings["workload_rating"] = rating_row[0][2]
+        prev_ratings["recommendation_rating"] = rating_row[0][3]
+
+        return prev_ratings
+
+    @staticmethod
+    def update_user_course_ratings(user_id, course_id, ratings):
+        """
+        :param user_id: str
+        :param course_id: str
+        :param ratings: dict[rating type (str): int]
+        """
+        for rating_type in ratings:
+            CourseManager.user_to_course_db_worker.update_rating(user_id, course_id, rating_type, ratings[rating_type])
+
+    @staticmethod
+    def insert_course_rating(user_id, course_id, ratings):
+        """
+        :param user_id: str
+        :param course_id: str
+        :param ratings: dict[]
+        """
+        CourseManager.user_to_course_db_worker.insert_row(user_id, course_id, ratings)

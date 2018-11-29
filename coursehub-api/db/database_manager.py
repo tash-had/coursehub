@@ -25,5 +25,3 @@ class DatabaseManager:
         except Error as e:
             print(e)
         return None
-
-
