@@ -23,6 +23,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
 import { AppComponent } from './app.component';
+import { ProfileComponent } from './views/profile/profile.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { AppComponent } from './app.component';
     CommentComponent,
     ReadMoreComponent,
     LoadingComponent,
-    NavbarComponent
+    NavbarComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
