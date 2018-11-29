@@ -1,0 +1,37 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-light bg-white">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><img class="logo" src='\assets\logo.jpg'  height="10%" width="10%" (click)='navigateToDashboard()'></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+      <!-- Links -->
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a routerLink="/" class="nav-link waves-dark" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link waves-dark" mdbWavesEffect>Popular</a>
+          </li>
+          <li class="nav-item" *ngIf="!auth.isAuthenticated()">
+              <a class="nav-link waves-dark" mdbWavesEffect (click)="auth.login()">Login / Signup</a>
+          </li>
+
+          <!-- Dropdown -->
+          <li class="nav-item dropdown" dropdown *ngIf="auth.isAuthenticated()">
+              <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-dark" mdbWavesEffect>
+              My Account<span class="caret"></span></a>
+              <div *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
+                  <a class="dropdown-item waves-dark" mdbWavesEffect href="#">Profile</a>
+                  <a class="dropdown-item waves-dark" mdbWavesEffect href="#">Settings</a>
+                  <div class="divider dropdown-divider"></div>
+                  <a class="dropdown-item waves-dark" mdbWavesEffect href="#" (click)="auth.logout()">Logout</a>
+              </div>
+          </li>
+
+      </ul>
+      <!-- Links -->
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>

@@ -70,12 +70,15 @@ class _CourseHubDatabaseInitializer:
         """ Creates the comment and course tables in the db """
 
         comment_table = """  CREATE TABLE IF NOT EXISTS comments(
-            id text PRIMARY KEY,
-            course_id text,
-            comment text,
-            timestamp integer,
-            votes integer);
-        """
+             id text PRIMARY KEY,
+             course_id text,
+             comment text,
+             timestamp integer,
+             votes integer,
+             root integer,
+             children text,
+             user_id text);
+         """
 
         course_table = """
         CREATE TABLE IF NOT EXISTS courses(
@@ -93,5 +96,32 @@ class _CourseHubDatabaseInitializer:
             exclusion text,
             breadth text);
         """
+
+        user_table = """
+                 CREATE TABLE IF NOT EXISTS users(
+                     id text PRIMARY KEY,
+                     picture text,
+                     username text,
+                     email text);
+                 """
+
+        user_to_comment_table = """
+                 CREATE TABLE IF NOT EXISTS user_to_comment(
+                     user_id text,
+                     comment_id text,
+                     upvote_or_downvote text DEFAULT "None");
+                         """
+        user_to_course_table = """
+                 CREATE TABLE IF NOT EXISTS user_to_course(
+                     user_id text,
+                     course_id text,
+                     workload_rating float,
+                     recommendation_rating float);
+                         """
+
         self.db_manager.create_table(comment_table)
         self.db_manager.create_table(course_table)
+        self.db_manager.create_table(user_table)
+        self.db_manager.create_table(user_to_comment_table)
+        self.db_manager.create_table(user_to_course_table)
+

@@ -1,4 +1,5 @@
 from db.database_manager import DatabaseManager
+from db.workers.user_to_comment_database_worker import UserToCommentDatabaseWorker
 
 
 class CommentDatabaseWorker(DatabaseManager):
@@ -14,18 +15,26 @@ class CommentDatabaseWorker(DatabaseManager):
         :return:
         """
 
+        user_to_comment_database_worker = UserToCommentDatabaseWorker()
+
         comment_id = data["id"]
         course_id = data["course_id"]
         comment = data["comment"]
         time = data["timestamp"]
         votes = data["votes"]
+        root = data["root"]
+        children = data["children"]
+        user = data["user_id"]
 
-        input_data = [comment_id, course_id, comment, time, votes]
+        input_data = [comment_id, course_id, comment, time, votes, root, children, user]
 
         c = self.db_conn.cursor()
-        c.execute('insert into comments (id, course_id, comment, timestamp, votes) values (?,?,?,?,?)', input_data)
+        c.execute('insert into comments (id, course_id, comment, timestamp, votes, root, children, user_id) '
+                  'values (?,?,?,?,?,?,?,?)', input_data)
         self.db_conn.commit()
         c.close()
+
+        user_to_comment_database_worker.insert_row(user, comment_id)
 
     def get_comments_for_course(self, course_id):
         """
@@ -50,6 +59,18 @@ class CommentDatabaseWorker(DatabaseManager):
         """
         cur = self.db_conn.cursor()
         comment = cur.execute('SELECT * FROM comments WHERE id=?', [comment_id]).fetchone()
+
+        cur.close()
+        return comment
+
+    def get_comments_by_user_id(self, user_id):
+        """Return the comments in the database that correspond to user_id.
+
+        :param user_id:
+        :return:
+        """
+        cur = self.db_conn.cursor()
+        comment = cur.execute('SELECT * FROM comments WHERE user_id=?', [user_id]).fetchall()
 
         cur.close()
         return comment
@@ -83,3 +104,22 @@ class CommentDatabaseWorker(DatabaseManager):
         self.db_conn.commit()
 
         return current_votes[0] - 1
+
+    def add_children_to_comment(self, comment_id, child_id):
+        """
+        Update a comments children
+
+        :param str comment_id:
+        :param str child_id:
+        :return:
+        """
+        cur = self.db_conn.cursor()
+        cur.execute("SELECT children FROM comments WHERE id=?", [comment_id])
+        results = cur.fetchall()
+        children = results[0][0]
+        new_children = children + " " + child_id
+
+        cur.execute("UPDATE comments SET children =? WHERE id=?", [new_children, comment_id])
+
+        self.db_conn.commit()
+        cur.close()

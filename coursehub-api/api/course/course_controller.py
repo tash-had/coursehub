@@ -4,7 +4,7 @@ from api.course.course_manager import CourseManager
 course_controller_bp = Blueprint("course_controller", __name__)
 
 
-@course_controller_bp.route("/search_course")
+@course_controller_bp.route("/search_course", methods=["GET"])
 def search_for_course():
     """
     :return: array of JSON dict of all matching courses
@@ -22,7 +22,7 @@ def search_for_course():
     return jsonify({"matching_courses": courses})
 
 
-@course_controller_bp.route("/get_course_data")
+@course_controller_bp.route("/get_course_data", methods=["GET"])
 def get_course_data():
     """
     :return: course by ID
@@ -32,7 +32,7 @@ def get_course_data():
     return jsonify(CourseManager.get_course_by_id(id_).__dict__)
 
 
-@course_controller_bp.route("/add_course_ratings")
+@course_controller_bp.route("/add_course_ratings", methods=["PUT"])
 def update_rating():
     """
     :return: course object with updated rating
@@ -40,14 +40,24 @@ def update_rating():
     workload = request.args.get("workloadRating")  # must be either 'workload' or 'recommendation'
     recommendation = request.args.get("recommendationRating")
     course_id = request.args.get("courseId")
+    user_id = request.args.get("userId")
 
     rating_dict = {"workload_rating": workload, "recommendation_rating": recommendation}
 
     course = CourseManager.get_course_by_id(course_id)
 
-    new_course = CourseManager.update_course_rating(course, rating_dict)
+    if CourseManager.did_user_already_rate_course(user_id, course_id):
+        prev_ratings = CourseManager.get_prev_ratings(user_id, course_id)
+        CourseManager.update_course_rating(course, prev_ratings, "remove")
+        CourseManager.update_user_course_ratings(user_id, course_id, rating_dict)
+    else:
+        CourseManager.insert_course_rating(user_id, course_id, rating_dict)
 
-    ratings = {}
+    course = CourseManager.get_course_by_id(course_id)
+
+    new_course = CourseManager.update_course_rating(course, rating_dict, "add")
+
+    ratings = dict()
     ratings["overall_rating"] = new_course.overall_rating
     ratings["workload_rating"] = new_course.ratings["workload_rating"]
     ratings["recommendation_rating"] = new_course.ratings["recommendation_rating"]
