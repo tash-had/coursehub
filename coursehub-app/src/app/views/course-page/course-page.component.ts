@@ -14,6 +14,7 @@ export class CoursePageComponent implements OnInit {
   usefulCourseRating: number;
   difficultCourseRating: number;
   ratingsExist: boolean = true;
+  ratingsCount: number;
   comments: String[] = [];
   currentComment: String;
   constructor(private courseCardDataService: CourseCardDataService, private coursePageDataService: CoursePageDataService, private route: ActivatedRoute) {}
@@ -22,7 +23,15 @@ export class CoursePageComponent implements OnInit {
     this.courseCardDataService.courseData.subscribe(courseData => this.courseCardDataReceived(courseData));
     this.checkForRatings();
     this.initializeRatings();
+    this.getRatingsCount();
+    console.log(this.courseData);
 
+  }
+
+  getRatingsCount(){
+    if (this.courseData){
+      this.ratingsCount = this.courseData['rating_count'];
+    }
   }
 
   courseCardDataReceived(courseData: Object) {
@@ -68,6 +77,7 @@ export class CoursePageComponent implements OnInit {
         this.courseData = courseData;
         this.checkForRatings();
         this.initializeRatings();
+        this.getRatingsCount();
       });
   }
 
@@ -76,5 +86,9 @@ export class CoursePageComponent implements OnInit {
         this.comments.push(this.currentComment);
         this.currentComment = null;       
     }
+  }
+
+  getOverallRatingAsPercent() {
+    return Math.round(100*(this.courseData['overall_rating']/5));
   }
 }

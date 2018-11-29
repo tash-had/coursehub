@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class RatingsCircleComponent implements OnInit {
   @Input() rating: number = 50;
   @Input() hide: boolean = false;
-  @Input() percentColor: string = 'blue';
+  @Input() percentColor: string = 'orange';
 
   constructor() { }
 
