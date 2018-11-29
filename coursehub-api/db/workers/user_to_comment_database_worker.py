@@ -35,13 +35,15 @@ class UserToCommentDatabaseWorker(DatabaseManager):
         :return:
         :rtype:
         """
-        rating = "None"
+        if self.get_rating(user_id, comment_id) == []:
 
-        c = self.db_conn.cursor()
-        c.execute('insert into user_to_comment(user_id, comment_id, upvote_or_downvote) values(?, ?, ?)',
-                  [user_id, comment_id, rating])
-        self.db_conn.commit()
-        c.close()
+            rating = "None"
+
+            c = self.db_conn.cursor()
+            c.execute('insert into user_to_comment(user_id, comment_id, upvote_or_downvote) values(?, ?, ?)',
+                      [user_id, comment_id, rating])
+            self.db_conn.commit()
+            c.close()
 
     # insert a upvote or donwvote func for logic
     def get_rating(self, user_id, comment_id):
