@@ -25,6 +25,24 @@ class UserToCommentDatabaseWorker(DatabaseManager):
             return []
         return results
 
+    def insert_row(self, user_id, comment_id):
+        """
+
+        :param user_id:
+        :type user_id:
+        :param comment_id:
+        :type comment_id:
+        :return:
+        :rtype:
+        """
+        rating = "None"
+
+        c = self.db_conn.cursor()
+        c.execute('insert into user_to_comment(user_id, comment_id, upvote_or_downvote) values(?, ?, ?)',
+                  [user_id, comment_id, rating])
+        self.db_conn.commit()
+        c.close()
+
     # insert a upvote or donwvote func for logic
     def get_rating(self, user_id, comment_id):
         """Get the upvote or downvote value for a users comment
