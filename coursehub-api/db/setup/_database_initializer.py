@@ -4,7 +4,7 @@ from db.database_manager import DatabaseManager
 class _CourseHubDatabaseInitializer:
     """ A set of functions to help setup the database. Use cautiously. """
 
-    def __init__(self, drop_courses_table=True):
+    def __init__(self, drop_courses_table=False):
         self.db_manager = DatabaseManager()
         if drop_courses_table:
             conn = self.db_manager.db_conn
@@ -46,8 +46,12 @@ class _CourseHubDatabaseInitializer:
         course_title = data["course_title"]
         code = data["course_code"]
         course_description = data["course_description"]
+        prerequisite = data["prerequisite"]
+        corequisite = data["corequisite"]
+        exclusion = data["exclusion"]
+        breadth =  data["breadth"]
 
-        input_data = [course_id, code, course_description, course_title, org_name, 0, 0, 0, 0]
+        input_data = [course_id, code, course_description, course_title, org_name, 0, 0, 0, 0, prerequisite, corequisite, exclusion, breadth]
 
         c = self.db_manager.db_conn.cursor()
         course_exists = c.execute('SELECT * FROM courses WHERE id = ?', [str(course_id)])
@@ -55,7 +59,8 @@ class _CourseHubDatabaseInitializer:
         # NOTE: this will makesure the same course in two different sections don't both get added.
         if course_exists.fetchall() == []:
             c.execute('insert into courses (id, course_code, course_description, course_title, org_name,'
-                      'workload_rating, recommendation_rating, overall_rating, num_ratings) values (?,?,?,?,?,?,?,?,?)',
+                      'workload_rating, recommendation_rating, overall_rating, num_ratings,'
+                      'prerequisite, corequisite, exclusion, breadth) values (?,?,?,?,?,?,?,?,?,?,?,?,?)',
                       input_data)
 
         self.db_manager.db_conn.commit()
@@ -82,7 +87,11 @@ class _CourseHubDatabaseInitializer:
             workload_rating float,
             recommendation_rating float,
             overall_rating float,
-            num_ratings integer);
+            num_ratings integer,
+            prerequisite text,
+            corequisite text,
+            exclusion text,
+            breadth text);
         """
         self.db_manager.create_table(comment_table)
         self.db_manager.create_table(course_table)
