@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-let AUTH_REQ_METHODS: string[] = ["POST", "PUT", "DELETE", "UPDATE"];
+let AUTH_REQ_METHODS: string[] = ["POST", "PUT", "DELETE"];
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
