@@ -35,7 +35,7 @@ class UserToCommentDatabaseWorker(DatabaseManager):
         :return:
         :rtype:
         """
-        if self.get_rating(user_id, comment_id) == []:
+        if self.get_rating(user_id, comment_id) is None:
 
             rating = "None"
 
@@ -60,8 +60,8 @@ class UserToCommentDatabaseWorker(DatabaseManager):
         user_id = ?""", [comment_id, user_id])
 
         results = cur.fetchall()
-        if results is None:
-            return []
+        if results == []:
+            return None
         return results[0][0]
 
     def set_rating(self, user_id, comment_id, value):
