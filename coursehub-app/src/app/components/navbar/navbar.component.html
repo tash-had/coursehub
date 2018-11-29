@@ -1,7 +1,7 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-light bg-white">
 
   <!-- Navbar brand -->
-  <mdb-navbar-brand><a class="navbar-brand" href="#">CourseHub</a></mdb-navbar-brand>
+  <mdb-navbar-brand><img class="logo" src='\assets\logo.jpg'  height="10%" width="10%" (click)='navigateToDashboard()'></mdb-navbar-brand>
 
   <!-- Collapsible content -->
   <links>
@@ -14,7 +14,7 @@
               <a class="nav-link waves-dark" mdbWavesEffect>Popular</a>
           </li>
           <li class="nav-item" *ngIf="!auth.isAuthenticated()">
-              <a class="nav-link waves-dark" mdbWavesEffect (click)="auth.login()">Login</a>
+              <a class="nav-link waves-dark" mdbWavesEffect (click)="auth.login()">Login / Signup</a>
           </li>
 
           <!-- Dropdown -->

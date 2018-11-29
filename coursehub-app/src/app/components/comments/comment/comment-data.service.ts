@@ -13,5 +13,4 @@ export class CommentDataService {
   getComments(course: String) {
     return this.http.get(this.commentUrl + course);
   }
-
 }

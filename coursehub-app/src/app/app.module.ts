@@ -12,9 +12,9 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CoursePageComponent } from './views/course-page/course-page.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { CommentComponent } from  './components/comment/comment.component';
+import { CommentComponent } from  './components/comments/comment/comment.component';
 import { ReadMoreComponent } from './components/read-more/read-more.component';
-import { CommentDataService } from './components/comment/comment-data.service';
+import { CommentDataService } from './components/comments/comment/comment-data.service';
 import { SearchbarService } from './components/searchbar/searchbar.service';
 import { CourseCardDataService } from './components/course-card/course-card-data.service';
 import { CoursePageDataService } from './views/course-page/course-page-data.service';
@@ -25,6 +25,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { CommentListComponent } from './components/comments/comment-list/comment-list.component';
+import { CommentInputComponent } from './components/comments/comment-input/comment-input.component';
+import { SlidersComponent } from './components/sliders/sliders.component';
+import { RatingsCircleComponent } from './components/ratings-circle/ratings-circle.component';
 
 
 @NgModule({
@@ -40,7 +44,11 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     LoadingComponent,
     NavbarComponent,
     ProfileComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    CommentListComponent,
+    CommentInputComponent,
+    SlidersComponent,
+    RatingsCircleComponent
   ],
   imports: [
     BrowserModule,
