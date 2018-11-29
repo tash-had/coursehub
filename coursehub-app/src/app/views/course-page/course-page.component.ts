@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  ElementRef, ViewChild } from '@angular/core';
 import { CourseCardDataService } from '../../components/course-card/course-card-data.service'
 import { ActivatedRoute } from '@angular/router';
 import { CoursePageDataService } from './course-page-data.service'
@@ -11,15 +11,18 @@ import { CoursePageDataService } from './course-page-data.service'
 
 export class CoursePageComponent implements OnInit {
   courseData: Object;
-
-  //mock comments
-  comments: String[] = ['Hey, I love CSC301', 'Hey, I do not like CSC301 that much', 
-  'Why does no one shower??', 'I failed my assignment, can I drop this course?', "Why don't we just use reddit"];
+  usefulCourseRating: number;
+  difficultCourseRating: number;
+  ratingsExist: boolean = true;
+  comments: String[] = [];
   currentComment: String;
   constructor(private courseCardDataService: CourseCardDataService, private coursePageDataService: CoursePageDataService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.courseCardDataService.courseData.subscribe(courseData => this.courseCardDataReceived(courseData))
+    this.courseCardDataService.courseData.subscribe(courseData => this.courseCardDataReceived(courseData));
+    this.checkForRatings();
+    this.initializeRatings();
+
   }
 
   courseCardDataReceived(courseData: Object) {
@@ -30,10 +33,42 @@ export class CoursePageComponent implements OnInit {
     }
   }
 
+  checkForRatings(){
+    if (this.courseData){
+      if (this.courseData['rating_count'] == 0){
+        this.ratingsExist = false;
+      }
+    }
+  }
+
+  initializeRatings(){
+    if (this.courseData){
+      this.difficultCourseRating = Math.round(100*(this.courseData['ratings']['workload_rating']/5));
+      this.usefulCourseRating = Math.round(100*(this.courseData['ratings']['recommendation_rating']/5));
+    }
+    
+  
+  }
+  setRatings(type:string) : number {
+    if (this.courseData){
+      if (type == 'useful'){
+        return this.usefulCourseRating;
+      }
+      else {
+        return this.difficultCourseRating;
+      }
+    }
+
+  }
+
   getCourseData() {
     const courseId = +this.route.snapshot.paramMap.get('courseId');
     this.coursePageDataService.getCourseData(courseId.toString())
-      .subscribe((courseData) => this.courseData = courseData);
+      .subscribe((courseData) => {
+        this.courseData = courseData;
+        this.checkForRatings();
+        this.initializeRatings();
+      });
   }
 
   addComment() {
