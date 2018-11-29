@@ -70,7 +70,7 @@ class _CourseHubDatabaseInitializer:
              comment text,
              timestamp integer,
              votes integer,
-             root boolean,
+             root integer,
              children text,
              user_id text);
          """
@@ -100,7 +100,7 @@ class _CourseHubDatabaseInitializer:
                  CREATE TABLE IF NOT EXISTS user_to_comment(
                      user_id text,
                      comment_id text,
-                     upvote_or_downvote text);
+                     upvote_or_downvote text DEFAULT "None");
                          """
         user_to_course_table = """
                  CREATE TABLE IF NOT EXISTS user_to_course(
@@ -115,3 +115,4 @@ class _CourseHubDatabaseInitializer:
         self.db_manager.create_table(user_table)
         self.db_manager.create_table(user_to_comment_table)
         self.db_manager.create_table(user_to_course_table)
+

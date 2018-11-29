@@ -1,4 +1,5 @@
 from db.database_manager import DatabaseManager
+from db.workers.user_to_comment_database_worker import UserToCommentDatabaseWorker
 
 
 class CommentDatabaseWorker(DatabaseManager):
@@ -13,6 +14,8 @@ class CommentDatabaseWorker(DatabaseManager):
         :param dict data: Keys: [id, course_id, comment, timestamp, votes]
         :return:
         """
+
+        user_to_comment_database_worker = UserToCommentDatabaseWorker()
 
         comment_id = data["id"]
         course_id = data["course_id"]
@@ -30,6 +33,8 @@ class CommentDatabaseWorker(DatabaseManager):
                   'values (?,?,?,?,?,?,?,?)', input_data)
         self.db_conn.commit()
         c.close()
+
+        user_to_comment_database_worker.insert_row(user, comment_id)
 
     def get_comments_for_course(self, course_id):
         """

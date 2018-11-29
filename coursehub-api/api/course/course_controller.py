@@ -53,6 +53,8 @@ def update_rating():
     else:
         CourseManager.insert_course_rating(user_id, course_id, rating_dict)
 
+    course = CourseManager.get_course_by_id(course_id)
+
     new_course = CourseManager.update_course_rating(course, rating_dict, "add")
 
     ratings = dict()
