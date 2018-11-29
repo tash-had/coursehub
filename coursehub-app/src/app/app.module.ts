@@ -26,6 +26,7 @@ import { AppComponent } from './app.component';
 import { CommentListComponent } from './components/comments/comment-list/comment-list.component';
 import { CommentInputComponent } from './components/comments/comment-input/comment-input.component';
 import { SlidersComponent } from './components/sliders/sliders.component';
+import { RatingsCircleComponent } from './components/ratings-circle/ratings-circle.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { SlidersComponent } from './components/sliders/sliders.component';
     NavbarComponent,
     CommentListComponent,
     CommentInputComponent,
-    SlidersComponent
+    SlidersComponent,
+    RatingsCircleComponent
   ],
   imports: [
     BrowserModule,
