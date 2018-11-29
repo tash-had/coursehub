@@ -24,6 +24,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './views/profile/profile.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { ProfileComponent } from './views/profile/profile.component';
     ReadMoreComponent,
     LoadingComponent,
     NavbarComponent,
-    ProfileComponent
+    ProfileComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
