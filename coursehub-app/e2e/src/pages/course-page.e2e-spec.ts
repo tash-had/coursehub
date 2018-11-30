@@ -18,18 +18,20 @@ describe('Test course page', () => {
     search.getSearchBarInput().click();
     search.typeInSearchBar("CSC165");
     courseCard.getCourseCardHeader().click();
-    expect(testUtils.getCurrentPageUrl()).toEqual("http://localhost:4200/course/20043");
-    expect(courseCard.getCourseCardHeader()).toBeDefined();
-    expect(courseCard.getCourseCardHeaderText()).toEqual("CSC165H1");
-    expect(courseCard.getCourseCardDescriptionText()).toContain("Introduction to abstraction and rigour. Informal");
+    expect(testUtils.getCurrentPageUrl()).toEqual("http://localhost:4200/course/20043").then(() => {
+      expect(courseCard.getCourseCardHeader()).toBeDefined();
+      expect(courseCard.getCourseCardHeaderText()).toEqual("CSC165H1");
+      expect(courseCard.getCourseCardDescriptionText()).toContain("Introduction to abstraction and rigour. Informal");
+    });
   });
 
 
   it('should populate course card when the course age is loaded directly via perma link', () => {
-    testUtils.navigateTo("http://localhost:4200/course/20043");
-    expect(courseCard.getCourseCardHeader()).toBeDefined();
-    expect(courseCard.getCourseCardHeaderText()).toEqual("CSC165H1");
-    expect(courseCard.getCourseCardDescriptionText()).toContain("Introduction to abstraction and rigour. Informal");
+    testUtils.navigateTo("http://localhost:4200/course/20043").then(() => {
+      expect(courseCard.getCourseCardHeader()).toBeDefined();
+      expect(courseCard.getCourseCardHeaderText()).toEqual("CSC165H1");
+      expect(courseCard.getCourseCardDescriptionText()).toContain("Introduction to abstraction and rigour. Informal");
+    })
   });
 
 });

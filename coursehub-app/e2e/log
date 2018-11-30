@@ -4,22 +4,22 @@
 
 ** Angular Live Development Server is listening on localhost: 4200, open your browser on http://localhost:4200/ **
 
-[0mDate: [1m[37m2018-11-30T07:46:10.145Z[39m[22m[0m
-[0mHash: [1m[37m005a987f946cb1eddfd9[39m[22m[0m
-[0mTime: [1m[37m14682[39m[22mms[0m
-[0mchunk {[1m[33mmain[39m[22m} [1m[32mmain.js, main.js.map[39m[22m (main) 152 kB [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mDate: [1m[37m2018-11-30T16:24:55.888Z[39m[22m[0m
+[0mHash: [1m[37m1393f1f47b9fe92f8d77[39m[22m[0m
+[0mTime: [1m[37m12002[39m[22mms[0m
+[0mchunk {[1m[33mmain[39m[22m} [1m[32mmain.js, main.js.map[39m[22m (main) 165 kB [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
 [0mchunk {[1m[33mpolyfills[39m[22m} [1m[32mpolyfills.js, polyfills.js.map[39m[22m (polyfills) 227 kB [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
 [0mchunk {[1m[33mruntime[39m[22m} [1m[32mruntime.js, runtime.js.map[39m[22m (runtime) 5.4 kB [1m[33m[entry][39m[22m[1m[32m [rendered][39m[22m[0m
 [0mchunk {[1m[33mscripts[39m[22m} [1m[32mscripts.js, scripts.js.map[39m[22m (scripts) 423 kB [1m[32m [rendered][39m[22m[0m
 [0mchunk {[1m[33mstyles[39m[22m} [1m[32mstyles.js, styles.js.map[39m[22m (styles) 506 kB [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
 [0mchunk {[1m[33mvendor[39m[22m} [1m[32mvendor.js, vendor.js.map[39m[22m (vendor) 5.55 MB [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
 [34mℹ[39m [90m｢wdm｣[39m: Compiled successfully.
-[02:46:10] I/update - chromedriver: file exists /Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_2.44.zip
-[02:46:10] I/update - chromedriver: unzipping chromedriver_2.44.zip
-[02:46:10] I/update - chromedriver: setting permissions to 0755 for /Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_2.44
-[02:46:10] I/update - chromedriver: chromedriver_2.44 up to date
-[02:46:11] I/launcher - Running 1 instances of WebDriver
-[02:46:11] I/direct - Using ChromeDriver directly...
+[11:24:56] I/update - chromedriver: file exists /Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_2.44.zip
+[11:24:56] I/update - chromedriver: unzipping chromedriver_2.44.zip
+[11:24:56] I/update - chromedriver: setting permissions to 0755 for /Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_2.44
+[11:24:56] I/update - chromedriver: chromedriver_2.44 up to date
+[11:24:57] I/launcher - Running 1 instances of WebDriver
+[11:24:57] I/direct - Using ChromeDriver directly...
 Jasmine started
 
   Test course page
@@ -31,6 +31,6 @@ Jasmine started
     [32m✓ should search for csc165 clicking it should lead to course page[39m
     [32m✓ should persist previous search results and input when back button pressed from course-page[39m
 
-Executed 5 of 5 specs[32m SUCCESS[39m in 11 secs.
-[02:46:24] I/launcher - 0 instance(s) of WebDriver still running
-[02:46:24] I/launcher - chrome #01 passed
+Executed 5 of 5 specs[32m SUCCESS[39m in 12 secs.
+[11:25:10] I/launcher - 0 instance(s) of WebDriver still running
+[11:25:10] I/launcher - chrome #01 passed
