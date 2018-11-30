@@ -110,7 +110,3 @@ class CommentManager:
             comment_to_upvote.set_score(comment_database_worker.upvote(comment_id))
 
         return comment_to_upvote
-
-
-
-

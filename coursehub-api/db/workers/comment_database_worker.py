@@ -69,6 +69,7 @@ class CommentDatabaseWorker(DatabaseManager):
         :param user_id:
         :return:
         """
+        DatabaseManager.__init__(self)
         cur = self.db_conn.cursor()
         comment = cur.execute('SELECT * FROM comments WHERE user_id=?', [user_id]).fetchall()
 
@@ -123,3 +124,4 @@ class CommentDatabaseWorker(DatabaseManager):
 
         self.db_conn.commit()
         cur.close()
+
