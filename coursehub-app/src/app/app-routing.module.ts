@@ -18,7 +18,7 @@ const routes: Routes = [  {
   component: ProfileComponent
 },
 { path: 'search', component: DashboardComponent},
-{ path: '**', component: DashboardComponent},
+{ path: '**', redirectTo: '/search'},
 { path: '', redirectTo: '/search', pathMatch: 'full'},
 { path: 'callback', component: LoadingComponent }];
 
