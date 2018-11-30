@@ -24,7 +24,12 @@
 				<br><br>
 				<app-course-card [courseData]="courseData" percentColor="orange"></app-course-card>
 
-				<app-course-prereqs> </app-course-prereqs>
+				<app-course-prereqs [prereqIn]="getOtherCourseInfo('prereq')"
+									[coreqIn]="getOtherCourseInfo('coreq')"
+									[excluIn]="getOtherCourseInfo('exclu')"
+									[breadthIn]="getOtherCourseInfo('breadth')"
+									>
+				</app-course-prereqs>
 				<div *ngIf='!ratingsExist' style="text-align:center"> <strong>No ratings available</strong>  </div>
 				<div *ngIf="ratingsExist">
 					<app-sliders [initialRating]="setRatings('useful')" 
