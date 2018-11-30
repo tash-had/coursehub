@@ -1,6 +1,6 @@
 from api.course.course import Course
 from db.workers.course_database_worker import CourseDatabaseWorker
-from db.workers.UserToCourseDatabaseWorker import UserToCourseDatabaseWorker
+from db.workers.user_to_course_database_worker import UserToCourseDatabaseWorker
 
 
 class CourseManager:
