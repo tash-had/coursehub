@@ -9,14 +9,12 @@ export class CourseReviewService {
 
   constructor(private http: HttpClient) { }
   
-  reviewCourse(difficultyRating: number, usefulnessRating: number, courseId: number, userId: string) {
+  reviewCourse(difficultyRating: number, usefulnessRating: number, courseId: number) {
     let rateCourseEndpoint = "/add_course_ratings";
-    console.log('goin');
     return this.http.put(this.courseReviewUrlBase + rateCourseEndpoint, {
       "workloadRating": difficultyRating,
       "recommendationRating": usefulnessRating,
-      "courseId": courseId,
-      "userId": userId
+      "courseId": courseId
     });
   }
 }

@@ -26,11 +26,14 @@ export class AuthService {
   public handleAuthentication(): void {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
+        let signinUrl = "http://127.0.0.1:5000/api/v1.0/user/sign_in";
+        this.http.post(signinUrl, {
+          "idToken": authResult.idToken
+        }).subscribe(() => {});
         this.setSession(authResult);
         this.router.navigate(['/search']);
       } else if (err) {
         this.router.navigate(['/search']);
-        console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
     });

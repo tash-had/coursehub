@@ -4,9 +4,9 @@
 
 ** Angular Live Development Server is listening on localhost: 4200, open your browser on http://localhost:4200/ **
 
-[0mDate: [1m[37m2018-11-30T16:24:55.888Z[39m[22m[0m
+[0mDate: [1m[37m2018-11-30T16:30:58.477Z[39m[22m[0m
 [0mHash: [1m[37m1393f1f47b9fe92f8d77[39m[22m[0m
-[0mTime: [1m[37m12002[39m[22mms[0m
+[0mTime: [1m[37m15000[39m[22mms[0m
 [0mchunk {[1m[33mmain[39m[22m} [1m[32mmain.js, main.js.map[39m[22m (main) 165 kB [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
 [0mchunk {[1m[33mpolyfills[39m[22m} [1m[32mpolyfills.js, polyfills.js.map[39m[22m (polyfills) 227 kB [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
 [0mchunk {[1m[33mruntime[39m[22m} [1m[32mruntime.js, runtime.js.map[39m[22m (runtime) 5.4 kB [1m[33m[entry][39m[22m[1m[32m [rendered][39m[22m[0m
@@ -14,12 +14,12 @@
 [0mchunk {[1m[33mstyles[39m[22m} [1m[32mstyles.js, styles.js.map[39m[22m (styles) 506 kB [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
 [0mchunk {[1m[33mvendor[39m[22m} [1m[32mvendor.js, vendor.js.map[39m[22m (vendor) 5.55 MB [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
 [34mℹ[39m [90m｢wdm｣[39m: Compiled successfully.
-[11:24:56] I/update - chromedriver: file exists /Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_2.44.zip
-[11:24:56] I/update - chromedriver: unzipping chromedriver_2.44.zip
-[11:24:56] I/update - chromedriver: setting permissions to 0755 for /Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_2.44
-[11:24:56] I/update - chromedriver: chromedriver_2.44 up to date
-[11:24:57] I/launcher - Running 1 instances of WebDriver
-[11:24:57] I/direct - Using ChromeDriver directly...
+[11:31:00] I/update - chromedriver: file exists /Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_2.44.zip
+[11:31:00] I/update - chromedriver: unzipping chromedriver_2.44.zip
+[11:31:01] I/update - chromedriver: setting permissions to 0755 for /Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_2.44
+[11:31:01] I/update - chromedriver: chromedriver_2.44 up to date
+[11:31:02] I/launcher - Running 1 instances of WebDriver
+[11:31:02] I/direct - Using ChromeDriver directly...
 Jasmine started
 
   Test course page
@@ -29,8 +29,40 @@ Jasmine started
   Test course search
     [32m✓ should search for csc165 and have one search result[39m
     [32m✓ should search for csc165 clicking it should lead to course page[39m
-    [32m✓ should persist previous search results and input when back button pressed from course-page[39m
+[11:31:19] W/element - more than one element found for locator By(css selector, #courseCardHeader h2) - the first result will be used
+[11:31:19] W/element - more than one element found for locator By(css selector, #courseCardHeader) - the first result will be used
+    [31m✗ should persist previous search results and input when back button pressed from course-page[39m
+      [31m- [39m[31mExpected 'CSC104H1' to equal 'CSC165H1'.[39m
+          at UserContext.<anonymous> (/Users/tash-had/WebProjects/project-team-19/coursehub-app/e2e/src/pages/search.e2e-spec.ts:37:50)
+          at /Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/jasminewd2/index.js:112:25
+          at new ManagedPromise (/Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/selenium-webdriver/lib/promise.js:1067:7)
+          at ControlFlow.promise (/Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/selenium-webdriver/lib/promise.js:2396:12)
+          at schedulerExecute (/Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/jasminewd2/index.js:95:18)
+          at TaskQueue.execute_ (/Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/selenium-webdriver/lib/promise.js:2970:14)
+          at TaskQueue.executeNext_ (/Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/selenium-webdriver/lib/promise.js:2953:27)
+          at asyncRun (/Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/selenium-webdriver/lib/promise.js:2860:25)
+          at /Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/selenium-webdriver/lib/promise.js:676:7
+      [31m- [39m[31mExpected 'http://localhost:4200/course/20038' to equal 'http://localhost:4200/course/20043'.[39m
+          at UserContext.<anonymous> (/Users/tash-had/WebProjects/project-team-19/coursehub-app/e2e/src/pages/search.e2e-spec.ts:39:43)
+          at /Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/jasminewd2/index.js:112:25
+          at new ManagedPromise (/Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/selenium-webdriver/lib/promise.js:1067:7)
+          at ControlFlow.promise (/Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/selenium-webdriver/lib/promise.js:2396:12)
+          at schedulerExecute (/Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/jasminewd2/index.js:95:18)
+          at TaskQueue.execute_ (/Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/selenium-webdriver/lib/promise.js:2970:14)
+          at TaskQueue.executeNext_ (/Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/selenium-webdriver/lib/promise.js:2953:27)
+          at asyncRun (/Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/selenium-webdriver/lib/promise.js:2860:25)
+          at /Users/tash-had/WebProjects/project-team-19/coursehub-app/node_modules/selenium-webdriver/lib/promise.js:676:7
 
-Executed 5 of 5 specs[32m SUCCESS[39m in 12 secs.
-[11:25:10] I/launcher - 0 instance(s) of WebDriver still running
-[11:25:10] I/launcher - chrome #01 passed
+**************************************************
+*                    Failures                    *
+**************************************************
+
+1) Test course search should persist previous search results and input when back button pressed from course-page
+  [31m- [39m[31mExpected 'CSC104H1' to equal 'CSC165H1'.[39m
+  [31m- [39m[31mExpected 'http://localhost:4200/course/20038' to equal 'http://localhost:4200/course/20043'.[39m
+
+Executed 5 of 5 specs[31m (1 FAILED)[39m in 15 secs.
+[11:31:20] I/launcher - 0 instance(s) of WebDriver still running
+[11:31:20] I/launcher - chrome #01 failed 1 test(s)
+[11:31:20] I/launcher - overall: 1 failed spec(s)
+[11:31:20] E/launcher - Process exited with error code 1
