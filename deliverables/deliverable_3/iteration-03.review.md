@@ -1,7 +1,7 @@
 # CourseHub
 
 
-## Iteration XX - Review & Retrospect
+## Iteration 3 - Review & Retrospect
 
 * When: Thursday, November 29, 2018
 * Where: BA2179
