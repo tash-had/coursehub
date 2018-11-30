@@ -13,7 +13,7 @@ export class CourseCardComponent {
   @Input() color: String;
   @Input() percentColor: String;
   @Input() searchQuery: string;
-  
+
   Math: any;
 
   constructor(private courseCardDataService: CourseCardDataService, private _router: Router) {

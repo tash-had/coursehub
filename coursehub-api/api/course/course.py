@@ -1,5 +1,6 @@
 class Course:
-    def __init__(self, code, id_, description, title, org_name, ratings, overall_rating, rating_count):
+    def __init__(self, code, id_, description, title, org_name, ratings, overall_rating, rating_count,
+                 prerequisites, corequisites, exclusions, breadth):
         """
         
         :param code: str 
@@ -15,6 +16,10 @@ class Course:
         self.ratings = ratings
         self.overall_rating = overall_rating
         self.rating_count = rating_count
+        self.prerequisites = prerequisites
+        self.corequisites = corequisites
+        self.exclusions = exclusions
+        self.breadth = breadth
 
     def get_code(self):
         return self.code

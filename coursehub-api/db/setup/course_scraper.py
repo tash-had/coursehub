@@ -34,7 +34,11 @@ class _CourseScraper:
                     "org_name": course["org"],
                     "course_title": course["courseTitle"],
                     "course_code": course["code"],
-                    "course_description": course["courseDescription"]
+                    "course_description": course["courseDescription"],
+                    "prerequisite": course["prerequisite"],
+                    "corequisite": course["corequisite"],
+                    "exclusion": course["exclusion"],
+                    "breadth": course["breadthCategories"]
                 }
                 self.db_initializer.insert_course(data)
         self.db_initializer.set_course_ratings(find_course_ratings(org_name))
