@@ -17,6 +17,7 @@ export class CoursePageComponent implements OnInit {
   ratingsCount: number;
   comments: String[] = [];
   currentComment: String;
+
   constructor(private courseCardDataService: CourseCardDataService, private coursePageDataService: CoursePageDataService, private route: ActivatedRoute) {}
 
   ngOnInit() {
