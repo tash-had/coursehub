@@ -1,5 +1,5 @@
 <div class="md-form">
-    <textarea class="md-textarea form-control" (focusout)="onTextEntered(false)" [(ngModel)]="inputText" rows="2" id="input_text" type="text" length="120" mdbCharCounter mdbInputDirective></textarea>
-    <label for="input_text">{{inputLabel}}</label>
+    <textarea type="text" id="form7" class="md-textarea form-control" (focusout)="onTextEntered(false)" [(ngModel)]="inputText" rows="2" mdbInputDirective></textarea>
+    <label for="form7">{{inputLabel}}</label>
     <button *ngIf="submitBtn == true" (click)="onTextEntered(true)"  mdbBtn type="button" color="blue" mdbWavesEffect>Submit</button>
 </div>
