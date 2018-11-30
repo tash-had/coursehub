@@ -23,6 +23,7 @@
 		<div class="col-md-4">
 				<br><br>
 				<app-course-card searchQuery="{{searchQuery}}" [courseData]="courseData" percentColor="orange"></app-course-card>
+				<app-course-prereqs> </app-course-prereqs>
 				<div *ngIf='!ratingsExist' style="text-align:center"> <strong>No ratings available</strong>  </div>
 				<div *ngIf="ratingsExist">
 					<app-sliders [initialRating]="setRatings('useful')" 
@@ -35,5 +36,6 @@
 
 				
 		</div>
+				
 	</div>
 </div>

@@ -17,6 +17,7 @@ export class CoursePageComponent implements OnInit {
   ratingsCount: number;
   comments: String[] = [];
   currentComment: String;
+  courseRequirements: String[] = [];
   constructor(private courseCardDataService: CourseCardDataService, private coursePageDataService: CoursePageDataService, private route: ActivatedRoute) {}
 
   ngOnInit() {
@@ -24,6 +25,7 @@ export class CoursePageComponent implements OnInit {
     this.checkForRatings();
     this.initializeRatings();
     this.getRatingsCount();
+    this.getCourseRequirements();
     console.log(this.courseData);
 
   }
@@ -31,6 +33,12 @@ export class CoursePageComponent implements OnInit {
   getRatingsCount(){
     if (this.courseData){
       this.ratingsCount = this.courseData['rating_count'];
+    }
+  }
+
+  getCourseRequirements(){
+    if (this.courseData){
+      this.courseRequirements = this.courseData['rating_count'];
     }
   }
 
