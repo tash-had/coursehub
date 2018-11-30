@@ -34,6 +34,7 @@ class UserToCourseDatabaseWorker(DatabaseManager):
         cur.execute('insert into user_to_course (user_id, course_id, workload_rating, recommendation_rating) '
                     'values (?,?,?,?)', input_data)
         db_conn.commit()
+        cur.close()
 
     def get_rating(self, user_id, course_id, rating_type):
         cur = sqlite3.connect(self._db_path).cursor()

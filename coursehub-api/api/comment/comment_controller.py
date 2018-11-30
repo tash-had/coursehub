@@ -32,7 +32,8 @@ def get_comments_by_course():
 
     """
     course_id = request.args.get("courseId")
-    return jsonify(get_comments_helper(course_id))
+    a = get_comments_helper(course_id)
+    return jsonify(a)
 
 
 @comment_controller_bp.route("/upvote", methods=["PUT"])

@@ -37,3 +37,4 @@ class UserDatabaseWorker(DatabaseManager):
         c.execute('insert into users (id, username, email, picture) '
                   'values (?,?,?,?)', input_data)
         db_conn.commit()
+        c.close()
