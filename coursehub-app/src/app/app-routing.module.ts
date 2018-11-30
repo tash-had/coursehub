@@ -13,6 +13,7 @@ const routes: Routes = [  {
   component: DashboardComponent
 },
 { path: 'search', component: DashboardComponent},
+{ path: '**', component: DashboardComponent},
 { path: '', redirectTo: '/search', pathMatch: 'full'},
 { path: 'callback', component: LoadingComponent }];
 
