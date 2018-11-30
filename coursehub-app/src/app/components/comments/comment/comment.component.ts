@@ -8,20 +8,20 @@ import {CommentDataService} from './comment-data.service';
 })
 
 export class CommentComponent implements OnInit {
-  @Input() comments: String[] = [];
-  @Input() courseId: number;
-  constructor(private commentService: CommentDataService) {
+  @Input() comment: Object;
+
+  constructor() {
   }
 
   ngOnInit() {
-    this.commentService.getComments(this.courseId.toString())
-      .subscribe((data) => this.parseData(data)
-    );
+    // this.commentService.getComments(this.courseId.toString())
+      // .subscribe((data) => this.parseData(data)
+    // );
   }
 
-  parseData(data: Object) : void{
-    for (let comment in data['comments']){
-      this.comments.push(comment['text']);
-    }
-  }
+  // parseData(data: Object) : void{
+  //   for (let comment in data['comments']){
+  //     this.comments.push(comment['text']);
+  //   }
+  // }
 }

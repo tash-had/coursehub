@@ -7,7 +7,7 @@ import { of } from 'rxjs';
   providedIn: 'root'
 })
 export class SearchbarService {
-  courseUrl = 'http://127.0.0.1:5000/api/v1.0/course/search_course?searchQuery=';
+  courseUrl = 'http://0.0.0.0:5000/api/v1.0/course/search_course?searchQuery=';
   public lastSearchQuery: string;
   public COURSE_MATCHER = new RegExp("^[a-zA-Z]{3}[0-9]{1,3}$");
 

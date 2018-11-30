@@ -7,12 +7,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CommentDataService {
 
-  commentUrlBase : string = 'http://127.0.0.1:5000/api/v1.0/comment';
+  commentUrlBase : string = 'http://0.0.0.0:5000/api/v1.0/comment';
   constructor(private http: HttpClient) { }
 
-  getComments(course: String) {
+  getComments(courseId: String) {
     let getCommentsEndpoint = "/get_comments?courseId=";
-    return this.http.get(this.commentUrlBase + getCommentsEndpoint + course);
+    return this.http.get(this.commentUrlBase + getCommentsEndpoint + courseId);
   }
 
   postComment(commentText: String, courseId: number, parentId: string) {

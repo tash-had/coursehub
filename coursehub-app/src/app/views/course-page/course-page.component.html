@@ -1,19 +1,18 @@
 <app-navbar></app-navbar>
-<div class="container">
+<div *ngIf="courseData" class="container">
 	<div class="row">
 		<div class="col-md-8">
 			<div class="float-left pt-3 w-80 h-75">
 				<!-- <app-course-review-form></app-course-review-form> -->
 				<!-- <app-comment-input></app-comment-input> -->
-				<div *ngIf='!ratingsExist' class="" style="text-align:center"> <strong>No ratings available</strong> </div>
+				<div *ngIf='!ratingsExist' style="text-align:center"> <strong>No ratings available</strong> </div>
 
 				<div *ngIf="ratingsExist" class="row">
 					<div class="col-md-6">
-						<app-sliders [initialRating]="setRatings('useful')" [sliderDisabled]='true' [label]="'Usefulness'"></app-sliders>
+						<app-sliders initialRating="{{courseData.usefulCourseRating}}" sliderDisabled='true' label="Usefulness"></app-sliders>
 					</div>
 					<div class="col-md-6">
-						<app-sliders [initialRating]="setRatings('difficult')" [sliderDisabled]='true' [label]="'Difficulty'"></app-sliders>
-
+						<app-sliders initialRating="{{courseData.difficultCourseRating}}" sliderDisabled='true' label="Difficulty"></app-sliders>
 					</div>
 				</div>
 				<div *ngIf="ratingsExist" class="center card border-primary w-75">
@@ -24,7 +23,6 @@
 									UofT Course Evals</a>
 							</h5>
 						</div>
-
 					</div>
 					<div class="card-footer">
 						<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
@@ -33,7 +31,7 @@
 				<app-comment-list [courseData]="courseData"></app-comment-list>
 			</div>
 		</div>
-		<div *ngIf="courseData" class="col-md-4">
+		<div  class="col-md-4">
 			<br><br>
 			<app-course-card [courseData]="courseData" percentColor="orange"></app-course-card>
 			<app-course-review-form [courseData]="courseData"></app-course-review-form>
