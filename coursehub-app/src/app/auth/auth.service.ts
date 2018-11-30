@@ -42,6 +42,7 @@ export class AuthService {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('username', authResult.idTokenPayload.nickname);
+    localStorage.setItem('user_id', authResult.idTokenPayload.sub.substring(6));
     localStorage.setItem('expires_at', expiresAt);
   }
 
@@ -49,8 +50,9 @@ export class AuthService {
     // Remove tokens and expiry time from localStorage
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
-    localStorage.removeItem('expires_at');
     localStorage.removeItem('username');
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('expires_at');
 
     // Go back to the home route
     this.router.navigate(['/']);
@@ -64,7 +66,7 @@ export class AuthService {
   }
 
   public startAppServer() {
-    return this.http.get("https://coursehubapi.herokuapp.com/api/v1.0/course/search_course?searchQuery=");
+    return this.http.get("http://127.0.0.1:5000/api/v1.0/course/search_course?searchQuery=");
   }
 }
 
