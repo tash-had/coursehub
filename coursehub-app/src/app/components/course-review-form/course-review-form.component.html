@@ -1,5 +1,5 @@
-<button mdbBtn type="button" gradient="peach" block="true" (click)="courseReviewFormModal.show()"
-			 mdbWavesEffect>Rate {{courseData.code}}</button>
+<button mdbBtn type="button" gradient="peach" block="true" (click)="courseReviewFormModal.show()" mdbWavesEffect>Rate
+  {{courseData.code}}</button>
 <div mdbModal #courseReviewFormModal="mdbModal" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="mycourseReviewFormModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-full-height modal-right" role="document">
@@ -12,6 +12,16 @@
       </div>
       <div class="modal-body">
         <div class="course-review-form-container">
+          <div class="row" *ngIf="!authService.isAuthenticated()" style="text-align:center !important;">
+            <div class="col-md-12">
+              <div class="alert alert-warning" role="alert" style="text-align:center;">You must login to rate courses!</div>
+            </div>
+            <div class="col-md-12">
+              <button *ngIf="!authService.isAuthenticated()" (click)="authService.login()" type="button" mdbBtn color="warning" class="relative waves-light md">Sign
+                In</button>
+
+            </div>
+          </div>
           <div class="row">
             <div class="col-md-12">
               <app-sliders #usefulnessRatingSlider initalRating="50" label="Usefulness"></app-sliders>
@@ -32,9 +42,10 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Close" (click)="courseReviewFormModal.hide()"
+        <button *ngIf="authService.isAuthenticated()" type="button" mdbBtn color="danger" class="waves-light" aria-label="Close" (click)="courseReviewFormModal.hide()"
           mdbWavesEffect>Close</button>
-        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="submitReview()" mdbWavesEffect>Submit</button>
+        <button *ngIf="authService.isAuthenticated()" type="button" mdbBtn color="primary" class="relative waves-light"
+          (click)="submitReview()" mdbWavesEffect>Submit</button>
       </div>
     </div>
   </div>

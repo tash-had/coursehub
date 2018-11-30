@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { CourseReviewService } from './course-review.service';
 import { CommentDataService } from '../comments/comment/comment-data.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-course-review-form',
@@ -13,7 +14,7 @@ export class CourseReviewFormComponent implements OnInit {
   @ViewChild('difficultyRatingSlider') difficultyRatingSlider: ElementRef;
   @ViewChild('optionalCommentText') optionalCommentInput: ElementRef;
 
-  constructor(private courseReviewService: CourseReviewService, private commentDataService: CommentDataService) { }
+  constructor(private courseReviewService: CourseReviewService, private commentDataService: CommentDataService, private authService: AuthService) { }
 
   ngOnInit() {
   }
