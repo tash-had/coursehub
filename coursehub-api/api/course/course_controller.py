@@ -1,4 +1,6 @@
 from flask import Blueprint, jsonify, request
+
+from api.auth import get_user_with_request
 from api.course.course_manager import CourseManager
 
 course_controller_bp = Blueprint("course_controller", __name__)
@@ -37,10 +39,13 @@ def update_rating():
     """
     :return: course object with updated rating
     """
-    workload = request.args.get("workloadRating")  # must be either 'workload' or 'recommendation'
-    recommendation = request.args.get("recommendationRating")
-    course_id = request.args.get("courseId")
-    user_id = request.args.get("userId")
+    user = get_user_with_request(request)
+    payload = request.get_json()
+
+    workload = payload["workloadRating"]  # must be either 'workload' or 'recommendation'
+    recommendation = payload["recommendationRating"]
+    course_id = payload["courseId"]
+    user_id = user.id
 
     rating_dict = {"workload_rating": workload, "recommendation_rating": recommendation}
 

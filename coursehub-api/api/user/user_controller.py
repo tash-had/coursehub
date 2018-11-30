@@ -19,8 +19,9 @@ def sign_in():
     """
     if this is their first time signing in, add them to DB
     """
-    user = get_user_with_request(request)
-
+    auth_token_arg = request.get_json()["idToken"]
+    auth_param = auth_token_arg if auth_token_arg else request
+    user = get_user_with_request(auth_param)
     if not UserManager.is_user_in_db(user.id):
         UserManager.add_new_user(user)
 

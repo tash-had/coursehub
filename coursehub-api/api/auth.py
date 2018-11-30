@@ -35,14 +35,14 @@ def decode_jwt(jwt_str):
         print(e)
 
 
-def get_user_data(req):
-    id_token = req.headers.get("Authorization")
+def get_user_data(req_or_token):
+    id_token = req_or_token.headers.get("Authorization") if not isinstance(req_or_token, str) else req_or_token
     user_data = decode_jwt(id_token)
     if not id_token or not user_data:
         abort(403)
     return user_data
 
 
-def get_user_with_request(req):
-    user_data = get_user_data(req)
+def get_user_with_request(req_or_token):
+    user_data = get_user_data(req_or_token)
     return User(user_data["sub"][6:], user_data["nickname"], user_data["name"], user_data["picture"])
