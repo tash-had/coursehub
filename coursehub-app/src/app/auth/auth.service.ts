@@ -41,6 +41,7 @@ export class AuthService {
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('username', authResult.idTokenPayload.nickname);
     localStorage.setItem('expires_at', expiresAt);
   }
 
@@ -49,6 +50,8 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    localStorage.removeItem('username');
+
     // Go back to the home route
     this.router.navigate(['/']);
   }

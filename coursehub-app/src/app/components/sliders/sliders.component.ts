@@ -10,7 +10,7 @@ export class SlidersComponent implements OnInit, OnChanges {
   @ViewChild('ratingSlider') ratingSlider: ElementRef;
   @ViewChild('numRating') rating: ElementRef;
   @Input() initialRating: number = 50;
-  @Input() sliderDisabled = false;
+  @Input() sliderDisabled: boolean = false;
   @Input() label : string;
   constructor() { }
 

@@ -13,6 +13,7 @@ export class CourseCardComponent {
   @Input() color: String;
   @Input() percentColor: String;
   @Input() searchQuery: string;
+  @Input() maxDescriptionLength: number = 180;
 
   Math: any;
 

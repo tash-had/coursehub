@@ -22,11 +22,6 @@ export class CoursePageComponent implements OnInit {
 
   ngOnInit() {
     this.courseCardDataService.courseData.subscribe(courseData => this.courseCardDataReceived(courseData));
-    this.checkForRatings();
-    this.initializeRatings();
-    this.getRatingsCount();
-    console.log(this.courseData);
-
   }
 
   getRatingsCount(){

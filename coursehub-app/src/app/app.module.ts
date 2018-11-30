@@ -29,6 +29,7 @@ import { CommentListComponent } from './components/comments/comment-list/comment
 import { CommentInputComponent } from './components/comments/comment-input/comment-input.component';
 import { SlidersComponent } from './components/sliders/sliders.component';
 import { RatingsCircleComponent } from './components/ratings-circle/ratings-circle.component';
+import { CourseReviewFormComponent } from './components/course-review-form/course-review-form.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { RatingsCircleComponent } from './components/ratings-circle/ratings-circ
     CommentListComponent,
     CommentInputComponent,
     SlidersComponent,
-    RatingsCircleComponent
+    RatingsCircleComponent,
+    CourseReviewFormComponent
   ],
   imports: [
     BrowserModule,

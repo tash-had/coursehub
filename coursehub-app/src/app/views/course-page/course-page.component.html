@@ -1,39 +1,42 @@
-<app-navbar></app-navbar>  
+<app-navbar></app-navbar>
 <div class="container">
 	<div class="row">
 		<div class="col-md-8">
 			<div class="float-left pt-3 w-80 h-75">
-				
-				<app-comment-input></app-comment-input>
-				<div *ngIf="ratingsExist" class="center card border-primary w-75">
-						<div class="card-body">
-							<div class="card-text">
-									<h5 class="card-title border-primary text-center"> {{ratingsCount}} Reviews Scraped From
-										<a href="https://course-evals.utoronto.ca/BPI/fbview.aspx?blockid=ytJZV9UhMgS4M6fzUu&userid=yWDFVCPH3gj-r6IuictpFviO9WMFvkp0bwLp&lng=en">
-											UofT Course Evals</a>
-										</h5>
-							</div>
+				<!-- <app-course-review-form></app-course-review-form> -->
+				<!-- <app-comment-input></app-comment-input> -->
+				<div *ngIf='!ratingsExist' class="" style="text-align:center"> <strong>No ratings available</strong> </div>
 
+				<div *ngIf="ratingsExist" class="row">
+					<div class="col-md-6">
+						<app-sliders [initialRating]="setRatings('useful')" [sliderDisabled]='true' [label]="'Usefulness'"></app-sliders>
+					</div>
+					<div class="col-md-6">
+						<app-sliders [initialRating]="setRatings('difficult')" [sliderDisabled]='true' [label]="'Difficulty'"></app-sliders>
+
+					</div>
+				</div>
+				<div *ngIf="ratingsExist" class="center card border-primary w-75">
+					<div class="card-body">
+						<div class="card-text">
+							<h5 class="card-title border-primary text-center"> {{ratingsCount}} Reviews Scraped From
+								<a href="https://course-evals.utoronto.ca/BPI/fbview.aspx?blockid=ytJZV9UhMgS4M6fzUu&userid=yWDFVCPH3gj-r6IuictpFviO9WMFvkp0bwLp&lng=en">
+									UofT Course Evals</a>
+							</h5>
 						</div>
-						<div class="card-footer"><p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p></div>
-					  </div>
+
+					</div>
+					<div class="card-footer">
+						<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+					</div>
+				</div>
 				<app-comment-list [courseData]="courseData"></app-comment-list>
 			</div>
 		</div>
 		<div class="col-md-4">
-				<br><br>
-				<app-course-card [courseData]="courseData" percentColor="orange"></app-course-card>
-				<div *ngIf='!ratingsExist' style="text-align:center"> <strong>No ratings available</strong>  </div>
-				<div *ngIf="ratingsExist">
-					<app-sliders [initialRating]="setRatings('useful')" 
-								 [sliderDisabled]='true'
-								 [label]="'Usefulness'"></app-sliders>
-					<app-sliders [initialRating]="setRatings('difficult')" 
-								 [sliderDisabled]='true'
-								 [label]="'Difficulty'"></app-sliders>
-				</div>
-
-				
+			<br><br>
+			<app-course-card [courseData]="courseData" percentColor="orange"></app-course-card>
+			<button *ngIf="courseData" mdbBtn type="button" gradient="peach" block="true" (click)="courseReviewForm.show()" mdbWavesEffect>Rate {{courseData.code}}</button>
 		</div>
 	</div>
 </div>
