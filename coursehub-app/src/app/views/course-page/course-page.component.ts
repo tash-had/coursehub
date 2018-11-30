@@ -18,6 +18,8 @@ export class CoursePageComponent implements OnInit {
   comments: String[] = [];
   currentComment: String;
   courseRequirements: String[] = [];
+
+
   constructor(private courseCardDataService: CourseCardDataService, private coursePageDataService: CoursePageDataService, private route: ActivatedRoute) {}
 
   ngOnInit() {

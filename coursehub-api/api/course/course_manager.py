@@ -1,6 +1,6 @@
 from api.course.course import Course
 from db.workers.course_database_worker import CourseDatabaseWorker
-from db.workers.UserToCourseDatabaseWorker import UserToCourseDatabaseWorker
+from db.workers.user_to_course_database_worker import UserToCourseDatabaseWorker
 
 
 class CourseManager:
@@ -19,10 +19,15 @@ class CourseManager:
         r_rating = course_row[6]
         overall_rating = course_row[7]
         rating_count = course_row[8]
+        prerequisites = course_row[9]
+        corequisites = course_row[10]
+        exclusions = course_row[11]
+        breadth = course_row[12]
 
         ratings = {"workload_rating": w_rating, "recommendation_rating": r_rating}
 
-        return Course(code, id_, description, title, org_name, ratings, overall_rating, rating_count)
+        return Course(code, id_, description, title, org_name, ratings, overall_rating, rating_count,
+                      prerequisites, corequisites, exclusions, breadth)
 
     @staticmethod
     def get_course_rating_names():
@@ -50,7 +55,6 @@ class CourseManager:
         """
 
         course_info = CourseManager.course_db_worker.get_course_by_id(id_)
-
         if len(course_info) != 1:
             raise Exception("invalid ID")
 

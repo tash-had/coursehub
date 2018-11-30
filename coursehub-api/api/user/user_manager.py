@@ -1,4 +1,4 @@
-from db.workers.UserDatabaseWorker import UserDatabaseWorker
+from db.workers.user_database_worker import UserDatabaseWorker
 from db.workers.comment_database_worker import CommentDatabaseWorker
 from api.comment.comment_factory import build_comment
 
