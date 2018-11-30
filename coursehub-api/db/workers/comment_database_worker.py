@@ -123,3 +123,4 @@ class CommentDatabaseWorker(DatabaseManager):
 
         self.db_conn.commit()
         cur.close()
+
