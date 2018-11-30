@@ -23,6 +23,8 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
 import { AppComponent } from './app.component';
+import { ProfileComponent } from './views/profile/profile.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { CommentListComponent } from './components/comments/comment-list/comment-list.component';
 import { CommentInputComponent } from './components/comments/comment-input/comment-input.component';
 import { SlidersComponent } from './components/sliders/sliders.component';
@@ -41,6 +43,8 @@ import { RatingsCircleComponent } from './components/ratings-circle/ratings-circ
     ReadMoreComponent,
     LoadingComponent,
     NavbarComponent,
+    ProfileComponent,
+    UserProfileComponent,
     CommentListComponent,
     CommentInputComponent,
     SlidersComponent,
