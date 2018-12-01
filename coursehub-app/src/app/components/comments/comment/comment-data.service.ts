@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CommentDataService {
 
-  commentUrlBase : string = 'http://0.0.0.0:5000/api/v1.0/comment';
+  commentUrlBase : string = 'https://coursehubapi.herokuapp.com/api/v1.0/comment';
   constructor(private http: HttpClient) { }
 
   getComments(courseId: String) {
