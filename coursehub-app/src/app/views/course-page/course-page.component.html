@@ -36,14 +36,25 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-			<br><br>
-			<app-course-card [courseData]="courseData" percentColor="orange"></app-course-card>
-			<app-course-review-form [courseData]="courseData"></app-course-review-form>
+				<br><br>
+				<app-course-card [courseData]="courseData" percentColor="orange"></app-course-card>
 
-			
-		</div>
-	</div>
-	
+				<app-course-prereqs [prereqIn]="courseData['prerequisites']"
+									[coreqIn]="courseData['corequisites']"
+									[excluIn]="courseData['exclusions']"
+									[breadthIn]="courseData['breadth']">
+				</app-course-prereqs>
+				<div *ngIf='!ratingsExist' style="text-align:center"> <strong>No ratings available</strong>  </div>
+				<div *ngIf="ratingsExist">
+					<app-sliders [initialRating]="setRatings('useful')" 
+								 [sliderDisabled]='true'
+								 [label]="'Usefulness'"></app-sliders>
+					<app-sliders [initialRating]="setRatings('difficult')" 
+								 [sliderDisabled]='true'
+								 [label]="'Difficulty'"></app-sliders>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- Footer -->
 <footer class="page-footer font-small blue">
