@@ -62,4 +62,5 @@ First, we could implement unit tests in the Travis CI instead of the flaky UI te
 
 Second, we could implement the tasks that we did not get to which would make the application even more useful. As we mentioned above, these are allowing a user to delete a comment that they made and allowing users to add courses they have taken which will show up in replies to comments for certain courses (the ones they have taken).
 
-
+### Video
+https://youtu.be/FvOuwIlW98k
