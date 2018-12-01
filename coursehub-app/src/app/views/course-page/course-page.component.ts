@@ -23,7 +23,11 @@ export class CoursePageComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.courseCardDataService.courseData.subscribe(courseData => this.courseCardDataReceived(courseData));
+    this.checkForRatings();
+    this.initializeRatings();
+    this.getRatingsCount();
   }
+  
 
   getRatingsCount(){
     if (this.courseData){
