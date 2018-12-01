@@ -19,6 +19,10 @@ export class NavbarComponent implements OnInit {
     }  
   }
 
+  getUsername() {
+    return localStorage.getItem('username')
+  }
+
   navigateToDashboard(){
     if (this._router.url.toString().includes("search")) {
       location.reload();

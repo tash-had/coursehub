@@ -55,6 +55,7 @@ def update_rating():
         prev_ratings = CourseManager.get_prev_ratings(user_id, course_id)
         CourseManager.update_course_rating(course, prev_ratings, "remove")
         CourseManager.update_user_course_ratings(user_id, course_id, rating_dict)
+
     else:
         CourseManager.insert_course_rating(user_id, course_id, rating_dict)
 

@@ -11,7 +11,7 @@
           <a href="">{{comment.username}}</a>
           <a href="" class="pl-2"><i class="fa fa-reply"></i></a>
         </h6>
-        {{comment.text}}
+        <div [innerHTML]="comment.text"></div>
         <div *ngIf="comment['replies'] && comment['replies'].length != 0">
           <ng-container>
             <div *ngFor="let reply of comment['replies']">

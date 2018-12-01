@@ -2,6 +2,8 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { CourseReviewService } from './course-review.service';
 import { CommentDataService } from '../comments/comment/comment-data.service';
 import { AuthService } from 'src/app/auth/auth.service';
+import { ModalDirective } from 'angular-bootstrap-md';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-course-review-form',
@@ -13,8 +15,9 @@ export class CourseReviewFormComponent implements OnInit {
   @ViewChild('usefulnessRatingSlider') usefulnessRatingSlider: ElementRef;
   @ViewChild('difficultyRatingSlider') difficultyRatingSlider: ElementRef;
   @ViewChild('optionalCommentText') optionalCommentInput: ElementRef;
+  @ViewChild('courseReviewFormModal') courseReviewFormModal: ModalDirective;
 
-  constructor(private courseReviewService: CourseReviewService, private commentDataService: CommentDataService, private authService: AuthService) { }
+  constructor(private courseReviewService: CourseReviewService, private commentDataService: CommentDataService, private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
   }
@@ -22,19 +25,30 @@ export class CourseReviewFormComponent implements OnInit {
   submitReview() {
     let rawUsefulnessRating = this.usefulnessRatingSlider['ratingSlider'].nativeElement.value;
     let rawDifficultyRating = this.difficultyRatingSlider['ratingSlider'].nativeElement.value;
-    let usefulnessRating: number = 5 * (rawUsefulnessRating/100);
-    let difficultyRating: number = 5 * (rawDifficultyRating/100);
+    let usefulnessRating: number = 5 * (rawUsefulnessRating / 100);
+    let difficultyRating: number = 5 * (rawDifficultyRating / 100);
     let optionalComment: string = this.optionalCommentInput['inputText'];
-        
-    let usefulnessRatingStr = "<br><div class='inCommentRatingsContainer'><span class='inCommentRating'>" + rawUsefulnessRating +"</span><br>";
-    let difficultyRatingStr = "<span class='inCommentRating'>" + rawDifficultyRating +"</span></div>";
-    let commentWithRatings = optionalComment.concat(usefulnessRatingStr, difficultyRatingStr);
 
-    this.commentDataService.postComment(commentWithRatings, this.courseData['id_'], null).subscribe(() => {
-      
-    });
+    let usefulnessRatingStr = "<div class='inCommentRatingsContainer'><span class='inCommentRatingLabel'>Usefulness:</span> <span class='inCommentRating'>" + rawUsefulnessRating + "</span><br>";
+    let difficultyRatingStr = "<span class='inCommentRatingLabel'>Difficulty:</span> <span class='inCommentRating'>" + rawDifficultyRating + "</span></div>";
+    if (optionalComment.length > 0) {
+      optionalComment = optionalComment.concat("<br>", usefulnessRatingStr, difficultyRatingStr);
+    } else {
+      optionalComment = optionalComment.concat(usefulnessRatingStr, difficultyRatingStr);
+    }
 
-    this.courseReviewService.reviewCourse(difficultyRating, usefulnessRating, this.courseData['id_']).subscribe(() => {});
+    this.commentDataService.postComment(optionalComment, this.courseData['id_'], null).subscribe(() => { });
 
+    this.courseReviewService.reviewCourse(difficultyRating, usefulnessRating, this.courseData['id_']).subscribe(() => { });
+    this.courseReviewFormModal.hide();
+
+    const courseId = +this.route.snapshot.paramMap.get('courseId');
+
+    if (this.courseData['rating_count'] == 0) {
+      location.reload();
+    } else {
+      this.router.navigateByUrl('/RefrshComponent', { skipLocationChange: true }).then(() =>
+        this.router.navigate(["/course/" + courseId]));
+    }
   }
 }

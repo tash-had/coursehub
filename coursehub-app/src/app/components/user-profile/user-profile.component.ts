@@ -12,7 +12,7 @@ export class UserProfileComponent implements OnInit {
   constructor(private userProfileDataService: UserProfileDataService) { }
 
   ngOnInit() {
-    this.userProfileDataService.getProfileData("test")
+    this.userProfileDataService.getProfileData()
       .subscribe((data) => {
         this.userProfileData = data;
       }
