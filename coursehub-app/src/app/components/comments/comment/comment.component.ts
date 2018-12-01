@@ -11,23 +11,24 @@ import {CommentDataService} from './comment-data.service';
 export class CommentComponent implements OnInit {
   @Input() comment: Object;
 
-  constructor() {
+  constructor(private commentService: CommentDataService) {
   }
 
   hasReplies(): boolean {
-    console.log(this.comment['replies'].length)
     return this.comment['replies'].length > 0;
   }
 
   ngOnInit() {
-    // this.commentService.getComments(this.courseId.toString())
-      // .subscribe((data) => this.parseData(data)
-    // );
   }
 
-  // parseData(data: Object) : void{
-  //   for (let comment in data['comments']){
-  //     this.comments.push(comment['text']);
-  //   }
-  // }
+  upvoteComment(){
+    this.comment['score']++;
+    this.commentService.upvoteCourse(this.comment['comment_id']);
+
+  }
+
+  downvoteComment(){
+    this.comment['score']--;
+    this.commentService.downvoteCourse(this.comment['comment_id']);
+  }
 }

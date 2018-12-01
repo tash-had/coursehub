@@ -23,4 +23,19 @@ export class CommentDataService {
       "parentId": parentId
     });
   }
+
+  upvoteCourse(commentId: number) {
+    let upvoteEndpoint = "/upvote";
+    return this.http.put(this.commentUrlBase + upvoteEndpoint, {
+      "commentId": commentId
+    });  
+  }
+  
+  downvoteCourse(commentId: number) {
+    let downvoteEndpoint = "/downvote";
+    return this.http.put(this.commentUrlBase + downvoteEndpoint, {
+      "commentId": commentId
+    });  
+  }
+
 }
