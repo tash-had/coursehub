@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-md-8">
 			<div class="container">
-				<!-- <app-course-review-form></app-course-review-form> -->
+				<app-course-review-form></app-course-review-form>
 				<!-- <app-comment-input></app-comment-input> -->
 				<div *ngIf='!ratingsExist' style="text-align:center"> <strong>No ratings available</strong> </div>
 
@@ -38,6 +38,7 @@
 		<div class="col-md-4">
 			<br><br>
 			<app-course-card [courseData]="courseData" percentColor="orange"></app-course-card>
+			<app-course-review-form [courseData]="courseData"></app-course-review-form><br>
 			<app-course-prereqs [prereqIn]="courseData['prerequisites']" [coreqIn]="courseData['corequisites']" [excluIn]="courseData['exclusions']"
 			 [breadthIn]="courseData['breadth']">
 			</app-course-prereqs>
