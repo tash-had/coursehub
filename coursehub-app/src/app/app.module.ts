@@ -51,7 +51,7 @@ import { CoursePrereqsComponent } from './components/course-prereqs/course-prere
     CommentInputComponent,
     SlidersComponent,
     RatingsCircleComponent,
-    CourseReviewFormComponent
+    CourseReviewFormComponent,
     CoursePrereqsComponent
   ],
   imports: [

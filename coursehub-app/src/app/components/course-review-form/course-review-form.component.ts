@@ -17,7 +17,7 @@ export class CourseReviewFormComponent implements OnInit {
   @ViewChild('optionalCommentText') optionalCommentInput: ElementRef;
   @ViewChild('courseReviewFormModal') courseReviewFormModal: ModalDirective;
 
-  constructor(private courseReviewService: CourseReviewService, private commentDataService: CommentDataService, private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private courseReviewService: CourseReviewService, private commentDataService: CommentDataService, public authService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
   }
