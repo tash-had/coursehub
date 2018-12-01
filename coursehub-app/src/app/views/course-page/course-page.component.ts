@@ -39,8 +39,8 @@ export class CoursePageComponent implements AfterViewInit {
     if (courseData && courseData.hasOwnProperty("id_")) {
       this.courseData = courseData;
       this.commentDataService.getComments(this.courseData['id_']).subscribe(commentData => {
-        this.courseData['comments'] = commentData['comments']['comments'];
-        this.courseData['num_comments'] = commentData['comments']['num_comments'];
+        this.courseData['comments'] = commentData['comments'];
+        this.courseData['num_comments'] = commentData['num_comments'];
       });
     } else {
       this.getCourseData(); 

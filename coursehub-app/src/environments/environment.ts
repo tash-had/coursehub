@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   signinCallbackUrl: "http://localhost:4200/callback",
-  keywordsToIntercept: ["localhost", "0.0.0.0", "127.0.0.1"]
+  keywordsToIntercept: ["localhost", "0.0.0.0", "127.0.0.1", "coursehubapi", "api.coursehub", "coursehub.ca/api"]
 };
 
 /*
