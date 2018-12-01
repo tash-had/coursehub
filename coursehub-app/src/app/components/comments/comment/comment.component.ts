@@ -13,6 +13,11 @@ export class CommentComponent implements OnInit {
   constructor() {
   }
 
+  hasReplies(): boolean {
+    console.log(this.comment['replies'])
+    return this.comment['replies'].length > 0;
+  }
+
   ngOnInit() {
     // this.commentService.getComments(this.courseId.toString())
       // .subscribe((data) => this.parseData(data)

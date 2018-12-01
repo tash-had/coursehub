@@ -2,27 +2,24 @@
   <!--Grid row-->
   <div class="row commentCard">
     <!--Grid column-->
-    <div class="col-sm-1">
-      <span><i class="fa fa-thumbs-o-up float-right pr-2" aria-hidden="true" style="color:orange"></i></span>
-      <span id="score" class="font-weight-bold">{{comment.score}}</span>
-      <span><i class="fa fa-thumbs-o-down float-right pr-2" aria-hidden="true" style="color: #2196fe"></i></span>
-    </div>
-    <div class="col-sm-11">
+    <div class="col-sm-12">
+      <span><i class="fa fa-thumbs-o-up pr-2" aria-hidden="true" style="color:orange"></i></span>
+      <span id="score" class="pr-2">{{comment.score}}</span>
+      <span><i class="fa fa-thumbs-o-down" aria-hidden="true" style="color: #2196fe"></i></span>
       <div class="media-body text-center text-md-left ml-0">
-        <h5 class="font-weight-bold mt-0">
+        <h6 class="mt-0">
           <a href="">{{comment.username}}</a>
-          <a href="" class="pull-right">
-            <i class="fa fa-reply"></i>
-          </a>
-        </h5>
+          <a href="" class="pl-2"><i class="fa fa-reply"></i></a>
+        </h6>
         {{comment.text}}
-        <!-- TO ACTUALL HAVE REPLIES: USE RECURSION!
-        CREATE A FOR LOOP HERE IN THE HTML. USE 
-        NGIF TO CHECK IF THIS COMMENT HAS REPLIES, AND IF SO,
-        CREATE NEW <app-comment></app-comment> TAGS FOR EACH REPLY.
-        THAT WAY, WE KEEP CREATING COMMENT TAGS UNTIL
-        WE REACH THE REPLY WITH NO MORE replies
-      -->
+        <div *ngIf="comment['replies'] && comment['replies'].length != 0">
+          <ng-container>
+            <div *ngFor="let reply of comment['replies']">
+              <app-comment [comment]="reply"></app-comment>
+            </div>
+          </ng-container>
+        </div>
       </div>
     </div>
   </div>
+</div>
