@@ -23,11 +23,6 @@
         THAT WAY, WE KEEP CREATING COMMENT TAGS UNTIL
         WE REACH THE REPLY WITH NO MORE replies
       -->
-        <div *ngIf="comment.replies">
-          <div *ngFor="let reply of comment['replies']" class="comment-replies">
-            <app-comment comment="reply"></app-comment>
-          </div>
-        </div>
       </div>
     </div>
   </div>
