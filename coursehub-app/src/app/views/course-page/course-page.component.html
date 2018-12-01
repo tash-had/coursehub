@@ -38,10 +38,9 @@
 		<div class="col-md-4">
 			<br><br>
 			<app-course-card [courseData]="courseData" percentColor="orange"></app-course-card>
-			<app-course-review-form [courseData]="courseData"></app-course-review-form>
-
-			
+			<app-course-prereqs [prereqIn]="courseData['prerequisites']" [coreqIn]="courseData['corequisites']" [excluIn]="courseData['exclusions']"
+			 [breadthIn]="courseData['breadth']">
+			</app-course-prereqs>
 		</div>
 	</div>
-	
 </div>
