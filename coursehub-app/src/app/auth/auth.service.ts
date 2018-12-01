@@ -26,7 +26,7 @@ export class AuthService {
   public handleAuthentication(): void {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        let signinUrl = "https://coursehubapp.herokuapp.com/api/v1.0/user/sign_in";
+        let signinUrl = "https://coursehubapi.herokuapp.com/api/v1.0/user/sign_in";
         this.http.post(signinUrl, {
           "idToken": authResult.idToken
         }).subscribe(() => {});

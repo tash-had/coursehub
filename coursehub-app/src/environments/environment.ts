@@ -5,7 +5,8 @@
 
 export const environment = {
   production: false,
-  signinCallbackUrl: "http://localhost:4200/callback"
+  signinCallbackUrl: "http://localhost:4200/callback",
+  keywordsToIntercept: ["localhost", "0.0.0.0", "127.0.0.1"]
 };
 
 /*

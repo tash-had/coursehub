@@ -1,5 +1,5 @@
 <section class="my-5" *ngIf="courseData && courseData['comments']">
-  <div class="border-0 font-weight-bold">4 comments</div><br>
+  <div class="border-0 font-weight-bold">{{courseData['num_comments']}} comments</div><br>
   <div class="row">
     <ng-container>
       <div *ngFor="let comment of courseData['comments']" class="col-md-12">

@@ -32,8 +32,7 @@ def get_comments_by_course():
 
     """
     course_id = request.args.get("courseId")
-    a = get_comments_helper(course_id)
-    return jsonify(a)
+    return jsonify(get_comments_helper(course_id))
 
 
 @comment_controller_bp.route("/upvote", methods=["PUT"])
@@ -72,6 +71,7 @@ def get_comments_helper(course_id):
     :rtype: dict
     """
     comments = comment_manager.get_comments_by_course(course_id)
+    num_comments = 0
     comments_dic = {}
 
     # put all comments into a dictionary mapping comment id to Comment object
@@ -89,11 +89,12 @@ def get_comments_helper(course_id):
 
     # empty comments and fill it only with root comments
     comments = []
+    num_comments = len(comments_dic.keys())
     for comment_id, comment in comments_dic.items():
         if comment.is_root():
             comments.append(make_comment_tree(comments_dic, comment))
 
-    return {"comments": [dictionarify_comment_tree(comment) for comment in comments]}
+    return {"comments": {"comments": [dictionarify_comment_tree(comment) for comment in comments], "num_comments": num_comments}}
 
 def make_comment_tree(comment_dic, comment):
     """
