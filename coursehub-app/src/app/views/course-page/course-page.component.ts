@@ -1,7 +1,8 @@
-import { Component, OnInit,  ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit,  ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { CourseCardDataService } from '../../components/course-card/course-card-data.service'
 import { ActivatedRoute } from '@angular/router';
 import { CoursePageDataService } from './course-page-data.service'
+import { CommentDataService } from 'src/app/components/comments/comment/comment-data.service';
 
 @Component({
   selector: 'app-course-page',
@@ -9,7 +10,7 @@ import { CoursePageDataService } from './course-page-data.service'
   styleUrls: ['./course-page.component.scss']
 })
 
-export class CoursePageComponent implements OnInit {
+export class CoursePageComponent implements AfterViewInit {
   courseData: Object;
   usefulCourseRating: number;
   difficultCourseRating: number;
@@ -17,20 +18,16 @@ export class CoursePageComponent implements OnInit {
   ratingsCount: number;
   comments: String[] = [];
   currentComment: String;
-  courseRequirements: String[] = [];
 
+  constructor(private courseCardDataService: CourseCardDataService, private coursePageDataService: CoursePageDataService, private route: ActivatedRoute, private commentDataService: CommentDataService) {}
 
-  constructor(private courseCardDataService: CourseCardDataService, private coursePageDataService: CoursePageDataService, private route: ActivatedRoute) {}
-
-  ngOnInit() {
+  ngAfterViewInit() {
     this.courseCardDataService.courseData.subscribe(courseData => this.courseCardDataReceived(courseData));
     this.checkForRatings();
     this.initializeRatings();
     this.getRatingsCount();
-    this.getCourseRequirements();
-    console.log(this.courseData);
-
   }
+  
 
   getRatingsCount(){
     if (this.courseData){
@@ -38,15 +35,12 @@ export class CoursePageComponent implements OnInit {
     }
   }
 
-  getCourseRequirements(){
-    if (this.courseData){
-      this.courseRequirements = this.courseData['rating_count'];
-    }
-  }
-
   courseCardDataReceived(courseData: Object) {
     if (courseData && courseData.hasOwnProperty("id_")) {
       this.courseData = courseData;
+      this.commentDataService.getComments(this.courseData['id_']).subscribe(commentData => {
+        this.courseData['comments'] = commentData['comments'];
+      });
     } else {
       this.getCourseData(); 
     }
@@ -62,8 +56,8 @@ export class CoursePageComponent implements OnInit {
 
   initializeRatings(){
     if (this.courseData){
-      this.difficultCourseRating = Math.round(100*(this.courseData['ratings']['workload_rating']/5));
-      this.usefulCourseRating = Math.round(100*(this.courseData['ratings']['recommendation_rating']/5));
+      this.courseData['difficultCourseRating'] = Math.round(100*(this.courseData['ratings']['workload_rating']/5));
+      this.courseData['usefulCourseRating'] = Math.round(100*(this.courseData['ratings']['recommendation_rating']/5));
     }
     
   
@@ -85,6 +79,7 @@ export class CoursePageComponent implements OnInit {
     this.coursePageDataService.getCourseData(courseId.toString())
       .subscribe((courseData) => {
         this.courseData = courseData;
+        this.courseCardDataReceived(this.courseData);
         this.checkForRatings();
         this.initializeRatings();
         this.getRatingsCount();

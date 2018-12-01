@@ -47,6 +47,7 @@ class CommentDatabaseWorker(DatabaseManager):
         cur.execute("SELECT * FROM comments WHERE course_id=?", [course_id])
 
         results = cur.fetchall()
+        cur.close()
         if results is None:
             return []
         return results
@@ -69,7 +70,6 @@ class CommentDatabaseWorker(DatabaseManager):
         :param user_id:
         :return:
         """
-        DatabaseManager.__init__(self)
         cur = self.db_conn.cursor()
         comment = cur.execute('SELECT * FROM comments WHERE user_id=?', [user_id]).fetchall()
 
@@ -88,7 +88,7 @@ class CommentDatabaseWorker(DatabaseManager):
         current_votes = cur.execute('SELECT votes FROM comments WHERE id=?', [comment_id]).fetchone()
         cur.execute('UPDATE comments SET votes=? WHERE id=?', [current_votes[0] + 1, comment_id])
         self.db_conn.commit()
-
+        cur.close()
         return current_votes[0] + 1
 
     def downvote(self, comment_id):
@@ -103,6 +103,7 @@ class CommentDatabaseWorker(DatabaseManager):
         current_votes = cur.execute('SELECT votes FROM comments WHERE id=?', [comment_id]).fetchone()
         cur.execute('UPDATE comments SET votes=? WHERE id=?', [current_votes[0] - 1, comment_id])
         self.db_conn.commit()
+        cur.close()
 
         return current_votes[0] - 1
 

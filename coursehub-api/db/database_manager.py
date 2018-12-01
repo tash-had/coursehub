@@ -21,7 +21,9 @@ class DatabaseManager:
         """
         try:
             c = self.db_conn.cursor()
-            return c.execute(instructions)
+            res = c.execute(instructions)
+            c.close()
+            return res
         except Error as e:
             print(e)
         return None

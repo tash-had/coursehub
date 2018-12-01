@@ -19,8 +19,8 @@ class UserToCommentDatabaseWorker(DatabaseManager):
                     FROM user_to_comment uc
                     INNER JOIN comments c ON uc.comment_id = c.id
                     WHERE uc.user_id = ?""", [user_id])
-
         results = cur.fetchall()
+        cur.close()
         if results is None:
             return []
         return results
@@ -60,6 +60,7 @@ class UserToCommentDatabaseWorker(DatabaseManager):
         user_id = ?""", [comment_id, user_id])
 
         results = cur.fetchall()
+        cur.close()
         if results == []:
             return None
         return results[0][0]
@@ -79,6 +80,5 @@ class UserToCommentDatabaseWorker(DatabaseManager):
         cur = self.db_conn.cursor()
         cur.execute("""UPDATE user_to_comment SET upvote_or_downvote = ? WHERE comment_id = ? AND
                 user_id = ?""", [value, comment_id, user_id])
-
         self.db_conn.commit()
         cur.close()

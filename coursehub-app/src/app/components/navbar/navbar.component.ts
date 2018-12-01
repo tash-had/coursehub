@@ -8,10 +8,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  accountDropdownLabel: string = "My Account";
 
   constructor(public auth: AuthService, private _router: Router) { }
 
-  ngOnInit() {
+  ngOnInit() { 
+    let username = localStorage.getItem("username");
+    if (username != null && username != undefined && username != "undefined" && username.length > 0) {
+      this.accountDropdownLabel = username;
+    }  
+  }
+
+  getUsername() {
+    return localStorage.getItem('username')
   }
 
   navigateToDashboard(){

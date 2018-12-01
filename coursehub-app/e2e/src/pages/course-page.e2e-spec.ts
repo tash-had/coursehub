@@ -1,6 +1,7 @@
 import { CourseCard } from '../components/course-card.co';
 import { Search } from '../components/search.co';
 import { TestUtils } from '../utils/test-utils.uo';
+import { browser } from 'protractor';
 
 describe('Test course page', () => {
   let courseCard: CourseCard;
@@ -17,6 +18,7 @@ describe('Test course page', () => {
     testUtils.navigateTo();
     search.getSearchBarInput().click();
     search.typeInSearchBar("CSC165");
+    browser.sleep(2000);
     courseCard.getCourseCardHeader().click();
     expect(testUtils.getCurrentPageUrl()).toEqual("http://localhost:4200/course/20043");
     expect(courseCard.getCourseCardHeader()).toBeDefined();

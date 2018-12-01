@@ -19,10 +19,9 @@
 
           <!-- Dropdown -->
           <li class="nav-item dropdown" dropdown *ngIf="auth.isAuthenticated()">
-              <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-dark" mdbWavesEffect>
-              My Account<span class="caret"></span></a>
+              <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-dark" mdbWavesEffect>{{accountDropdownLabel}}<span class="caret"></span></a>
               <div *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
-                  <a class="dropdown-item waves-dark" mdbWavesEffect href="#" *ngIf="auth.isAuthenticated()">Profile</a>
+                  <a class="dropdown-item waves-dark" mdbWavesEffect routerLink="/user/{{getUsername()}}" *ngIf="auth.isAuthenticated()">Profile</a>
                   <a class="dropdown-item waves-dark" mdbWavesEffect href="#">Settings</a>
                   <div class="divider dropdown-divider"></div>
                   <a class="dropdown-item waves-dark" mdbWavesEffect href="#" (click)="auth.logout()">Logout</a>

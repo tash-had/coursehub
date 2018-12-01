@@ -7,10 +7,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CommentDataService {
 
-  commentUrl : string = 'https://coursehubapi.herokuapp.com/api/v1.0/comment/get_comments?courseId=';
+  commentUrlBase : string = 'https://coursehubapi.herokuapp.com/api/v1.0/comment';
   constructor(private http: HttpClient) { }
 
-  getComments(course: String) {
-    return this.http.get(this.commentUrl + course);
+  getComments(courseId: String) {
+    let getCommentsEndpoint = "/get_comments?courseId=";
+    return this.http.get(this.commentUrlBase + getCommentsEndpoint + courseId);
+  }
+
+  postComment(commentText: String, courseId: number, parentId: string) {
+    let postCommentEndpoint = "/post_comment";
+    return this.http.post(this.commentUrlBase + postCommentEndpoint, {
+      "commentText": commentText,
+      "courseId": courseId,
+      "parentId": parentId
+    });
   }
 }

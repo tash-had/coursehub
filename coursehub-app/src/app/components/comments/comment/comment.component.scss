@@ -1,13 +1,23 @@
-.fa-thumbs-o-down, .fa-thumbs-o-up {
-	font-size: xx-large;
+.fa-thumbs-o-down, .fa-thumbs-o-up, .fa fa-reply {
+	font-size: x-large;
 	
 }
 
 .commentCard {
 	background-color: white;
 	padding: 5% 5% 2% 0 !important;
-
 }
+
+.inCommentRatingLabel {
+	color: #2196fe;
+	font-weight: bold;
+}
+
+.inCommentRating {
+	font-weight: bold;
+	color: black;
+}
+
 
 // .border {
 //     border-color: #eeeeee !important;
