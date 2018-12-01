@@ -10,12 +10,13 @@ from flask_cors import CORS
 URL_PREFIX = "/api/v1.0"
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 app.register_blueprint(course_controller_bp, url_prefix=URL_PREFIX + "/course")
 app.register_blueprint(comment_controller_bp, url_prefix=URL_PREFIX + "/comment")
 app.register_blueprint(user_controller_bp, url_prefix=URL_PREFIX + "/user")
 
-cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 @app.route('/')

@@ -46,4 +46,4 @@ class _CourseScraper:
 
 
 if __name__ == "__main__":
-    _CourseScraper().populate_course_table()
+    _CourseScraper().populate_course_table("STAT")
