@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
+
 <div *ngIf="courseData" class="container">
 	<div class="row">
 		<div class="col-md-8">
@@ -35,6 +36,20 @@
 			<br><br>
 			<app-course-card [courseData]="courseData" percentColor="orange"></app-course-card>
 			<app-course-review-form [courseData]="courseData"></app-course-review-form>
+
+			
 		</div>
 	</div>
+	
 </div>
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+
+		<!-- Copyright -->
+		<div class="footer-copyright text-center py-3">© 2018 Copyright:
+		  <a href="https://coursehub.ca"> Coursehub.ca</a>
+		</div>
+		<!-- Copyright -->
+	  
+	  </footer>
+	  <!-- Footer -->
