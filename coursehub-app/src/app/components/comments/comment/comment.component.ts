@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import {CommentDataService} from './comment-data.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-comment',
@@ -11,7 +12,7 @@ import {CommentDataService} from './comment-data.service';
 export class CommentComponent implements OnInit {
   @Input() comment: Object;
 
-  constructor(private commentService: CommentDataService) {
+  constructor(private commentService: CommentDataService, public authService: AuthService) {
   }
 
   hasReplies(): boolean {
@@ -22,13 +23,20 @@ export class CommentComponent implements OnInit {
   }
 
   upvoteComment(){
-    this.comment['score']++;
-    this.commentService.upvoteCourse(this.comment['comment_id']);
-
+    if (this.authService.isAuthenticated()) {
+      this.comment['score'] = this.comment['score'] + 1;
+      this.commentService.upvoteCourse(this.comment['comment_id']);
+    } else {
+      alert("You must login to vote!");
+    }
   }
 
   downvoteComment(){
-    this.comment['score']--;
-    this.commentService.downvoteCourse(this.comment['comment_id']);
+    if (this.authService.isAuthenticated()) {
+      this.comment['score'] = this.comment['score'] - 1;
+      this.commentService.downvoteCourse(this.comment['comment_id']);
+    } else {
+      alert("You must login to vote!");
+    }
   }
 }
