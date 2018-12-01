@@ -1,7 +1,7 @@
-<button mdbBtn type="button" gradient="peach" block="true" (click)="courseReviewFormModal.show()" mdbWavesEffect>Rate
+<button mdbBtn type="button" gradient="peach" block="true" (click)="courseReviewFormModal.show()" mdbWavesEffect *ngIf="courseData">Rate
   {{courseData.code}}</button>
 <div mdbModal #courseReviewFormModal="mdbModal" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="mycourseReviewFormModalLabel"
-  aria-hidden="true">
+  aria-hidden="true" *ngIf="courseData">
   <div class="modal-dialog modal-full-height modal-right" role="document">
     <div class="modal-content">
       <div class="modal-header">
