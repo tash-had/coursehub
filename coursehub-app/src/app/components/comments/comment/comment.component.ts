@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import {CommentDataService} from './comment-data.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-comment',
@@ -11,23 +12,31 @@ import {CommentDataService} from './comment-data.service';
 export class CommentComponent implements OnInit {
   @Input() comment: Object;
 
-  constructor() {
+  constructor(private commentService: CommentDataService, public authService: AuthService) {
   }
 
   hasReplies(): boolean {
-    console.log(this.comment['replies'].length)
     return this.comment['replies'].length > 0;
   }
 
   ngOnInit() {
-    // this.commentService.getComments(this.courseId.toString())
-      // .subscribe((data) => this.parseData(data)
-    // );
   }
 
-  // parseData(data: Object) : void{
-  //   for (let comment in data['comments']){
-  //     this.comments.push(comment['text']);
-  //   }
-  // }
+  upvoteComment(){
+    if (this.authService.isAuthenticated()) {
+      this.comment['score'] = this.comment['score'] + 1;
+      this.commentService.upvoteCourse(this.comment['comment_id']);
+    } else {
+      alert("You must login to vote!");
+    }
+  }
+
+  downvoteComment(){
+    if (this.authService.isAuthenticated()) {
+      this.comment['score'] = this.comment['score'] - 1;
+      this.commentService.downvoteCourse(this.comment['comment_id']);
+    } else {
+      alert("You must login to vote!");
+    }
+  }
 }
