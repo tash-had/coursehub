@@ -1,25 +1,25 @@
 <div class="container" *ngIf="comment">
-  <!--Grid row-->
-  <div class="row commentCard">
-    <!--Grid column-->
-    <div class="col-sm-12">
-      <span><i style="cursor: pointer" (click)='upvoteComment()' class="fa fa-thumbs-o-up pr-2" aria-hidden="true" style="color:orange"></i></span>
-      <span id="score" class="pr-2">{{comment.score}}</span>
-      <span><i style="cursor: pointer" (click)='downvoteComment()'class="fa fa-thumbs-o-down" aria-hidden="true" style="color: #2196fe"></i></span>
-      <div class="media-body text-center text-md-left ml-0">
-        <h6 class="mt-0">
-          <a href="">{{comment.username}}</a>
-          <a href="" class="pl-2"><i class="fa fa-reply"></i></a>
-        </h6>
-        <div [innerHTML]="comment.text"></div>
-        <div *ngIf="comment['replies'] && comment['replies'].length != 0">
-          <ng-container>
-            <div *ngFor="let reply of comment['replies']">
-              <app-comment [comment]="reply"></app-comment>
-            </div>
-          </ng-container>
+    <!--Grid row-->
+    <div class="row commentCard">
+      <!--Grid column-->
+      <div class="col-sm-12">
+        <span style="cursor: pointer !important" (click)='upvoteComment()'><i class="fa fa-thumbs-o-up pr-2" aria-hidden="true" style="color:orange"></i></span>
+        <span id="score" class="pr-2">{{comment.score}}</span>
+        <span style="cursor: pointer" (click)='downvoteComment()'><i class="fa fa-thumbs-o-down" aria-hidden="true" style="color: #2196fe"></i></span>
+        <div class="media-body text-center text-md-left ml-0">
+          <h6 class="mt-0">
+            <a href="">{{comment.username}}</a>
+            <a href="" class="pl-2"><i class="fa fa-reply"></i></a>
+          </h6>
+          <div [innerHTML]="comment.text"></div>
+          <div *ngIf="comment['replies'] && comment['replies'].length != 0">
+            <ng-container>
+              <div *ngFor="let reply of comment['replies']">
+                <app-comment [comment]="reply"></app-comment>
+              </div>
+            </ng-container>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
