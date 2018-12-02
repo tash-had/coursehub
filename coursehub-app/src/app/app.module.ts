@@ -31,6 +31,7 @@ import { SlidersComponent } from './components/sliders/sliders.component';
 import { RatingsCircleComponent } from './components/ratings-circle/ratings-circle.component';
 import { CourseReviewFormComponent } from './components/course-review-form/course-review-form.component';
 import { CoursePrereqsComponent } from './components/course-prereqs/course-prereqs.component';
+import { ReplyComponent } from './components/reply/reply.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { CoursePrereqsComponent } from './components/course-prereqs/course-prere
     SlidersComponent,
     RatingsCircleComponent,
     CourseReviewFormComponent,
-    CoursePrereqsComponent
+    CoursePrereqsComponent,
+    ReplyComponent
   ],
   imports: [
     BrowserModule,
