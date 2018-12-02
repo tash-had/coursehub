@@ -1,30 +1,39 @@
 import requests
 
-from db.setup._database_initializer import _CourseHubDatabaseInitializer
-from db.setup.course_evals_parser import find_course_ratings
+import re
+from db.setup._course_evals_parser import find_course_ratings
 
 
 class _CourseScraper:
 
-    def __init__(self):
-        self.db_initializer = _CourseHubDatabaseInitializer()
+    def __init__(self, db_initializer):
+        self.db_initializer = db_initializer
 
     def get_org_names(self):
         request_url = "https://timetable.iit.artsci.utoronto.ca/api/orgs"
         response = requests.get(request_url).json()
-        orgs_list = list(dict(response)["orgs"].keys())
+        return dict(response)["orgs"]
 
-        return orgs_list
+    def get_course_code_prefix_list(self, org_full_name):
+        prefix_list = re.findall('\(.*?\)', org_full_name)
+        return [i.replace("(", "").replace(")", "") for i in prefix_list]
 
-    def populate_course_table(self, org_name="CSC"):
+    def _populate_course_ratings(self, org_full_name):
+        course_code_prefix_list = self.get_course_code_prefix_list(org_full_name)
+        for code in course_code_prefix_list:
+            self.db_initializer.set_course_ratings(find_course_ratings(code))
+
+    def populate_course_table(self, org_code="CSC"):
         """ If org_name is 'all', this function will populate table with all courses at UofT."""
 
-        if org_name == "all":
-            org_names = self.get_org_names()
-        else:
-            org_names = [org_name]
+        org_code_to_name_dict = self.get_org_names()
 
-        for org in org_names:
+        if org_code == "all":
+            org_code_list = org_code_to_name_dict.keys()
+        else:
+            org_code_list = [org_code]
+
+        for org in org_code_list:
             request_url = "https://timetable.iit.artsci.utoronto.ca/api/20189/courses?org=" + org
             response = requests.get(request_url).json()
             course_list = list(dict(response).values())
@@ -41,9 +50,6 @@ class _CourseScraper:
                     "breadth": course["breadthCategories"]
                 }
                 self.db_initializer.insert_course(data)
-        self.db_initializer.set_course_ratings(find_course_ratings(org_name))
 
-
-
-if __name__ == "__main__":
-    _CourseScraper().populate_course_table("STAT")
+            org_full_name = org_code_to_name_dict[org]
+            self._populate_course_ratings(org_full_name)

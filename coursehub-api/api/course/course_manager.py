@@ -23,8 +23,9 @@ class CourseManager:
         corequisites = course_row[10]
         exclusions = course_row[11]
         breadth = course_row[12]
+        ratings_last_updated = course_row[13]
 
-        ratings = {"workload_rating": w_rating, "recommendation_rating": r_rating}
+        ratings = {"workload_rating": w_rating, "recommendation_rating": r_rating, "ratings_last_updated": ratings_last_updated}
 
         return Course(code, id_, description, title, org_name, ratings, overall_rating, rating_count,
                       prerequisites, corequisites, exclusions, breadth)

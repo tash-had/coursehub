@@ -4,3 +4,4 @@ class User:
         self.username = username
         self.email = email
         self.picture = picture
+        self.comment_history = []
