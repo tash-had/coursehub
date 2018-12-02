@@ -24,8 +24,9 @@ export class CommentComponent implements OnInit {
 
   upvoteComment(){
     if (this.authService.isAuthenticated()) {
-      this.comment['score'] = this.comment['score'] + 1;
-      this.commentService.upvoteCourse(this.comment['comment_id']).subscribe(() => {});
+      this.commentService.upvoteCourse(this.comment['comment_id']).subscribe((comment) => {
+        this.comment['score'] = comment['score'];
+      });
     } else {
       alert("You must login to vote!");
     }
@@ -33,8 +34,9 @@ export class CommentComponent implements OnInit {
 
   downvoteComment(){
     if (this.authService.isAuthenticated()) {
-      this.comment['score'] = this.comment['score'] - 1;
-      this.commentService.downvoteCourse(this.comment['comment_id']).subscribe(() => {});
+      this.commentService.downvoteCourse(this.comment['comment_id']).subscribe((comment) => {
+        this.comment['score'] = comment['score'];
+      });
     } else {
       alert("You must login to vote!");
     }
