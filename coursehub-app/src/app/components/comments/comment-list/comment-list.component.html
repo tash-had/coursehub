@@ -1,8 +1,8 @@
-<section class="my-5" *ngIf="courseData && courseData['comments']">
-  <div class="border-0 font-weight-bold">{{courseData['num_comments']}} comments</div><br>
+<section class="my-5" *ngIf="commentData && commentData['comments']">
+  <div class="border-0 font-weight-bold">{{commentData['num_comments']}} comments</div><br>
   <div class="row">
     <ng-container>
-      <div *ngFor="let comment of courseData['comments']" class="col-md-12">
+      <div *ngFor="let comment of commentData['comments']" class="col-md-12">
         <app-comment [comment]="comment"></app-comment>
       </div>
     </ng-container>
