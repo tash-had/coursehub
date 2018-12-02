@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./comment-list.component.scss']
 })
 export class CommentListComponent implements OnInit {
-  @Input() courseData: Object;
+  @Input() commentData: Object;
 
   constructor() { }
 

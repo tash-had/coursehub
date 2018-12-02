@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+import re
 
 from api.auth import get_user_with_request
 from api.course.course_manager import CourseManager
@@ -13,7 +14,7 @@ def search_for_course():
     """
     course_code = request.args.get("searchQuery")
 
-    if course_code == "":
+    if course_code == "" or len(course_code) < 4 or not re.compile("^[A-Za-z]{3,4}[0-9]+$").match(course_code):
         return jsonify({"error": "No matching courses found for '" + course_code + "'"})
 
     courses = CourseManager.get_courses_by_code(course_code)

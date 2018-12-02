@@ -1,5 +1,6 @@
 from db.database_manager import DatabaseManager
-
+from db.setup._course_scraper import _CourseScraper
+from time import time
 
 class _CourseHubDatabaseInitializer:
     """ A set of functions to help setup the database. Use cautiously. """
@@ -31,6 +32,7 @@ class _CourseHubDatabaseInitializer:
             cur.execute('UPDATE courses SET num_ratings = ? WHERE course_code = ?', [total, key])
             combined_rating = (workload + recommend) / 2
             cur.execute('UPDATE courses SET overall_rating = ? WHERE course_code = ?', [combined_rating, key])
+            cur.execute('UPDATE courses SET ratings_last_updated = ? WHERE course_code = ?', [int(time()), key])
             self.db_manager.db_conn.commit()
         cur.close()
 
@@ -51,7 +53,7 @@ class _CourseHubDatabaseInitializer:
         exclusion = data["exclusion"]
         breadth =  data["breadth"]
 
-        input_data = [course_id, code, course_description, course_title, org_name, 0, 0, 0, 0, prerequisite, corequisite, exclusion, breadth]
+        input_data = [course_id, code, course_description, course_title, org_name, 0, 0, 0, 0, prerequisite, corequisite, exclusion, breadth, 0]
 
         c = self.db_manager.db_conn.cursor()
         course_exists = c.execute('SELECT * FROM courses WHERE id = ?', [str(course_id)])
@@ -60,7 +62,7 @@ class _CourseHubDatabaseInitializer:
         if course_exists.fetchall() == []:
             c.execute('insert into courses (id, course_code, course_description, course_title, org_name,'
                       'workload_rating, recommendation_rating, overall_rating, num_ratings,'
-                      'prerequisite, corequisite, exclusion, breadth) values (?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                      'prerequisite, corequisite, exclusion, breadth, ratings_last_updated) values (?,?,?,?,?,?,?,?,?,?,?,?,?, ?)',
                       input_data)
 
         self.db_manager.db_conn.commit()
@@ -94,7 +96,8 @@ class _CourseHubDatabaseInitializer:
             prerequisite text,
             corequisite text,
             exclusion text,
-            breadth text);
+            breadth text,
+            ratings_last_updated integer);
         """
 
         user_table = """
@@ -125,3 +128,7 @@ class _CourseHubDatabaseInitializer:
         self.db_manager.create_table(user_to_comment_table)
         self.db_manager.create_table(user_to_course_table)
 
+
+if __name__ == "__main__":
+    db_initializer = _CourseHubDatabaseInitializer()
+    _CourseScraper(db_initializer).populate_course_table("all")

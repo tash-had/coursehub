@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { UserProfileDataService } from '../profile/user-profile-data.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,23 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  courseData: Object;
+  userProfileData: Object;
 
-  //mock comments
-  comments: String[] = ['Hey, I love CSC301', 'Hey, I do not like CSC301 that much', 
-  'Why does no one shower??', 'I failed my assignment, can I drop this course?', "Why don't we just use reddit"];
-  currentComment: String;
-  constructor() {}
+  constructor(private userProfileDataService: UserProfileDataService) { }
 
   ngOnInit() {
-    
-  }
-
-  addComment() {
-    if (this.currentComment && this.currentComment.trim()){
-        this.comments.push(this.currentComment);
-        this.currentComment = null;       
-    }
+    this.userProfileDataService.getProfileData()
+      .subscribe((data) => {
+        this.userProfileData = data;
+      });
   }
 
 }

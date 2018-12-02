@@ -1,4 +1,4 @@
-import { Component, OnInit,  ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { CourseCardDataService } from '../../components/course-card/course-card-data.service'
 import { ActivatedRoute } from '@angular/router';
 import { CoursePageDataService } from './course-page-data.service'
@@ -19,7 +19,7 @@ export class CoursePageComponent implements AfterViewInit {
   comments: String[] = [];
   currentComment: String;
 
-  constructor(private courseCardDataService: CourseCardDataService, private coursePageDataService: CoursePageDataService, private route: ActivatedRoute, private commentDataService: CommentDataService) {}
+  constructor(private courseCardDataService: CourseCardDataService, private coursePageDataService: CoursePageDataService, private route: ActivatedRoute, private commentDataService: CommentDataService) { }
 
   ngAfterViewInit() {
     this.courseCardDataService.courseData.subscribe(courseData => this.courseCardDataReceived(courseData));
@@ -27,10 +27,9 @@ export class CoursePageComponent implements AfterViewInit {
     this.initializeRatings();
     this.getRatingsCount();
   }
-  
 
-  getRatingsCount(){
-    if (this.courseData){
+  getRatingsCount() {
+    if (this.courseData) {
       this.ratingsCount = this.courseData['rating_count'];
     }
   }
@@ -39,33 +38,35 @@ export class CoursePageComponent implements AfterViewInit {
     if (courseData && courseData.hasOwnProperty("id_")) {
       this.courseData = courseData;
       this.commentDataService.getComments(this.courseData['id_']).subscribe(commentData => {
-        this.courseData['comments'] = commentData['comments'];
-        this.courseData['num_comments'] = commentData['num_comments'];
+        this.courseData['comments'] = {
+          "comments": commentData['comments'],
+          "num_comments": commentData['num_comments']
+        };
       });
     } else {
-      this.getCourseData(); 
+      this.getCourseData();
     }
   }
 
-  checkForRatings(){
-    if (this.courseData){
-      if (this.courseData['rating_count'] == 0){
+  checkForRatings() {
+    if (this.courseData) {
+      if (this.courseData['rating_count'] == 0) {
         this.ratingsExist = false;
       }
     }
   }
 
-  initializeRatings(){
-    if (this.courseData){
-      this.courseData['difficultCourseRating'] = Math.round(100*(this.courseData['ratings']['workload_rating']/5));
-      this.courseData['usefulCourseRating'] = Math.round(100*(this.courseData['ratings']['recommendation_rating']/5));
+  initializeRatings() {
+    if (this.courseData) {
+      this.courseData['difficultCourseRating'] = Math.round(100 * (this.courseData['ratings']['workload_rating'] / 5));
+      this.courseData['usefulCourseRating'] = Math.round(100 * (this.courseData['ratings']['recommendation_rating'] / 5));
     }
-    
-  
+
+
   }
-  setRatings(type:string) : number {
-    if (this.courseData){
-      if (type == 'useful'){
+  setRatings(type: string): number {
+    if (this.courseData) {
+      if (type == 'useful') {
         return this.usefulCourseRating;
       }
       else {
@@ -88,13 +89,13 @@ export class CoursePageComponent implements AfterViewInit {
   }
 
   addComment() {
-    if (this.currentComment && this.currentComment.trim()){
-        this.comments.push(this.currentComment);
-        this.currentComment = null;       
+    if (this.currentComment && this.currentComment.trim()) {
+      this.comments.push(this.currentComment);
+      this.currentComment = null;
     }
   }
 
   getOverallRatingAsPercent() {
-    return Math.round(100*(this.courseData['overall_rating']/5));
+    return Math.round(100 * (this.courseData['overall_rating'] / 5));
   }
 }
