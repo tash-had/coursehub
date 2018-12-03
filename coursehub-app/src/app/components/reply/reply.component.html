@@ -1,5 +1,5 @@
 <a data-target="#replyModal" (click)="showReplyModal()" class="pl-2"><i class="fa fa-reply"></i></a>
-<div class="container">
+<div class="container" *ngIf="comment">
   <div mdbModal #content="mdbModal" class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
