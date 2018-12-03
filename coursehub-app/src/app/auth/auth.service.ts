@@ -26,7 +26,7 @@ export class AuthService {
   public handleAuthentication(): void {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        let signinUrl = "https://coursehubapi.herokuapp.com/api/v1.0/user/sign_in";
+        let signinUrl = "http://0.0.0.0:5000/api/v1.0/user/sign_in";
         this.http.post(signinUrl, {
           "idToken": authResult.idToken
         }).subscribe(() => {});
@@ -69,7 +69,7 @@ export class AuthService {
   }
 
   public startAppServer() {
-    return this.http.get("https://coursehubapi.herokuapp.com/api/v1.0/course/search_course?searchQuery=");
+    return this.http.get("http://0.0.0.0:5000/api/v1.0/course/search_course?searchQuery=");
   }
 }
 

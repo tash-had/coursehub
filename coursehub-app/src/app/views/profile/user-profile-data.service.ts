@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserProfileDataService {
-  userProfileDataUrlBase: string = 'https://coursehubapi.herokuapp.com/api/v1.0/user/view_user_profile';
+  userProfileDataUrlBase: string = 'http://0.0.0.0:5000/api/v1.0/user/view_user_profile';
   constructor(private http: HttpClient) { }
 
   getProfileData() {
