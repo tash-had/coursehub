@@ -37,18 +37,10 @@ export class CourseReviewFormComponent implements OnInit {
       optionalComment = optionalComment.concat(usefulnessRatingStr, difficultyRatingStr);
     }
 
-    this.commentDataService.postComment(optionalComment, this.courseData['id_'], null).subscribe(() => { });
-
-    this.courseReviewService.reviewCourse(difficultyRating, usefulnessRating, this.courseData['id_']).subscribe(() => { });
-    this.courseReviewFormModal.hide();
-
-    const courseId = +this.route.snapshot.paramMap.get('courseId');
-
-    if (this.courseData['rating_count'] == 0) {
-      location.reload();
-    } else {
-      this.router.navigateByUrl('/RefrshComponent', { skipLocationChange: true }).then(() =>
-        this.router.navigate(["/course/" + courseId]));
-    }
+    this.commentDataService.postComment(optionalComment, this.courseData['id_'], null).subscribe(() => {
+      this.courseReviewService.reviewCourse(difficultyRating, usefulnessRating, this.courseData['id_']).subscribe(() => {
+        location.reload();
+      });
+    });
   }
 }
