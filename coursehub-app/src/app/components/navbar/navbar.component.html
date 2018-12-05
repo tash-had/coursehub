@@ -10,9 +10,9 @@
           <li class="nav-item">
               <a routerLink="/" class="nav-link waves-dark" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
               <a class="nav-link waves-dark" mdbWavesEffect>Popular</a>
-          </li>
+          </li> -->
           <li class="nav-item" *ngIf="!auth.isAuthenticated()">
               <a class="nav-link waves-dark" mdbWavesEffect (click)="auth.login()">Login / Signup</a>
           </li>
