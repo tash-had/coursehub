@@ -17,7 +17,7 @@ idna==2.6
 isort==4.3.4
 itsdangerous==0.24
 jaraco.clipboard==1.3.3
-Jinja2==2.10
+Jinja2==2.11.3
 lazy-object-proxy==1.3.1
 MarkupSafe==1.0
 marshmallow==2.13.5
